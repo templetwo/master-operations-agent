@@ -26,6 +26,8 @@ V0.5 adds the user-requested DeepSeek-V4.1-Flash synthetic comparison through th
 
 Improve retrieval and evidence selection first. Consider SFT or preference training only after baseline failures identify a learnable gap and independent trajectories exist. Split by drill family, initial state, and disturbance regime to avoid leakage. Quantized and fine-tuned artifacts must rerun the same held-out scorecard.
 
+V0.6 research work separates failure stages and offline content diagnostics, specifies the complete unchanged policy, and preregisters a four-arm guidance experiment. Actual DeepSeek accepted-advisory results were unchanged 0/10, output-only 0/10, policy-only 5/10, and both 4/10. All controls and pairing/source checks passed. A private 30-case holdout package has separate author and reviewer roles with explicit exposure records; it is synthetic contract/policy material, not engineer-approved process truth. See [work and receipts](../receipts/v0.6/README.md). No model or prompt has been promoted, and no held-out model score is claimed.
+
 Gate: reproducible useful improvement with no unacceptable regression. No training recipe, model family, or hardware purchase bypasses this evidence.
 
 ## 3. Connect the synthetic Ignition lab and peb

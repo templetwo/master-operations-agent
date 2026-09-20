@@ -1,0 +1,73 @@
+{
+  "author_revision": 2,
+  "broad_families": [
+    "independent multi-variable changes",
+    "interior extrema and net-stable paths",
+    "six-decimal threshold boundaries",
+    "historical quality gaps",
+    "alarm combinations",
+    "contract guards"
+  ],
+  "counts": {
+    "guards": 6,
+    "total": 30,
+    "usable": 24
+  },
+  "exposure": {
+    "author_did_not_inspect": [
+      "receipts",
+      "development manifest",
+      "model outputs",
+      "tuning tests",
+      "other agents tuning guidance"
+    ],
+    "author_read": [
+      "AGENTS.md",
+      "moa/contracts.py",
+      "moa/knowledge.py",
+      "root clarification of public snapshot-check mapping"
+    ],
+    "implementation_exposure": "A whole-file knowledge.py read displayed eligible() and history_findings() implementation. No implementation-blind authoring claim is made. Neither function nor Baseline was executed or used to generate labels.",
+    "root_allowed": "Package path, interface, counts, broad families, methodology/exposure, hashes only. No observations, expected labels, case identifiers, or per-case results."
+  },
+  "limits": [
+    "Not physically validated simulator trajectories",
+    "Not controls-engineer-reviewed",
+    "Not plant trials",
+    "Not independent process truth",
+    "Not a model capability score",
+    "Development-set overlap was not assessed; development inputs were not inspected",
+    "Author freeze is pending independent review; no held-out evaluation has occurred"
+  ],
+  "original_package_manifest_sha256": "e7dfae8cd4d968afe8b53b3b5ff69f9aaecd20f21d5433e55bc1e6f1907a5288",
+  "package_file_sha256": {
+    "AUTHORING.md": "9182bb0f19e3398cfbf7d02ea82a09f42dc2732102d9895fa084d6449005cbd2",
+    "author-original/AUTHORING.md": "2bc7dc3e72fc8aa2bb8989a2aa6f89e759239307029fa18d6189365a220152e5",
+    "author-original/cases.json": "f2f75cea266fa32ba6c640cf61093e902be84f84573daf0a17a14c6a0bb762b4",
+    "author-original/manifest.json": "e7dfae8cd4d968afe8b53b3b5ff69f9aaecd20f21d5433e55bc1e6f1907a5288",
+    "author-original/materialize.py": "41d93d862b80ffbd42b0114de48b46f69bb98c89da44cc912b30bd29237980d2",
+    "cases.json": "f2f75cea266fa32ba6c640cf61093e902be84f84573daf0a17a14c6a0bb762b4",
+    "materialize.py": "76def58c7106107b237cbfb9f5ae0ee6f95e9e04aa9b43b1576aa261e082a932"
+  },
+  "package_id": "u1-v1",
+  "package_manifest_sha256": "1aaea3f173ec059818e849f0a71491be6952aafc1aa9ccb63be086490b478649",
+  "private_package_path": "/Users/vaquez/.moa/holdouts/u1-v1",
+  "profile": "ess-u1-window-v1",
+  "provenance": "Independently authored synthetic contract/policy cases; labels explicitly authored from rule descriptions, not computed using production eligibility or Baseline.",
+  "review_correction": "An independent private review agreed with all 30 expected sets and requested opaque provider-facing epoch metadata. The materializer now uses fresh UUID epochs; inputs and labels are unchanged. Original author files and freeze are preserved privately. Reviewed final freeze is pending.",
+  "review_requirements": [
+    "Independent private inspection of inputs, expected sets, rationales, and materializer",
+    "No dependence on author checker; none supplied",
+    "Freeze reviewed final file hashes before evaluation",
+    "Keep per-case defects and corrections private; public outputs use aggregate counts and hashes"
+  ],
+  "schema": "moa-holdout-public-author-capsule-v1",
+  "status": "author_revised_pending_independent_review",
+  "validation": {
+    "construction_checks": "30/30 stdlib structural/materialization checks passed",
+    "label_review": "Explicit author decisions, pending independent reviewer",
+    "model_calls": 0,
+    "production_eligibility_calls": 0,
+    "test_suite": "Not run by holdout author; no production behavior changed"
+  }
+}

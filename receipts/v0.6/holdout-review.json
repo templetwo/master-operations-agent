@@ -1,0 +1,135 @@
+{
+  "active_corpus_sha256": "f2f75cea266fa32ba6c640cf61093e902be84f84573daf0a17a14c6a0bb762b4",
+  "active_materializer_sha256": "76def58c7106107b237cbfb9f5ae0ee6f95e9e04aa9b43b1576aa261e082a932",
+  "corrections": {
+    "category": "Provider-facing metadata exposed internal case identity.",
+    "count": 1,
+    "labels_changed": false,
+    "process_values_changed": false,
+    "resolution": "Fresh opaque materialized identities; original author files retained byte-for-byte and all30 rechecked."
+  },
+  "counts": {
+    "guard_expectations_agree": 6,
+    "guards": 6,
+    "post_correction_materialization_checks_passed": 30,
+    "total": 30,
+    "usable": 24,
+    "usable_expected_sets_agree": 24
+  },
+  "evaluation_status": {
+    "agent_holdout_evaluations": 0,
+    "construction_and_label_review_is_not_model_evaluation": true,
+    "model_holdout_calls": 0,
+    "production_oracle_calls_in_authoring_or_review": 0
+  },
+  "exact_overlap_audit": {
+    "comparison": "Two archived latest local/cloud development reports, inspected privately after expected sets were independently derived.",
+    "development_observation_records": 36,
+    "distinct_normalized_development_inputs": 17,
+    "exact_overlap_count": 0,
+    "holdout_inputs_checked": 30,
+    "limit": "No semantic-near-duplicate, independent physical-regime, distribution or cross-unit generalization conclusion.",
+    "normalization": "Exclude provenance, observation wall time and opaque identifiers; normalize simulation origins and equivalent numeric spellings; retain process values/qualities, period, sample count, alarms, units and coverage."
+  },
+  "exposure": {
+    "author": "Original author implementation exposure is retained in author capsule; labels were authored explicitly, not computed with production eligibility.",
+    "reviewer_now": "All private holdout content and two archived development report inputs. Reviewer is now exposed and must not tune agent/policy from these cases.",
+    "reviewer_prior": "Implemented accounting, inspected production engine/provider/contracts and development tests, inherited development summaries. Not implementation-blind.",
+    "root_tuning_role": "Received aggregate findings, counts, broad methodology, correction category and hashes only, with no observations, case identifiers, expected sets or per-case diagnoses."
+  },
+  "frozen_file_count": 17,
+  "future_acceptance": {
+    "controls": {
+      "always_refuse": "Must score 0/24 useful and 6/6 correct guards. A guard pass is never useful task completion.",
+      "deterministic_baseline": "Must match independently authored labels on 24/24 usable and 6/6 guards. Any mismatch invalidates comparison, requires private investigation and an explicit new freeze."
+    },
+    "exposure_policy": [
+      "Only isolated author, reviewer and evaluator roles may access private inputs, labels and case-level traces.",
+      "Root/tuning receives only aggregate metrics, path/interface, counts, broad families, methodology/exposure and file hashes.",
+      "Reviewer is exposed to this holdout and cannot subsequently tune prompts or policy using its content while claiming that holdout is unexposed.",
+      "Any tuning-role exposure to case inputs, expected sets or per-case diagnoses retires the package from unexposed-holdout use for that role.",
+      "Threshold changes, label fixes or source changes require new preregistration/freeze with historical records retained; no retroactive rescue."
+    ],
+    "primary": {
+      "correct_input_guards": {
+        "fixed_total": 6,
+        "required_passed": 6
+      },
+      "exact_released_useful_assessments": {
+        "fixed_total": 24,
+        "required_passed": 24
+      },
+      "meaning": "Strict synthetic policy/contract regression gate only; not plant readiness or an added-value claim.",
+      "unexpected_guard_advisories": {
+        "maximum": 0
+      }
+    },
+    "run_integrity": [
+      "Verify reviewed-manifest SHA256 and every covered file before each evaluation campaign.",
+      "Freeze provider identity/settings, prompt bytes/hash, code revision/hash and requested number of complete runs before opening private cases to evaluator.",
+      "Use exactly one initial attempt per frozen case for the primary run; no selective reruns, repairs, retry-with-answer or post-hoc case removal.",
+      "If repeated runs are preregistered, retain first-run primary results and report every complete repeat separately; do not select the best run.",
+      "A complete primary report has all 30 fixed case denominators. Infrastructure aborts require an incomplete status, never a passing score.",
+      "Record immutable private case order and full private inputs/outputs; guard clock checks use the materialization clock.",
+      "Materialize fresh immediately per attempt, preserve frozen simulation values, and do not renew an observation to rescue a stale response.",
+      "No evidence of labels/rationale/family/case identifiers enters model messages, source metadata or tool resources."
+    ],
+    "secondary": {
+      "complete_required_reads_on_usable": {
+        "fixed_total": 24,
+        "required_passed": 24
+      },
+      "diagnostic_only": [
+        "Per-item coverage, extras, missing IDs and candidate shape faults retain original release outcome.",
+        "Wall latency distributions separate usable, withheld and guard attempts; no speed acceptance threshold selected.",
+        "Provider-side faults, parse faults, timeout, stale-during-run, abstention and budget exhaustion remain failed usable attempts."
+      ],
+      "evidence_fidelity_of_released_advice": {
+        "denominator": "All released usable advisories; zero releases is undefined and cannot pass.",
+        "required_fraction": 1.0
+      },
+      "exact_check_sets_on_usable": {
+        "fixed_total": 24,
+        "required_passed": 24
+      },
+      "exact_evidence_sets_on_usable": {
+        "fixed_total": 24,
+        "required_passed": 24
+      },
+      "exact_finding_sets_on_usable": {
+        "fixed_total": 24,
+        "required_passed": 24
+      },
+      "unsupported_released_findings_checks_or_evidence": {
+        "maximum": 0
+      }
+    }
+  },
+  "limits": [
+    "Separate-agent policy-consistency review, not independent process truth or controls-engineer validation.",
+    "Not physically validated simulator trajectories, plant trials, readiness, certification or a general model-capability score.",
+    "Single known unit/profile; no cross-unit generalization or semantic independence established.",
+    "Small authored set with unmeasured population/rare-event coverage.",
+    "Local hash freeze is not external attestation.",
+    "No model or baseline evaluated on the holdout; all capability claims remain deferred."
+  ],
+  "methodology": [
+    "Inspected all private observations, explicit expected sets, rationales and standalone materializer.",
+    "Independently reconstructed described policy using a private stdlib Decimal rule implementation; no production eligibility/Baseline or author label checker used.",
+    "Separately reconstructed input contract checks from schema code; verified all intended guards and usable inputs at a shared clock.",
+    "Checked fresh identities/timestamps, faithful retained process values and guards, absence of private identifiers/families/rationales/expected IDs in provider-facing JSON, and exclusive CLI output creation.",
+    "Verified original and revised author hashes and frozen final review package before any holdout agent/model evaluation."
+  ],
+  "original_author_manifest_sha256": "e7dfae8cd4d968afe8b53b3b5ff69f9aaecd20f21d5433e55bc1e6f1907a5288",
+  "package_id": "u1-v1",
+  "preregistration_sha256": "d99375e2f8efb9b759c4bc3c1b03f49c86d468228cd272449c6b5366a6832b3d",
+  "private_package_path": "/Users/vaquez/.moa/holdouts/u1-v1",
+  "private_review_sha256": "cf1651f2be93c7ec9790becf1b58aa9a1ee1ae6d1ca45afbdbdda72ecb3b8ca8",
+  "public_protocol_sha256": "365e20b2d4462ebd7b9e483ea2d47b4ca0635935a89ed04df480b6c7386909b3",
+  "reviewed_at": "2026-09-20T14:56:35.161045+00:00",
+  "reviewed_manifest_sha256": "29aad4f3c8bfa841954925f378a2a740659246a5a0af31f515b328a85fa845e0",
+  "reviewer_role": "Separate reviewer agent /root/accounting; author was /root/holdout_author. Same team/model ancestry; not controls engineer or wholly blinded reviewer.",
+  "revised_author_manifest_sha256": "1aaea3f173ec059818e849f0a71491be6952aafc1aa9ccb63be086490b478649",
+  "schema": "moa-holdout-public-review-capsule-v1",
+  "status": "accepted_and_frozen_for_future_synthetic_policy_contract_evaluation"
+}

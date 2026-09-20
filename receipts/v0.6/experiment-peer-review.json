@@ -1,0 +1,75 @@
+{
+  "schema": "moa-experiment-peer-review-v1",
+  "reviewed_at": "2026-09-20T14:48:38.524710+00:00",
+  "reviewed_commit": "44545fd3857547af519da24fc5a03d16392b9f64",
+  "reviewer": "Policy subagent, separate from experiment-runner implementation author",
+  "review_scope": "Read-only code and test review of controlled development factorial design and failure handling",
+  "independence_limit": "Internal agent peer review, not an outside audit or controls-engineer approval. Reviewer authored the static guidance constants being tested.",
+  "source_sha256": {
+    "moa/guidance_experiment.py": "de49975fe78ae3d94a0a9dea51f9ff5dcccc060f3fa544ee9ff5cf7de13607a9",
+    "tests/test_guidance_experiment.py": "25472260caac3de4638e0cf5a890460484ccee9d7fafe1178a92c576952701f3",
+    "moa/deepseek.py": "cf2987b916ee758ef6c53dd8c30833bdc08d965d582fe878563c015770b1356a",
+    "moa/engine.py": "892c409adfca85de150f27a611dc2f4adcd84716941f0340794eff0b750e4c54",
+    "moa/comparison.py": "e1caa1a3277830a1649b8ecc62844c3c9f08bef99c9a2e842ee4d8ab7a065289",
+    "moa/drills.py": "edb2f94df9552b82499f0ebb4296604913b5e20cace75ee187210a4a479c7db7"
+  },
+  "conclusion": "No blocking defect found for the registered bounded development experiment after the listed revisions. This does not validate model capability or future experimental results.",
+  "findings": [
+    {
+      "id": "delivered-format-failure-selection",
+      "prior_issue": "All provider_response failures interrupted the experiment, including invalid generated JSON and truncated content.",
+      "status": "resolved_in_reviewed_code",
+      "resolution": "provider_failure_requires_stop preserves scored failures when a response hash and expected reported alias are present. Preparation, missing delivered response, HTTP, scope, and model-identity failures stop. Explicit stop-rule wording and a targeted distinction test are present.",
+      "references": [
+        "moa/guidance_experiment.py:provider_failure_requires_stop",
+        "tests/test_guidance_experiment.py:test_delivered_invalid_content_is_counted_transport_stops"
+      ]
+    },
+    {
+      "id": "control-prerequisite-completeness",
+      "prior_issue": "The initial gate did not require all eight refusal-control guard cases before cloud calls.",
+      "status": "resolved_in_reviewed_code",
+      "resolution": "Before provider preparation, the runner requires baseline success, refusal control overall failure, exactly 0/10 useful assessments, and 8/8 correct guards."
+    },
+    {
+      "id": "source-drift-and-interruption-tests",
+      "status": "addressed_with_targeted_tests",
+      "resolution": "Tests now exercise source drift before credential access and setup failure leaving an interrupted receipt without a completed comparison.",
+      "limits": "This review inspected test definitions. It did not independently rerun tests or inject a live service failure."
+    },
+    {
+      "id": "secondary-endpoint-artifacts",
+      "status": "required_after_run",
+      "resolution": "Read-completion and offline finding/check diagnostics must be attached for every arm before stage 4 is reported complete. They are not yet computed by the runner summary itself."
+    },
+    {
+      "id": "latency-interpretation",
+      "status": "reporting_limit",
+      "resolution": "All-case latency includes guard cases and possibly withheld attempts. Report useful-case and accepted-advisory latency separately when interpreting results."
+    }
+  ],
+  "verified_by_code_inspection": [
+    "Preregistration hash, full design, and source hashes are checked before credential loading.",
+    "Every usable arm/case is exported immediately before assessment; captured times are not renewed.",
+    "Arm order rotates by case index and process-data pairing is checked against the baseline.",
+    "Four provider instances each enforce 61 maximum completion attempts including warmup, for 244 total.",
+    "Runtime validator, source boundaries, and authored case expectations remain separate from optional prompt guidance.",
+    "Final source hashes are compared with registration and invalid comparisons are marked explicitly.",
+    "Expected case labels are not passed into provider messages by the runner."
+  ],
+  "limits": [
+    "One pass over a reused development set, not statistical efficacy evidence or a holdout.",
+    "Cloud alias is mutable and rotating order cannot eliminate service drift or prompt-cache differences.",
+    "Source drift is detected after the run, not prevented by file isolation.",
+    "Local preregistration and hash chains are receipts, not external timestamp attestation.",
+    "The live evaluation was in progress during this review; no outcome claim is made."
+  ],
+  "review_actions": {
+    "source_edits": false,
+    "credential_access": false,
+    "network_calls": false,
+    "model_calls": false,
+    "new_tests_run": false,
+    "receipt_written": "receipts/v0.6/experiment-peer-review.json"
+  }
+}

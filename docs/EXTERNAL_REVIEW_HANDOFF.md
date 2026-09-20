@@ -2,6 +2,8 @@
 
 Prepared 2026-09-20 for an outside reviewer. This is a maintainer-prepared brief, not an independent review or endorsement. Please challenge the harness, policy, tests, and conclusions as well as the models.
 
+**Follow-up work:** this handoff describes the frozen `dd40e9d` / `7451a72` review baseline. Later runtime and diagnostic changes, controlled experimental outcomes, and private holdout preparation are documented in [the v0.6 completion receipts](../receipts/v0.6/README.md). Statements below about unresolved defects are historical findings at that baseline; original evidence remains intact.
+
 ## Review request and public entry points
 
 The unresolved problem is repeated **0/10 useful assessments** across tested local and cloud configurations. We can show that the application withholds invalid candidates. We have not shown that an LLM adds useful operations reasoning. Please determine which failures come from our integration and task specification, which come from model behavior, and whether the current task is a sensible use of an LLM at all.

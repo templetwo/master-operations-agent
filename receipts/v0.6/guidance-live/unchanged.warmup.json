@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "requested_model": "deepseek-flash",
+    "listed": true,
+    "identity_limit": "Provider-reported mutable API alias; no weight digest or immutable deployment pin.",
+    "endpoint": "https://api.deepseek.com/chat/completions",
+    "settings": {
+      "temperature": 0,
+      "max_tokens": 768,
+      "thinking": {
+        "type": "disabled"
+      },
+      "response_format": {
+        "type": "json_object"
+      },
+      "stream": false
+    },
+    "socket_timeout_s": 20,
+    "maximum_inference_calls": 61,
+    "scope": "explicit-cloud-synthetic-comparison",
+    "credential": "not_recorded"
+  },
+  "purpose": "Unscored synthetic protocol warmup.",
+  "response": {
+    "kind": "tool",
+    "name": "read_snapshot",
+    "arguments": {}
+  },
+  "calls": [
+    {
+      "request_sha256": "f44b3fb854cee05d1277405514e6dc0d5739890adfc030445310abff80830180",
+      "request_wire_sha256": "24204f32ea3486626986dd64f9a3be2c0f67354b8e656144d908a039d9f7dd3c",
+      "requested_model": "deepseek-flash",
+      "call_number": 1,
+      "response_sha256": "0edba6a57d99594faf4b3695f50e49d514ae43cb59618fabd0b8aea184b2576d",
+      "reported": {
+        "id": "8590299d-ad46-4c6d-9b78-09de520e1062",
+        "model": "deepseek-flash",
+        "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "usage": {
+          "prompt_tokens": 531,
+          "completion_tokens": 16,
+          "total_tokens": 547,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 147
+        }
+      },
+      "finish_reason": "stop",
+      "content": "{\"kind\":\"tool\",\"name\":\"read_snapshot\",\"arguments\":{}}",
+      "content_truncated": false,
+      "wall_ms": 940.94
+    }
+  ]
+}

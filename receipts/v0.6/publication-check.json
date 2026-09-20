@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-09-20T14:58:01.927Z",
+  "passed": true,
+  "repository_files_scanned": 322,
+  "method": "Current credential bytes compared in memory, plus common key/private-key patterns; no credential or hash recorded. Ignored experiment databases also checked. Not exhaustive secret detection.",
+  "historical_receipts_unchanged": true,
+  "experiment_source_still_matches_preregistration": true,
+  "reviewed_private_manifest_hash_found": true,
+  "public_holdout_protocol_hash_matches_review": true,
+  "holdout_exposure": "Root has received aggregate metadata, methods and hashes only. Private JSON bytes were hashed without parsing or displaying observations/labels."
+}

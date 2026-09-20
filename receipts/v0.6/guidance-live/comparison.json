@@ -1,0 +1,441 @@
+{
+  "completed": true,
+  "finished_at": "2026-09-20T14:49:56.339Z",
+  "experiment_valid": true,
+  "integrity": {
+    "source_unchanged": true,
+    "paired_process_data": true,
+    "aliases_listed_after": true,
+    "controls_passed": true
+  },
+  "pairings": {
+    "unchanged": [
+      {
+        "provider": "deepseek:deepseek-flash",
+        "matched": true
+      },
+      {
+        "provider": "always-refuse-negative-control",
+        "matched": true
+      }
+    ],
+    "output-only": [
+      {
+        "provider": "deepseek:deepseek-flash",
+        "matched": true
+      },
+      {
+        "provider": "always-refuse-negative-control",
+        "matched": true
+      }
+    ],
+    "policy-only": [
+      {
+        "provider": "deepseek:deepseek-flash",
+        "matched": true
+      },
+      {
+        "provider": "always-refuse-negative-control",
+        "matched": true
+      }
+    ],
+    "both": [
+      {
+        "provider": "deepseek:deepseek-flash",
+        "matched": true
+      },
+      {
+        "provider": "always-refuse-negative-control",
+        "matched": true
+      }
+    ]
+  },
+  "promotion": "not_evaluated",
+  "arms": {
+    "unchanged": {
+      "metrics": {
+        "useful_assessment": {
+          "passed": 0,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 0,
+          "total": 0
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 9,
+        "failure_accounting": {
+          "version": "stage-accounting-v1",
+          "total": 18,
+          "released": 0,
+          "withheld": 18,
+          "by_category": {
+            "candidate_content": 6,
+            "candidate_shape": 3,
+            "input_validation": 8,
+            "tool_protocol": 1
+          },
+          "by_stage": {
+            "candidate_validation": 9,
+            "input_validation": 8,
+            "tool_request": 1
+          },
+          "by_reason": {
+            "history_mismatch": 1,
+            "history_sequence": 2,
+            "incomplete": 2,
+            "quality": 2,
+            "schema": 4,
+            "stale": 1,
+            "unsupported_check": 1,
+            "unsupported_finding": 5
+          },
+          "usable_observations": {
+            "total": 10,
+            "passed": 0,
+            "failed": 10,
+            "withheld": 10,
+            "released": 0,
+            "by_category": {
+              "candidate_content": 6,
+              "candidate_shape": 3,
+              "tool_protocol": 1
+            }
+          },
+          "guard_observations": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "withheld": 8,
+            "released": 0,
+            "by_category": {
+              "input_validation": 8
+            }
+          },
+          "limits": [
+            "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+            "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+            "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+          ]
+        },
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 3634.36,
+          "max": 4608.05
+        }
+      },
+      "inference": {
+        "calls": 40,
+        "reported_usage": {
+          "prompt_tokens": 71258,
+          "completion_tokens": 1513,
+          "total_tokens": 72771,
+          "prompt_cache_hit_tokens": 40448,
+          "prompt_cache_miss_tokens": 30810
+        },
+        "reported_models": [
+          "deepseek-flash"
+        ],
+        "call_wall_ms_total": 40829.04,
+        "warmup_included": false,
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "cost": "Not inferred from tokens. Consult the provider bill for actual charges."
+      },
+      "accepted_case_difference_from_unchanged": 0,
+      "evidence_anchor": {
+        "events": 204,
+        "head": "fa73283640ab089b249dc0eb3b2a449ccb4fd3311c4ff62bb869c62d9741519e"
+      }
+    },
+    "output-only": {
+      "metrics": {
+        "useful_assessment": {
+          "passed": 0,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 0,
+          "total": 0
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 10,
+        "failure_accounting": {
+          "version": "stage-accounting-v1",
+          "total": 18,
+          "released": 0,
+          "withheld": 18,
+          "by_category": {
+            "candidate_content": 10,
+            "input_validation": 8
+          },
+          "by_stage": {
+            "candidate_validation": 10,
+            "input_validation": 8
+          },
+          "by_reason": {
+            "history_mismatch": 1,
+            "history_sequence": 2,
+            "incomplete": 2,
+            "quality": 2,
+            "stale": 1,
+            "unsupported_check": 4,
+            "unsupported_finding": 6
+          },
+          "usable_observations": {
+            "total": 10,
+            "passed": 0,
+            "failed": 10,
+            "withheld": 10,
+            "released": 0,
+            "by_category": {
+              "candidate_content": 10
+            }
+          },
+          "guard_observations": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "withheld": 8,
+            "released": 0,
+            "by_category": {
+              "input_validation": 8
+            }
+          },
+          "limits": [
+            "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+            "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+            "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+          ]
+        },
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 3931.11,
+          "max": 4468.49
+        }
+      },
+      "inference": {
+        "calls": 40,
+        "reported_usage": {
+          "prompt_tokens": 87216,
+          "completion_tokens": 1611,
+          "total_tokens": 88827,
+          "prompt_cache_hit_tokens": 55552,
+          "prompt_cache_miss_tokens": 31664
+        },
+        "reported_models": [
+          "deepseek-flash"
+        ],
+        "call_wall_ms_total": 41881.78,
+        "warmup_included": false,
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "cost": "Not inferred from tokens. Consult the provider bill for actual charges."
+      },
+      "accepted_case_difference_from_unchanged": 0,
+      "evidence_anchor": {
+        "events": 204,
+        "head": "c4428956ec168f7a17189c71679d099ec3d429769a9ab69f1b9da9fe9138fca6"
+      }
+    },
+    "policy-only": {
+      "metrics": {
+        "useful_assessment": {
+          "passed": 5,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 5,
+          "total": 5
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 5,
+        "failure_accounting": {
+          "version": "stage-accounting-v1",
+          "total": 18,
+          "released": 5,
+          "withheld": 13,
+          "by_category": {
+            "candidate_content": 5,
+            "input_validation": 8
+          },
+          "by_stage": {
+            "candidate_validation": 5,
+            "input_validation": 8
+          },
+          "by_reason": {
+            "history_mismatch": 1,
+            "history_sequence": 2,
+            "incomplete": 2,
+            "quality": 2,
+            "stale": 1,
+            "unsupported_finding": 5
+          },
+          "usable_observations": {
+            "total": 10,
+            "passed": 5,
+            "failed": 5,
+            "withheld": 5,
+            "released": 5,
+            "by_category": {
+              "candidate_content": 5
+            }
+          },
+          "guard_observations": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "withheld": 8,
+            "released": 0,
+            "by_category": {
+              "input_validation": 8
+            }
+          },
+          "limits": [
+            "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+            "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+            "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+          ]
+        },
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 4155.465,
+          "max": 4774.99
+        }
+      },
+      "inference": {
+        "calls": 40,
+        "reported_usage": {
+          "prompt_tokens": 116670,
+          "completion_tokens": 1497,
+          "total_tokens": 118167,
+          "prompt_cache_hit_tokens": 83456,
+          "prompt_cache_miss_tokens": 33214
+        },
+        "reported_models": [
+          "deepseek-flash"
+        ],
+        "call_wall_ms_total": 43123.13,
+        "warmup_included": false,
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "cost": "Not inferred from tokens. Consult the provider bill for actual charges."
+      },
+      "accepted_case_difference_from_unchanged": 5,
+      "evidence_anchor": {
+        "events": 204,
+        "head": "f6a2203a77b8c29a7c8b01abd95f65833b4ddc452242d9e1a580a56adfd3390e"
+      }
+    },
+    "both": {
+      "metrics": {
+        "useful_assessment": {
+          "passed": 4,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 4,
+          "total": 4
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 6,
+        "failure_accounting": {
+          "version": "stage-accounting-v1",
+          "total": 18,
+          "released": 4,
+          "withheld": 14,
+          "by_category": {
+            "candidate_content": 6,
+            "input_validation": 8
+          },
+          "by_stage": {
+            "candidate_validation": 6,
+            "input_validation": 8
+          },
+          "by_reason": {
+            "history_mismatch": 1,
+            "history_sequence": 2,
+            "incomplete": 2,
+            "quality": 2,
+            "stale": 1,
+            "unsupported_finding": 6
+          },
+          "usable_observations": {
+            "total": 10,
+            "passed": 4,
+            "failed": 6,
+            "withheld": 6,
+            "released": 4,
+            "by_category": {
+              "candidate_content": 6
+            }
+          },
+          "guard_observations": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "withheld": 8,
+            "released": 0,
+            "by_category": {
+              "input_validation": 8
+            }
+          },
+          "limits": [
+            "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+            "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+            "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+          ]
+        },
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 4173.34,
+          "max": 4919.1
+        }
+      },
+      "inference": {
+        "calls": 40,
+        "reported_usage": {
+          "prompt_tokens": 132518,
+          "completion_tokens": 1520,
+          "total_tokens": 134038,
+          "prompt_cache_hit_tokens": 101376,
+          "prompt_cache_miss_tokens": 31142
+        },
+        "reported_models": [
+          "deepseek-flash"
+        ],
+        "call_wall_ms_total": 44225.67,
+        "warmup_included": false,
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "cost": "Not inferred from tokens. Consult the provider bill for actual charges."
+      },
+      "accepted_case_difference_from_unchanged": 4,
+      "evidence_anchor": {
+        "events": 204,
+        "head": "22f369d569db7fdc4576183b3b6e49be4260ea614a6174717eb4d311ca8199ef"
+      }
+    }
+  },
+  "limits": "One small reused development set. Not a holdout, statistical efficacy claim, or engineer review. Cloud alias and service timing are mutable. Rotated order mitigates but cannot eliminate service drift."
+}

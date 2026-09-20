@@ -1,0 +1,2273 @@
+{
+  "schema_version": "moa-offline-diagnostics-v1",
+  "provider": "deepseek:deepseek-flash",
+  "suite": "ess-u1-development-v1",
+  "split": "development",
+  "review_status": "controls_review_pending",
+  "evidence_anchor": {
+    "events": 204,
+    "head": "f6a2203a77b8c29a7c8b01abd95f65833b4ddc452242d9e1a580a56adfd3390e"
+  },
+  "integrity": "Full embedded chain verified; report outcomes bind to event hashes.",
+  "expected_labels_sha256": "19dd55fa8d9e65402dd95d50bdf74731437573de6b4d162cd984b67b4b867306",
+  "limits": [
+    "Authored case labels are not independently reviewed ground truth and are outside the event chain.",
+    "An embedded hash-chain head does not attest authenticity or prevent whole-history replacement.",
+    "Content overlap is a diagnostic, never a release pass, safety score, or proof of comprehension.",
+    "Packaging transformations are offline only. Expected labels never enter a model request.",
+    "No evidence-reference correctness or process-truth validation is performed here.",
+    "Absent or invalid ID lists contribute zero matched/predicted IDs and all expected omissions; precision is undefined with no predictions."
+  ],
+  "original_report_passed": false,
+  "candidate_states": {
+    "absent": 8,
+    "advice": 10
+  },
+  "original_envelopes_valid": 10,
+  "summary": {
+    "original": {
+      "cases": 10,
+      "denominator": "All authored advisory cases, including absent or invalid candidates.",
+      "findings": {
+        "exact_sets": 5,
+        "total_cases": 10,
+        "observed_id_lists": 10,
+        "valid_id_lists": 10,
+        "matched": 40,
+        "expected": 40,
+        "predicted": 50,
+        "omitted": 0,
+        "extras": 10,
+        "micro_recall": 1.0,
+        "micro_precision": 0.8
+      },
+      "checks": {
+        "exact_sets": 8,
+        "total_cases": 10,
+        "observed_id_lists": 10,
+        "valid_id_lists": 10,
+        "matched": 26,
+        "expected": 26,
+        "predicted": 28,
+        "omitted": 0,
+        "extras": 2,
+        "micro_recall": 1.0,
+        "micro_precision": 0.9285714285714286
+      }
+    },
+    "offline_packaging_diagnostic": {
+      "cases": 10,
+      "denominator": "All authored advisory cases, including absent or invalid candidates.",
+      "findings": {
+        "exact_sets": 5,
+        "total_cases": 10,
+        "observed_id_lists": 10,
+        "valid_id_lists": 10,
+        "matched": 40,
+        "expected": 40,
+        "predicted": 50,
+        "omitted": 0,
+        "extras": 10,
+        "micro_recall": 1.0,
+        "micro_precision": 0.8
+      },
+      "checks": {
+        "exact_sets": 8,
+        "total_cases": 10,
+        "observed_id_lists": 10,
+        "valid_id_lists": 10,
+        "matched": 26,
+        "expected": 26,
+        "predicted": 28,
+        "omitted": 0,
+        "extras": 2,
+        "micro_recall": 1.0,
+        "micro_precision": 0.9285714285714286
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "normal:20260920",
+      "run_id": "399a91ac074a4b86896d409962498884",
+      "expected_status": "advisory",
+      "original_release_status": "advisory",
+      "original_release_reason": "supported",
+      "original_case_passed": true,
+      "candidate_state": "advice",
+      "response_event_seq": 17,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 2,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 2,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cooling-loss:20260920",
+      "run_id": "9bfa20b5aa1b4be1a2ed361ba720bff4",
+      "expected_status": "advisory",
+      "original_release_status": "advisory",
+      "original_release_reason": "supported",
+      "original_case_passed": true,
+      "candidate_state": "advice",
+      "response_event_seq": 35,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 6,
+            "expected": 6,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 6,
+            "expected": 6,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "feed-surge:20260920",
+      "run_id": "a820fb16d70e457291f1f4ead8682863",
+      "expected_status": "advisory",
+      "original_release_status": "abstain",
+      "original_release_reason": "unsupported_finding",
+      "original_case_passed": false,
+      "candidate_state": "advice",
+      "response_event_seq": 53,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_large_net_change",
+              "no_reported_alarms",
+              "reactor_warming",
+              "tank_level_increased"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "no_large_net_change",
+              "reactor_warming"
+            ],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_large_net_change",
+              "no_reported_alarms",
+              "reactor_warming",
+              "tank_level_increased"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "no_large_net_change",
+              "reactor_warming"
+            ],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "bad-quality:20260920",
+      "run_id": "eaa423b2dd264f81b98d6df6527eaae6",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "quality",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "restoration-lag:20260920",
+      "run_id": "5a1cfe2ab64d45ba941802115d7f5087",
+      "expected_status": "advisory",
+      "original_release_status": "abstain",
+      "original_release_reason": "unsupported_finding",
+      "original_case_passed": false,
+      "candidate_state": "advice",
+      "response_event_seq": 74,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "jacket_warming",
+              "no_large_net_change",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "no_large_net_change"
+            ],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 5,
+            "recall": 1.0,
+            "precision": 0.6,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "monitor_thermal_recovery"
+            ],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "jacket_warming",
+              "no_large_net_change",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "no_large_net_change"
+            ],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 5,
+            "recall": 1.0,
+            "precision": 0.6,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "monitor_thermal_recovery"
+            ],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "recovery:20260920",
+      "run_id": "7fa7c160ea1d4bff9d7de835ce10baf7",
+      "expected_status": "advisory",
+      "original_release_status": "abstain",
+      "original_release_reason": "unsupported_finding",
+      "original_case_passed": false,
+      "candidate_state": "advice",
+      "response_event_seq": 92,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "jacket_warming",
+              "reactor_below_window_peak",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "reactor_below_window_peak"
+            ],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "jacket_warming",
+              "reactor_below_window_peak",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "reactor_below_window_peak"
+            ],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "normal:20260921",
+      "run_id": "55d7ff9d5572449f9da6ddb07014e111",
+      "expected_status": "advisory",
+      "original_release_status": "advisory",
+      "original_release_reason": "supported",
+      "original_case_passed": true,
+      "candidate_state": "advice",
+      "response_event_seq": 110,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 2,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "no_large_net_change",
+              "no_reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 2,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cooling-loss:20260921",
+      "run_id": "f9abde728eca42f4b73530167e02d697",
+      "expected_status": "advisory",
+      "original_release_status": "advisory",
+      "original_release_reason": "supported",
+      "original_case_passed": true,
+      "candidate_state": "advice",
+      "response_event_seq": 128,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 6,
+            "expected": 6,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "cooling_path_unconfirmed",
+              "jacket_warming",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 6,
+            "expected": 6,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "review_cooling_evidence"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "feed-surge:20260921",
+      "run_id": "3f78ee63aade4d169a4915b83db4df77",
+      "expected_status": "advisory",
+      "original_release_status": "advisory",
+      "original_release_reason": "supported",
+      "original_case_passed": true,
+      "candidate_state": "advice",
+      "response_event_seq": 146,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 4,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "feed_flow_increased",
+              "no_reported_alarms",
+              "tank_level_increased"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 4,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "continue_observation",
+              "review_feed_balance"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "bad-quality:20260921",
+      "run_id": "dc50ab5beb2547d598a99fc1d33274fa",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "quality",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "restoration-lag:20260921",
+      "run_id": "a548e5a0f4da421d92cf798e442e0f32",
+      "expected_status": "advisory",
+      "original_release_status": "abstain",
+      "original_release_reason": "unsupported_finding",
+      "original_case_passed": false,
+      "candidate_state": "advice",
+      "response_event_seq": 167,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "jacket_warming",
+              "no_large_net_change",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "no_large_net_change"
+            ],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 5,
+            "recall": 1.0,
+            "precision": 0.6,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "monitor_thermal_recovery"
+            ],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "jacket_warming",
+              "no_large_net_change",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "reactor_warming",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "no_large_net_change"
+            ],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 5,
+            "recall": 1.0,
+            "precision": 0.6,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "monitor_thermal_recovery"
+            ],
+            "matched": 2,
+            "expected": 2,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "recovery:20260921",
+      "run_id": "b8fa6d0b4d284ec0990e2c0fb6be12ce",
+      "expected_status": "advisory",
+      "original_release_status": "abstain",
+      "original_release_reason": "unsupported_finding",
+      "original_case_passed": false,
+      "candidate_state": "advice",
+      "response_event_seq": 185,
+      "original": {
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "jacket_warming",
+              "no_large_net_change",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "no_large_net_change"
+            ],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": true,
+          "issues": []
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "predicted_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "jacket_warming",
+              "no_large_net_change",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "matched_ids": [
+              "cause_unresolved",
+              "coolant_output_high",
+              "reactor_cooling",
+              "reported_alarms"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [
+              "jacket_warming",
+              "no_large_net_change"
+            ],
+            "matched": 4,
+            "expected": 4,
+            "predicted": 6,
+            "recall": 1.0,
+            "precision": 0.6666666666666666,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": true,
+            "id_list_valid": true,
+            "expected_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "predicted_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "matched_ids": [
+              "compare_independent_measurement",
+              "inspect_alarm_context",
+              "monitor_thermal_recovery"
+            ],
+            "omitted_ids": [],
+            "extra_ids": [],
+            "matched": 3,
+            "expected": 3,
+            "predicted": 3,
+            "recall": 1.0,
+            "precision": 1.0,
+            "exact_set": true
+          }
+        }
+      }
+    },
+    {
+      "id": "expired",
+      "run_id": "28e5bf6314ff440f997085df8698b0dc",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "stale",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "missing-tag",
+      "run_id": "da2099204bda48a6bd268613d55e279f",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "incomplete",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "history-gap",
+      "run_id": "c793a9a1a32744ebaa27b049de378297",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "history_sequence",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "history-reversed",
+      "run_id": "ebc0f9b46b004a1db2a5b22a66817000",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "history_sequence",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "endpoint-conflict",
+      "run_id": "806a6cd914904b2eb4ddcdbc29d6b478",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "history_mismatch",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    },
+    {
+      "id": "partial-alarms",
+      "run_id": "aebd347eaa1841ffaa1cd85a65919500",
+      "expected_status": "abstain",
+      "original_release_status": "abstain",
+      "original_release_reason": "incomplete",
+      "original_case_passed": true,
+      "candidate_state": "absent",
+      "response_event_seq": null,
+      "original": {
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      },
+      "offline_packaging_diagnostic": {
+        "transformations": [],
+        "envelope": {
+          "valid": false,
+          "issues": [
+            "not_an_object"
+          ]
+        },
+        "content": {
+          "findings": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          },
+          "checks": {
+            "prediction_observed": false,
+            "id_list_valid": false,
+            "expected_ids": [],
+            "predicted_ids": null,
+            "matched_ids": [],
+            "omitted_ids": [],
+            "extra_ids": null,
+            "matched": 0,
+            "expected": 0,
+            "predicted": 0,
+            "recall": null,
+            "precision": null,
+            "exact_set": false
+          }
+        }
+      }
+    }
+  ],
+  "input": {
+    "path": "/Users/vaquez/master-operations-agent/receipts/v0.6/guidance-live/policy-only.json",
+    "sha256": "a60c6d7cc7bc4f8f7f0e340efee50b7ed75456a1a756663ab28b0ed0bd04e1ae",
+    "bytes": 844658
+  },
+  "diagnostic_source_sha256": "daa37c3f83d1181d371b34174a8f6f9cfc05a761f286346d1f8384796113a235"
+}

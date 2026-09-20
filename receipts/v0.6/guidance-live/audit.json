@@ -1,0 +1,889 @@
+{
+  "source": "receipts/v0.6/guidance-live/audit.py",
+  "source_sha256": "42877c382d8f8f20c492bcd6a2cff1336293530a5d5ed0e3b40ecd9dbb826d6d",
+  "scope": "Offline post-experiment audit, no additional model calls, release or score changes.",
+  "arms": {
+    "baseline": {
+      "report_sha256": "342230fe0d667ba5e6df5b64feb6e0ed9ac29a571b8328213571ee6c140d33fb",
+      "verified_evidence_anchor": {
+        "events": 154,
+        "head": "24b5e5a6b3f11b63bd1360477a26e470db4afc5fd6f46884c99091236e7e0ae0"
+      },
+      "required_reads": {
+        "completed": 10,
+        "total": 10
+      },
+      "well_formed_final_advice": {
+        "count": 10,
+        "total": 10
+      },
+      "accepted_useful": {
+        "passed": 10,
+        "total": 10
+      },
+      "input_guards": {
+        "passed": 8,
+        "total": 8
+      },
+      "guard_model_calls": 0,
+      "candidate_rejections_verified": 0,
+      "usable_attempt_latency_ms": {
+        "count": 10,
+        "median": 26.61,
+        "max": 46.76
+      },
+      "released_advisory_latency_ms": {
+        "count": 10,
+        "median": 26.61,
+        "max": 46.76
+      },
+      "provider_reported_fingerprints": [],
+      "diagnostics": {
+        "original": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 10,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 40,
+            "expected": 40,
+            "predicted": 40,
+            "omitted": 0,
+            "extras": 0,
+            "micro_recall": 1.0,
+            "micro_precision": 1.0
+          },
+          "checks": {
+            "exact_sets": 10,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 26,
+            "omitted": 0,
+            "extras": 0,
+            "micro_recall": 1.0,
+            "micro_precision": 1.0
+          }
+        },
+        "offline_packaging_diagnostic": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 10,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 40,
+            "expected": 40,
+            "predicted": 40,
+            "omitted": 0,
+            "extras": 0,
+            "micro_recall": 1.0,
+            "micro_precision": 1.0
+          },
+          "checks": {
+            "exact_sets": 10,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 26,
+            "omitted": 0,
+            "extras": 0,
+            "micro_recall": 1.0,
+            "micro_precision": 1.0
+          }
+        }
+      },
+      "failure_accounting": {
+        "version": "stage-accounting-v1",
+        "total": 18,
+        "released": 10,
+        "withheld": 8,
+        "by_category": {
+          "input_validation": 8
+        },
+        "by_stage": {
+          "input_validation": 8
+        },
+        "by_reason": {
+          "history_mismatch": 1,
+          "history_sequence": 2,
+          "incomplete": 2,
+          "quality": 2,
+          "stale": 1
+        },
+        "usable_observations": {
+          "total": 10,
+          "passed": 10,
+          "failed": 0,
+          "withheld": 0,
+          "released": 10,
+          "by_category": {}
+        },
+        "guard_observations": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "withheld": 8,
+          "released": 0,
+          "by_category": {
+            "input_validation": 8
+          }
+        },
+        "limits": [
+          "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+          "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+          "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+        ]
+      }
+    },
+    "always-refuse": {
+      "report_sha256": "95b4adae8d5d99a5728bd4af8315edfe20ea80e394bb445904076bca40ef7ce9",
+      "verified_evidence_anchor": {
+        "events": 64,
+        "head": "af3b9633e4c9f472e7fb1f760031c821afd799f7351b067a9b4c684d41dfb63b"
+      },
+      "required_reads": {
+        "completed": 0,
+        "total": 10
+      },
+      "well_formed_final_advice": {
+        "count": 0,
+        "total": 10
+      },
+      "accepted_useful": {
+        "passed": 0,
+        "total": 10
+      },
+      "input_guards": {
+        "passed": 8,
+        "total": 8
+      },
+      "guard_model_calls": 0,
+      "candidate_rejections_verified": 0,
+      "usable_attempt_latency_ms": {
+        "count": 10,
+        "median": 3.9050000000000002,
+        "max": 5.95
+      },
+      "released_advisory_latency_ms": {
+        "count": 0,
+        "median": null,
+        "max": null
+      },
+      "provider_reported_fingerprints": [],
+      "diagnostics": {
+        "original": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 0,
+            "valid_id_lists": 0,
+            "matched": 0,
+            "expected": 40,
+            "predicted": 0,
+            "omitted": 40,
+            "extras": 0,
+            "micro_recall": 0.0,
+            "micro_precision": null
+          },
+          "checks": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 0,
+            "valid_id_lists": 0,
+            "matched": 0,
+            "expected": 26,
+            "predicted": 0,
+            "omitted": 26,
+            "extras": 0,
+            "micro_recall": 0.0,
+            "micro_precision": null
+          }
+        },
+        "offline_packaging_diagnostic": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 0,
+            "valid_id_lists": 0,
+            "matched": 0,
+            "expected": 40,
+            "predicted": 0,
+            "omitted": 40,
+            "extras": 0,
+            "micro_recall": 0.0,
+            "micro_precision": null
+          },
+          "checks": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 0,
+            "valid_id_lists": 0,
+            "matched": 0,
+            "expected": 26,
+            "predicted": 0,
+            "omitted": 26,
+            "extras": 0,
+            "micro_recall": 0.0,
+            "micro_precision": null
+          }
+        }
+      },
+      "failure_accounting": {
+        "version": "stage-accounting-v1",
+        "total": 18,
+        "released": 0,
+        "withheld": 18,
+        "by_category": {
+          "input_validation": 8,
+          "model_abstention": 10
+        },
+        "by_stage": {
+          "abstention": 10,
+          "input_validation": 8
+        },
+        "by_reason": {
+          "history_mismatch": 1,
+          "history_sequence": 2,
+          "incomplete": 2,
+          "model_abstained": 10,
+          "quality": 2,
+          "stale": 1
+        },
+        "usable_observations": {
+          "total": 10,
+          "passed": 0,
+          "failed": 10,
+          "withheld": 10,
+          "released": 0,
+          "by_category": {
+            "model_abstention": 10
+          }
+        },
+        "guard_observations": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "withheld": 8,
+          "released": 0,
+          "by_category": {
+            "input_validation": 8
+          }
+        },
+        "limits": [
+          "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+          "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+          "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+        ]
+      }
+    },
+    "unchanged": {
+      "report_sha256": "88fc420ab3cdde89f42794a6681db2314085bbb18c16bc12cde869f1f85b2c0a",
+      "verified_evidence_anchor": {
+        "events": 204,
+        "head": "fa73283640ab089b249dc0eb3b2a449ccb4fd3311c4ff62bb869c62d9741519e"
+      },
+      "required_reads": {
+        "completed": 10,
+        "total": 10
+      },
+      "well_formed_final_advice": {
+        "count": 6,
+        "total": 10
+      },
+      "accepted_useful": {
+        "passed": 0,
+        "total": 10
+      },
+      "input_guards": {
+        "passed": 8,
+        "total": 8
+      },
+      "guard_model_calls": 0,
+      "candidate_rejections_verified": 9,
+      "usable_attempt_latency_ms": {
+        "count": 10,
+        "median": 4185.08,
+        "max": 4608.05
+      },
+      "released_advisory_latency_ms": {
+        "count": 0,
+        "median": null,
+        "max": null
+      },
+      "provider_reported_fingerprints": [
+        "aeb56401ca74e127821c4f9126dcb669"
+      ],
+      "diagnostics": {
+        "original": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 3,
+            "total_cases": 10,
+            "observed_id_lists": 9,
+            "valid_id_lists": 9,
+            "matched": 33,
+            "expected": 40,
+            "predicted": 47,
+            "omitted": 7,
+            "extras": 14,
+            "micro_recall": 0.825,
+            "micro_precision": 0.7021276595744681
+          },
+          "checks": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 9,
+            "valid_id_lists": 9,
+            "matched": 23,
+            "expected": 26,
+            "predicted": 38,
+            "omitted": 3,
+            "extras": 15,
+            "micro_recall": 0.8846153846153846,
+            "micro_precision": 0.6052631578947368
+          }
+        },
+        "offline_packaging_diagnostic": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 3,
+            "total_cases": 10,
+            "observed_id_lists": 9,
+            "valid_id_lists": 9,
+            "matched": 33,
+            "expected": 40,
+            "predicted": 47,
+            "omitted": 7,
+            "extras": 14,
+            "micro_recall": 0.825,
+            "micro_precision": 0.7021276595744681
+          },
+          "checks": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 9,
+            "valid_id_lists": 9,
+            "matched": 23,
+            "expected": 26,
+            "predicted": 38,
+            "omitted": 3,
+            "extras": 15,
+            "micro_recall": 0.8846153846153846,
+            "micro_precision": 0.6052631578947368
+          }
+        }
+      },
+      "failure_accounting": {
+        "version": "stage-accounting-v1",
+        "total": 18,
+        "released": 0,
+        "withheld": 18,
+        "by_category": {
+          "candidate_content": 6,
+          "candidate_shape": 3,
+          "input_validation": 8,
+          "tool_protocol": 1
+        },
+        "by_stage": {
+          "candidate_validation": 9,
+          "input_validation": 8,
+          "tool_request": 1
+        },
+        "by_reason": {
+          "history_mismatch": 1,
+          "history_sequence": 2,
+          "incomplete": 2,
+          "quality": 2,
+          "schema": 4,
+          "stale": 1,
+          "unsupported_check": 1,
+          "unsupported_finding": 5
+        },
+        "usable_observations": {
+          "total": 10,
+          "passed": 0,
+          "failed": 10,
+          "withheld": 10,
+          "released": 0,
+          "by_category": {
+            "candidate_content": 6,
+            "candidate_shape": 3,
+            "tool_protocol": 1
+          }
+        },
+        "guard_observations": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "withheld": 8,
+          "released": 0,
+          "by_category": {
+            "input_validation": 8
+          }
+        },
+        "limits": [
+          "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+          "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+          "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+        ]
+      }
+    },
+    "output-only": {
+      "report_sha256": "e9a927b68a4bc20da31ee165e5acb5075566e7a98defcf766b106288487064d1",
+      "verified_evidence_anchor": {
+        "events": 204,
+        "head": "c4428956ec168f7a17189c71679d099ec3d429769a9ab69f1b9da9fe9138fca6"
+      },
+      "required_reads": {
+        "completed": 10,
+        "total": 10
+      },
+      "well_formed_final_advice": {
+        "count": 10,
+        "total": 10
+      },
+      "accepted_useful": {
+        "passed": 0,
+        "total": 10
+      },
+      "input_guards": {
+        "passed": 8,
+        "total": 8
+      },
+      "guard_model_calls": 0,
+      "candidate_rejections_verified": 10,
+      "usable_attempt_latency_ms": {
+        "count": 10,
+        "median": 4308.57,
+        "max": 4468.49
+      },
+      "released_advisory_latency_ms": {
+        "count": 0,
+        "median": null,
+        "max": null
+      },
+      "provider_reported_fingerprints": [
+        "aeb56401ca74e127821c4f9126dcb669"
+      ],
+      "diagnostics": {
+        "original": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 4,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 39,
+            "expected": 40,
+            "predicted": 54,
+            "omitted": 1,
+            "extras": 15,
+            "micro_recall": 0.975,
+            "micro_precision": 0.7222222222222222
+          },
+          "checks": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 44,
+            "omitted": 0,
+            "extras": 18,
+            "micro_recall": 1.0,
+            "micro_precision": 0.5909090909090909
+          }
+        },
+        "offline_packaging_diagnostic": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 4,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 39,
+            "expected": 40,
+            "predicted": 54,
+            "omitted": 1,
+            "extras": 15,
+            "micro_recall": 0.975,
+            "micro_precision": 0.7222222222222222
+          },
+          "checks": {
+            "exact_sets": 0,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 44,
+            "omitted": 0,
+            "extras": 18,
+            "micro_recall": 1.0,
+            "micro_precision": 0.5909090909090909
+          }
+        }
+      },
+      "failure_accounting": {
+        "version": "stage-accounting-v1",
+        "total": 18,
+        "released": 0,
+        "withheld": 18,
+        "by_category": {
+          "candidate_content": 10,
+          "input_validation": 8
+        },
+        "by_stage": {
+          "candidate_validation": 10,
+          "input_validation": 8
+        },
+        "by_reason": {
+          "history_mismatch": 1,
+          "history_sequence": 2,
+          "incomplete": 2,
+          "quality": 2,
+          "stale": 1,
+          "unsupported_check": 4,
+          "unsupported_finding": 6
+        },
+        "usable_observations": {
+          "total": 10,
+          "passed": 0,
+          "failed": 10,
+          "withheld": 10,
+          "released": 0,
+          "by_category": {
+            "candidate_content": 10
+          }
+        },
+        "guard_observations": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "withheld": 8,
+          "released": 0,
+          "by_category": {
+            "input_validation": 8
+          }
+        },
+        "limits": [
+          "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+          "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+          "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+        ]
+      }
+    },
+    "policy-only": {
+      "report_sha256": "a60c6d7cc7bc4f8f7f0e340efee50b7ed75456a1a756663ab28b0ed0bd04e1ae",
+      "verified_evidence_anchor": {
+        "events": 204,
+        "head": "f6a2203a77b8c29a7c8b01abd95f65833b4ddc452242d9e1a580a56adfd3390e"
+      },
+      "required_reads": {
+        "completed": 10,
+        "total": 10
+      },
+      "well_formed_final_advice": {
+        "count": 10,
+        "total": 10
+      },
+      "accepted_useful": {
+        "passed": 5,
+        "total": 10
+      },
+      "input_guards": {
+        "passed": 8,
+        "total": 8
+      },
+      "guard_model_calls": 0,
+      "candidate_rejections_verified": 5,
+      "usable_attempt_latency_ms": {
+        "count": 10,
+        "median": 4405.0599999999995,
+        "max": 4774.99
+      },
+      "released_advisory_latency_ms": {
+        "count": 5,
+        "median": 4238.85,
+        "max": 4774.99
+      },
+      "provider_reported_fingerprints": [
+        "aeb56401ca74e127821c4f9126dcb669"
+      ],
+      "diagnostics": {
+        "original": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 5,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 40,
+            "expected": 40,
+            "predicted": 50,
+            "omitted": 0,
+            "extras": 10,
+            "micro_recall": 1.0,
+            "micro_precision": 0.8
+          },
+          "checks": {
+            "exact_sets": 8,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 28,
+            "omitted": 0,
+            "extras": 2,
+            "micro_recall": 1.0,
+            "micro_precision": 0.9285714285714286
+          }
+        },
+        "offline_packaging_diagnostic": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 5,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 40,
+            "expected": 40,
+            "predicted": 50,
+            "omitted": 0,
+            "extras": 10,
+            "micro_recall": 1.0,
+            "micro_precision": 0.8
+          },
+          "checks": {
+            "exact_sets": 8,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 28,
+            "omitted": 0,
+            "extras": 2,
+            "micro_recall": 1.0,
+            "micro_precision": 0.9285714285714286
+          }
+        }
+      },
+      "failure_accounting": {
+        "version": "stage-accounting-v1",
+        "total": 18,
+        "released": 5,
+        "withheld": 13,
+        "by_category": {
+          "candidate_content": 5,
+          "input_validation": 8
+        },
+        "by_stage": {
+          "candidate_validation": 5,
+          "input_validation": 8
+        },
+        "by_reason": {
+          "history_mismatch": 1,
+          "history_sequence": 2,
+          "incomplete": 2,
+          "quality": 2,
+          "stale": 1,
+          "unsupported_finding": 5
+        },
+        "usable_observations": {
+          "total": 10,
+          "passed": 5,
+          "failed": 5,
+          "withheld": 5,
+          "released": 5,
+          "by_category": {
+            "candidate_content": 5
+          }
+        },
+        "guard_observations": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "withheld": 8,
+          "released": 0,
+          "by_category": {
+            "input_validation": 8
+          }
+        },
+        "limits": [
+          "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+          "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+          "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+        ]
+      }
+    },
+    "both": {
+      "report_sha256": "bfee835f8c20a42c14f7a80defe26588436e29e7384d4f6c4ead78240a410079",
+      "verified_evidence_anchor": {
+        "events": 204,
+        "head": "22f369d569db7fdc4576183b3b6e49be4260ea614a6174717eb4d311ca8199ef"
+      },
+      "required_reads": {
+        "completed": 10,
+        "total": 10
+      },
+      "well_formed_final_advice": {
+        "count": 10,
+        "total": 10
+      },
+      "accepted_useful": {
+        "passed": 4,
+        "total": 10
+      },
+      "input_guards": {
+        "passed": 8,
+        "total": 8
+      },
+      "guard_model_calls": 0,
+      "candidate_rejections_verified": 6,
+      "usable_attempt_latency_ms": {
+        "count": 10,
+        "median": 4479.22,
+        "max": 4919.1
+      },
+      "released_advisory_latency_ms": {
+        "count": 4,
+        "median": 4253.155000000001,
+        "max": 4680.56
+      },
+      "provider_reported_fingerprints": [
+        "aeb56401ca74e127821c4f9126dcb669"
+      ],
+      "diagnostics": {
+        "original": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 4,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 40,
+            "expected": 40,
+            "predicted": 53,
+            "omitted": 0,
+            "extras": 13,
+            "micro_recall": 1.0,
+            "micro_precision": 0.7547169811320755
+          },
+          "checks": {
+            "exact_sets": 8,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 28,
+            "omitted": 0,
+            "extras": 2,
+            "micro_recall": 1.0,
+            "micro_precision": 0.9285714285714286
+          }
+        },
+        "offline_packaging_diagnostic": {
+          "cases": 10,
+          "denominator": "All authored advisory cases, including absent or invalid candidates.",
+          "findings": {
+            "exact_sets": 4,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 40,
+            "expected": 40,
+            "predicted": 53,
+            "omitted": 0,
+            "extras": 13,
+            "micro_recall": 1.0,
+            "micro_precision": 0.7547169811320755
+          },
+          "checks": {
+            "exact_sets": 8,
+            "total_cases": 10,
+            "observed_id_lists": 10,
+            "valid_id_lists": 10,
+            "matched": 26,
+            "expected": 26,
+            "predicted": 28,
+            "omitted": 0,
+            "extras": 2,
+            "micro_recall": 1.0,
+            "micro_precision": 0.9285714285714286
+          }
+        }
+      },
+      "failure_accounting": {
+        "version": "stage-accounting-v1",
+        "total": 18,
+        "released": 4,
+        "withheld": 14,
+        "by_category": {
+          "candidate_content": 6,
+          "input_validation": 8
+        },
+        "by_stage": {
+          "candidate_validation": 6,
+          "input_validation": 8
+        },
+        "by_reason": {
+          "history_mismatch": 1,
+          "history_sequence": 2,
+          "incomplete": 2,
+          "quality": 2,
+          "stale": 1,
+          "unsupported_finding": 6
+        },
+        "usable_observations": {
+          "total": 10,
+          "passed": 4,
+          "failed": 6,
+          "withheld": 6,
+          "released": 4,
+          "by_category": {
+            "candidate_content": 6
+          }
+        },
+        "guard_observations": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "withheld": 8,
+          "released": 0,
+          "by_category": {
+            "input_validation": 8
+          }
+        },
+        "limits": [
+          "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+          "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+          "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+        ]
+      }
+    }
+  },
+  "limits": "Local chain integrity and authored-label comparison, not independent process truth. Fingerprints are provider reports, not deployment attestation. Diagnostics never authorize advice."
+}

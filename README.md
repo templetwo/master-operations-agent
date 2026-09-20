@@ -2,11 +2,13 @@
 
 An independent research workbench for an evidence-first operations advisor.
 
-**Working v0.5:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, local-model comparisons, an explicitly enabled DeepSeek synthetic comparison, and a hash-linked evidence log. The local provider preserves schema field order and receipts exact request-byte hashes. Python runtime dependencies and model downloads are not required.
+**Research workbench:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, local-model comparisons, explicitly enabled DeepSeek synthetic experiments, and a hash-linked evidence log. The local provider preserves schema field order and receipts exact request-byte hashes. Python runtime dependencies and model downloads are not required.
 
 This release assesses synthetic observations. Its default provider is a deterministic reference baseline. It is not a trained operations expert, an autonomous controller, or a plant-ready product.
 
 **Outside reviewers:** start with the [external review handoff](docs/EXTERNAL_REVIEW_HANDOFF.md). It traces the repeated 0/10 useful-assessment results, confirmed harness defects, unresolved specification risks, and reproduction steps. The [latest public branch](https://github.com/templetwo/master-operations-agent/tree/main) includes the underlying failure receipts.
+
+**Latest research, v0.6 series:** [five-stage remediation and receipts](receipts/v0.6/README.md). A preregistered four-arm DeepSeek development experiment produced 0/10 accepted advisories unchanged, 0/10 with output guidance, 5/10 with complete policy guidance, and 4/10 with both. Stage-specific accounting and separate offline content diagnostics explain the differences. The release validator and default deterministic provider are unchanged; these are development results, not model promotion.
 
 ## Start here
 
@@ -108,14 +110,16 @@ The output directory must be new. Baseline, always-refuse, and actual model resu
 
 ## Evidence and evaluation
 
-An optional [DeepSeek API comparison](docs/deepseek.md) is available through `compare-deepseek`. It requires an explicit credential-file path and `--allow-cloud-synthetic`, uses only generated simulator cases, and leaves the dashboard and default provider local. The updated credential worked: DeepSeek completed required reads on 10/10 usable cases but produced 0/10 accepted advisories. Nine candidates failed the JSON contract and one failed finding validation. The application blocked all 8 invalid-input cases before inference. [Actual comparison and receipts](receipts/v0.5/deepseek-live-network/README.md) retain the failures; this configuration is not promoted.
+An optional [DeepSeek API comparison](docs/deepseek.md) is available through `compare-deepseek`. It requires an explicit credential-file path and `--allow-cloud-synthetic`, uses only generated simulator cases, and leaves the dashboard and default provider local. The first actual run completed required reads on 10/10 usable cases but produced 0/10 accepted advisories. [Its original receipts](receipts/v0.5/deepseek-live-network/README.md) remain unchanged. The separate [preregistered guidance experiment](docs/guidance-experiment.md) now isolates format instructions from complete policy mapping; [all four actual outcomes](receipts/v0.6/guidance-live/README.md) are retained, including failures.
 
 `verify` checks chain consistency. Export the `anchor` object to a separate location if you need to detect truncation or whole-history replacement, then pass that JSON object as `verify --anchor saved-anchor.json`. An unanchored local hash chain is not independent attestation. This implementation is not peb and does not claim peb authorization or review integration.
 
 The public evaluation reports useful assessments and input-guard results separately. Its always-refuse negative control fails. Guard refusals do not count as voluntary model abstention. Full run events accompany the report so the numbers can be inspected.
 
+New runs record the terminal failure stage and reconcile every withheld case. Candidate shape/content rejection totals exclude input and tool-protocol failures. Historical rows lacking stage metadata remain explicitly unclassified, not retrospectively relabeled. [Offline diagnostics](docs/diagnostics.md) independently verify report chains and compare proposed IDs with authored expectations, without changing release decisions or calling the policy oracle.
+
 See [architecture and boundaries](docs/architecture.md), [the build sequence](docs/roadmap.md), and [validation receipts](receipts/README.md).
 
 ## Next build
 
-Improve supported finding and check selection now that the corrected 9B protocol completes the required evidence reads. Its current development answer-quality score is still 0/10, so the baseline remains the default. Review the expectations with a controls engineer and freeze independent holdouts before model selection or promotion. Ignition ingestion, peb integration, plant procedures, training, hardware purchases, and any real-plant work remain separate gates.
+Investigate remaining unsupported finding selection using the separated diagnostics. The local 9B baseline result remains 0/10; the policy-guided cloud configuration reached 5/10 on the reused development set and is not promoted. [Private holdout preparation](docs/holdout-protocol.md) separates authoring and agent review from tuning, with exposure limits disclosed. Independent controls-engineer review remains open. Ignition ingestion, peb integration, plant procedures, training, hardware purchases, and any real-plant work remain separate gates.
