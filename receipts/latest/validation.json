@@ -1,0 +1,78 @@
+{
+  "recorded_at": "2026-09-20T09:23:50.695893+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "simulator_checkout": "/Users/vaquez/experion-station-sim",
+  "commands": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "check-1.stdout",
+      "stderr": "check-1.stderr"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "moa",
+        "eval"
+      ],
+      "exit_code": 0,
+      "stdout": "check-2.stdout",
+      "stderr": "check-2.stderr"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "moa/web/app.js"
+      ],
+      "exit_code": 0,
+      "stdout": "check-3.stdout",
+      "stderr": "check-3.stderr"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/export_sim.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": "check-4.stdout",
+      "stderr": "check-4.stderr"
+    }
+  ],
+  "source_sha256": {
+    "moa/server.py": "5645f4334f1096a79d003b834e7ee0f999156114f2e61608cbaeceeedd07290e",
+    "moa/evaluation.py": "469f7cfb8c239f4a3205a801854b82628225fa153e7ab501db6839706b5ce6b4",
+    "moa/__init__.py": "16de1b024db9c6bd59a3a1f7843bb8a76e64faee3e147d11cda22886171777aa",
+    "moa/providers.py": "3c98e5b7f4c2129b03a33969aa35e14e3cba31c3ebdd8979469d07998658c620",
+    "moa/engine.py": "bbd2af9087450668963ea6c2e12ac50df4dbccb59c696e8abaf7b84227b17f44",
+    "moa/cli.py": "4af93b187b27c872c519a841dd04059396608570d58ac8280fc3a05297fe6ea1",
+    "moa/contracts.py": "fa9c3e9344d6f46c370a190f652a880f82a84227093268ecd7add52dda66be0d",
+    "moa/evidence.py": "5d1f33f68e704e072852cb590468d8c309e365aba8877eb2ff94aef8f5a8f584",
+    "moa/knowledge.py": "450d705cb9faa996d6813d09fa277840848e4f1dcab0e313ffec3964cb4611fc",
+    "moa/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "moa/fixtures.py": "485ae5d41b8a8852b266357001c5eebab4a0913fc3976cf2c6329dcc1aa334e6",
+    "moa/web/index.html": "3a0786296696027fc90772cfcb4299d02c92fae2c63f60986a945918ebd13bc7",
+    "moa/web/style.css": "07ad6edc98152cab26b6bc4abdba333fe01835fc507d7974e015da2ce3a85934",
+    "moa/web/app.js": "27181858a39e0c746e83964b222fa029cd18db875c91e7c96e821c536ddfd2df",
+    "tests/test_simulator.py": "dff355232ab56776fa9119b80c4048f406170a91ecfae44d23fd7dcbd649fc43",
+    "tests/test_providers.py": "daed941f5ed6772da1cf96e19fbf091bf579845137dccd8fae9086d5eb951804",
+    "tests/test_core.py": "3733891e58b74ebb39c31444025d487a281857121acf9c0b788bf4b2a3c72340",
+    "tests/test_server.py": "09cd6d198d5e2664c84784968950ae0baa08e13910dd378e15d9cff1204207a4",
+    "scripts/export_sim.cjs": "940dd8e1c80dc3cd8a05bd8edba5176cce9903200b91202ede059b2a9e7635b7",
+    "scripts/validate.py": "01d23290cd00c1f9bb95f97d41525e2698151e5e601882ee368c3b10429a3de6",
+    "pyproject.toml": "7250cd1061ba70cb4373e9ee40cdced320beccc46b731d73c9a2619f18a623cf"
+  },
+  "passed": true,
+  "scope": "Synthetic baseline and mocked provider validation. No actual model inference or plant connection."
+}

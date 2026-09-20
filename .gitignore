@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+.moa/
+*.sqlite3*
+*.egg-info/
+build/
+dist/
+.env*
+!.env.example
