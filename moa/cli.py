@@ -44,6 +44,15 @@ def main(argv=None):
     cloud.add_argument("--env-file", required=True, help="Explicit dotenv file containing DEEPSEEK_API_KEY; never sourced or copied")
     cloud.add_argument("--output", required=True, help="New comparison receipt directory")
     cloud.add_argument("--allow-cloud-synthetic", action="store_true", required=True)
+    registration = sub.add_parser("register-guidance-experiment", help="Freeze the four-arm synthetic development experiment before inference")
+    registration.add_argument("--output", required=True, help="New preregistration JSON file")
+    experiment = sub.add_parser("guidance-experiment", help="Run the preregistered four-arm DeepSeek synthetic experiment")
+    experiment.add_argument("--sim-repo", required=True)
+    experiment.add_argument("--env-file", required=True)
+    experiment.add_argument("--output", required=True)
+    experiment.add_argument("--preregistration", required=True)
+    experiment.add_argument("--expected-sha256", required=True)
+    experiment.add_argument("--allow-cloud-synthetic", action="store_true", required=True)
     serve = sub.add_parser("serve", help="Open a loopback-only advisory workbench")
     serve.add_argument("--port", type=int, default=8765)
     verify = sub.add_parser("verify", help="Verify evidence integrity, optionally against an external anchor")
@@ -57,6 +66,17 @@ def main(argv=None):
     args = parser.parse_args(argv)
     store = None
     try:
+        if args.command == "register-guidance-experiment":
+            from .guidance_experiment import register
+            emit(register(args.output))
+            return 0
+        if args.command == "guidance-experiment":
+            from .guidance_experiment import run
+            report = run(args.sim_repo, args.env_file, args.output, args.preregistration, args.expected_sha256,
+                         allow_cloud_synthetic=args.allow_cloud_synthetic,
+                         progress=lambda label, row: print(f"{label}: {row['id']}: {row['actual']['reason']} ({'PASS' if row['passed'] else 'FAIL'})", file=sys.stderr, flush=True))
+            emit(report)
+            return 0 if report["experiment_valid"] else 1
         if args.command == "compare-deepseek":
             from .cloud_comparison import compare_deepseek
             report = compare_deepseek(args.sim_repo, args.env_file, args.output, allow_cloud_synthetic=args.allow_cloud_synthetic,

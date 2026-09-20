@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import statistics
 import subprocess
+from collections import Counter
 from datetime import timedelta
 
 from .contracts import digest, now_utc, stamp, strict_json
@@ -82,11 +83,53 @@ def score_case(case, result):
             "evidence_fidelity": fidelity, "observation_sha256": digest(case["observation"]), "generator": case["generator"]}
 
 
-def evaluate_drills(sim_repo, provider=None, store=None, progress=None):
+def summarize_rows(rows):
+    """Count release outcomes and task success separately, with fixed cohorts.
+
+    A withheld response on a usable observation is a failed useful assessment,
+    even when its validation gate worked correctly. Historical rows without
+    stage metadata remain explicitly unclassified rather than being guessed.
+    """
+    useful = [r for r in rows if r["expected"]["status"] == "advisory"]
+    guards = [r for r in rows if r["expected"]["status"] == "abstain"]
+    assessed = [r for r in rows if r["actual"]["status"] == "advisory"]
+    withheld = [r for r in rows if r["actual"]["status"] == "abstain"]
+    elapsed = sorted(r["actual"]["elapsed_ms"] for r in rows)
+
+    def cohort_counts(cohort):
+        rejected = [r for r in cohort if r["actual"]["status"] == "abstain"]
+        return {"total": len(cohort), "passed": sum(r["passed"] for r in cohort),
+                "failed": sum(not r["passed"] for r in cohort), "withheld": len(rejected),
+                "released": sum(r["actual"]["status"] == "advisory" for r in cohort),
+                "by_category": dict(sorted(Counter(r["actual"].get("failure", {}).get("category", "unclassified") for r in rejected).items()))}
+
+    categories = Counter(r["actual"].get("failure", {}).get("category", "unclassified") for r in withheld)
+    return {
+        "useful_assessment": {"passed": sum(r["passed"] for r in useful), "total": len(useful)},
+        "input_guards": {"passed": sum(r["passed"] for r in guards), "total": len(guards)},
+        "evidence_fidelity": {"passed": sum(r["evidence_fidelity"] is True for r in assessed), "total": len(assessed)},
+        "unexpected_advisories": sum(r["actual"]["status"] == "advisory" for r in guards),
+        "voluntary_abstentions": sum(r["actual"]["reason"] == "model_abstained" for r in rows),
+        "tool_denials": sum(r["actual"]["reason"] == "tool_denied" for r in rows),
+        "candidate_rejections": categories["candidate_shape"] + categories["candidate_content"],
+        "failure_accounting": {
+            "version": "stage-accounting-v1", "total": len(rows), "released": len(assessed), "withheld": len(withheld),
+            "by_category": dict(sorted(categories.items())),
+            "by_stage": dict(sorted(Counter(r["actual"].get("failure", {}).get("stage", "unclassified") for r in withheld).items())),
+            "by_reason": dict(sorted(Counter(r["actual"]["reason"] for r in withheld).items())),
+            "usable_observations": cohort_counts(useful), "guard_observations": cohort_counts(guards),
+            "limits": ["Categories describe the first terminal boundary, not all potential defects in a candidate.",
+                       "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+                       "Missing historical stage metadata is unclassified; historical receipts are not rewritten."]},
+        "end_to_end_ms": {"count": len(elapsed), "median": statistics.median(elapsed) if elapsed else None,
+                          "max": max(elapsed) if elapsed else None}}
+
+
+def evaluate_drills(sim_repo, provider=None, store=None, progress=None, *, system_prompt=None):
     manifest = json.loads(MANIFEST_PATH.read_text())
     owned = store is None
     store = store or EvidenceStore(":memory:")
-    agent = Agent(store, provider)
+    agent = Agent(store, provider) if system_prompt is None else Agent(store, provider, system_prompt=system_prompt)
     rows = []
     try:
         for case in build_cases(sim_repo, manifest):
@@ -101,21 +144,9 @@ def evaluate_drills(sim_repo, provider=None, store=None, progress=None):
         for case in boundary_cases(fresh):
             rows.append(score_case(case, agent.assess(case["observation"])))
             if progress: progress(rows[-1])
-        useful = [r for r in rows if r["expected"]["status"] == "advisory"]
-        guards = [r for r in rows if r["expected"]["status"] == "abstain"]
-        assessed = [r for r in rows if r["actual"]["status"] == "advisory"]
-        elapsed = sorted(r["actual"]["elapsed_ms"] for r in rows)
         return {"suite": manifest["suite"], "split": manifest["split"], "review_status": manifest["review_status"],
                 "manifest_sha256": digest(manifest), "provider": agent.provider.name, "passed": all(r["passed"] for r in rows),
-                "metrics": {
-                    "useful_assessment": {"passed": sum(r["passed"] for r in useful), "total": len(useful)},
-                    "input_guards": {"passed": sum(r["passed"] for r in guards), "total": len(guards)},
-                    "evidence_fidelity": {"passed": sum(r["evidence_fidelity"] is True for r in assessed), "total": len(assessed)},
-                    "unexpected_advisories": sum(r["actual"]["status"] == "advisory" for r in guards),
-                    "voluntary_abstentions": sum(r["actual"]["reason"] == "model_abstained" for r in rows),
-                    "tool_denials": sum(r["actual"]["reason"] == "tool_denied" for r in rows),
-                    "candidate_rejections": sum(r["actual"]["reason"] in {"unsupported_finding", "unsupported_check", "unsupported_evidence", "ungrounded", "candidate_schema"} for r in rows),
-                    "end_to_end_ms": {"count": len(elapsed), "median": statistics.median(elapsed), "max": max(elapsed)}},
+                "metrics": summarize_rows(rows),
                 "cases": rows, "limits": manifest["limits"], "evidence": store.bundle()}
     finally:
         if owned: store.close()

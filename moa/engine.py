@@ -39,6 +39,34 @@ Only the task assess_snapshot is supported. Maximum six response turns.
 ENTRY = {"task": "assess_snapshot", "instruction": "Begin the assessment by requesting the available observation: return the JSON tool request for read_snapshot with empty arguments. The client will return its result."}
 
 
+def failure_details(stage, code):
+    """Describe where a withheld run stopped without changing release decisions.
+
+    Provider adapters parse their own responses. A parsing failure raised there
+    is provider_response, not a claim that a final advice candidate was parsed.
+    Generic schema codes only become candidate failures after that boundary.
+    """
+    if code in {"tool_budget", "provider_budget"}:
+        category = "budget"
+    elif stage == "input_validation":
+        category = "input_validation"
+    elif stage == "freshness_validation" or (stage == "tool_execution" and code in {"stale", "future"}):
+        category = "input_freshness"
+    elif stage == "provider_prepare":
+        category = "provider_preparation"
+    elif stage == "provider_response":
+        category = "provider_response"
+    elif stage in {"tool_request", "tool_execution"}:
+        category = "tool_protocol"
+    elif code == "model_abstained":
+        category = "model_abstention"
+    elif stage == "candidate_validation" and code in {"unsupported_finding", "unsupported_check", "unsupported_evidence", "ungrounded"}:
+        category = "candidate_content"
+    else:
+        category = "candidate_shape"
+    return {"stage": stage, "category": category, "code": code}
+
+
 class ReadTools:
     def __init__(self, snapshot, record, clock=now_utc):
         self._snapshot = copy.deepcopy(snapshot)
@@ -106,10 +134,17 @@ def validate_candidate(candidate, snapshot, reads):
 
 
 class Agent:
-    def __init__(self, store, provider=None, clock=now_utc):
+    def __init__(self, store, provider=None, clock=now_utc, *, system_prompt=SYSTEM):
+        if not isinstance(system_prompt, str) or not system_prompt:
+            raise ValueError("A trusted experiment system prompt must be nonempty text.")
         self.store = store
         self.provider = provider or Baseline()
         self.clock = clock
+        self._system_prompt = system_prompt
+
+    @property
+    def system_prompt(self):
+        return self._system_prompt
 
     def assess(self, raw, task="assess_snapshot"):
         run_id = uuid.uuid4().hex
@@ -118,7 +153,8 @@ class Agent:
         def record(kind, data):
             return self.store.append(run_id, kind, data)
 
-        record("run_started", {"provider": self.provider.name, "task": task, "policy_sha256": POLICY_HASH, "system_prompt": SYSTEM})
+        record("run_started", {"provider": self.provider.name, "task": task, "policy_sha256": POLICY_HASH, "system_prompt": self.system_prompt})
+        stage = "input_validation"
         try:
             # Round-trip to reject NaN, duplicate/oversize inputs at the boundary
             # and detach caller-owned objects before any provider sees them.
@@ -134,11 +170,14 @@ class Agent:
             snapshot = validate_snapshot(raw, self.clock())
             boundary = ReadTools(snapshot, record, self.clock)
             if hasattr(self.provider, "prepare"):
+                stage = "provider_prepare"
                 record("provider_prepared", self.provider.prepare())
-            messages = [{"role": "system", "content": SYSTEM},
+            messages = [{"role": "system", "content": self.system_prompt},
                         {"role": "user", "content": canonical(ENTRY)}]
             for _ in range(6):
+                stage = "freshness_validation"
                 validate_snapshot(snapshot, self.clock())
+                stage = "provider_response"
                 try:
                     reply = strict_json(canonical(self.provider.respond(copy.deepcopy(messages))))
                 finally:
@@ -146,12 +185,15 @@ class Agent:
                         for receipt in self.provider.drain_receipts():
                             record("provider_call", receipt)
                 record("provider_response", {"response": reply})
+                stage = "response_envelope"
                 if not isinstance(reply, dict):
                     raise Rejected("candidate_schema", "Provider response must be an object.")
                 if reply.get("kind") == "tool":
+                    stage = "tool_request"
                     keys(reply, {"kind", "name", "arguments"}, "tool request")
                     if not isinstance(reply["name"], str):
                         raise Rejected("candidate_schema", "Tool name must be text.")
+                    stage = "tool_execution"
                     result = boundary.call(reply["name"], reply["arguments"])
                     state = boundary.protocol_state()
                     record("protocol_state", state)
@@ -160,25 +202,31 @@ class Agent:
                                  {"role": "user", "content": canonical({"protocol_state": state})}]
                     continue
                 if reply.get("kind") == "abstain":
+                    stage = "abstention"
                     keys(reply, {"kind", "reason"}, "abstention")
                     if reply["reason"] != "insufficient_evidence":
                         raise Rejected("candidate_schema", "Unknown abstention reason.")
                     raise Rejected("model_abstained", "Provider declined to make a supported assessment.")
                 if reply.get("kind") != "advice":
                     raise Rejected("candidate_schema", "Unknown response kind.")
+                stage = "freshness_validation"
                 validate_snapshot(snapshot, self.clock())
+                stage = "candidate_validation"
                 result = validate_candidate(reply, snapshot, boundary.read)
                 result["snapshot_sha256"] = digest(snapshot)
                 break
             else:
+                stage = "reasoning_budget"
                 raise Rejected("tool_budget", "The six-turn reasoning budget was exhausted.")
         except Rejected as exc:
-            result = {"status": "abstain", "reason": exc.code, "summary": exc.detail, "findings": [], "checks": [], "evidence": []}
+            result = {"status": "abstain", "reason": exc.code, "summary": exc.detail, "findings": [], "checks": [], "evidence": [],
+                      "failure": failure_details(stage, exc.code)}
         except (ValueError, TypeError, KeyError, OverflowError, RecursionError) as exc:
             # Malformed schemas/provider output fail closed. Evidence-store
             # failures intentionally propagate and cannot release any result.
             record("validation_error", {"type": type(exc).__name__})
-            result = {"status": "abstain", "reason": "malformed", "summary": "Malformed observation or provider response.", "findings": [], "checks": [], "evidence": []}
+            result = {"status": "abstain", "reason": "malformed", "summary": "Malformed observation or provider response.", "findings": [], "checks": [], "evidence": [],
+                      "failure": failure_details(stage, "malformed")}
         result.update({"run_id": run_id, "provider": self.provider.name, "scope": "synthetic-research-only",
                        "policy_sha256": POLICY_HASH, "elapsed_ms": round((time.monotonic() - started) * 1000, 2)})
         result["receipt"] = record("outcome", result)
