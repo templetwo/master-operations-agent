@@ -4,7 +4,7 @@ Status recorded 2026-09-20. This repository starts the independent research lane
 
 ## 0. Working advisory foundation
 
-Implemented: local workbench, strict synthetic contracts, finite tool loop, independent candidate validator, deterministic baseline, local evidence, simulator export, optional local-model protocol, and adversarial regression tests. The public smoke suite checks useful assessment and input guards separately. Supported and stale dashboard flows were checked in Comet. Actual model evaluation remains outstanding.
+Implemented: local workbench, strict synthetic contracts, finite tool loop, independent candidate validator, deterministic baseline, local evidence, simulator export, optional local-model protocol, and adversarial regression tests. The public smoke suite checks useful assessment and input guards separately. Supported and stale dashboard flows were checked in Comet. V0.3 adds actual local-model development comparisons with preserved failure receipts.
 
 This is part of the original Stage 0, not completion of it. The original Ignition-plus-peb end-to-end gate remains open.
 
@@ -18,7 +18,7 @@ Gate: useful performance exceeds an always-refuse and a simple rule baseline wit
 
 ## 2. Select and improve the local model
 
-Evaluate an already-installed exact artifact, recording digest, quantization, template, context settings, seed where supported, hardware, and serving version. Measure cold and warm latency separately. Verify its data path is local.
+Implemented in v0.3: installed-artifact digest pins, quantization and template metadata, fixed requested settings, hardware and serving-version receipts, separate warmup, per-call counters, paired simulator data, and baseline/refusal controls. Actual results are in `receipts/v0.3/`. These are development diagnostics; no model is promoted. Controlled cold/warm experiments, time to first token, and independent verification of daemon isolation remain open.
 
 Improve retrieval and evidence selection first. Consider SFT or preference training only after baseline failures identify a learnable gap and independent trajectories exist. Split by drill family, initial state, and disturbance regime to avoid leakage. Quantized and fine-tuned artifacts must rerun the same held-out scorecard.
 

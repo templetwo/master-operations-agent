@@ -33,6 +33,12 @@ def main(argv=None):
     evaluation = sub.add_parser("eval", help="Run public smoke scenarios and export receipts")
     drills = sub.add_parser("drill-eval", help="Run development trajectories from a trusted simulator checkout")
     drills.add_argument("--sim-repo", required=True)
+    comparison = sub.add_parser("compare", help="Compare a pinned installed model with baseline and refusal control")
+    comparison.add_argument("--sim-repo", required=True)
+    comparison.add_argument("--model", required=True)
+    comparison.add_argument("--expected-digest", required=True)
+    comparison.add_argument("--output", required=True, help="New local receipt directory; existing directories are refused")
+    comparison.add_argument("--ollama-port", type=int, default=11434)
     serve = sub.add_parser("serve", help="Open a loopback-only advisory workbench")
     serve.add_argument("--port", type=int, default=8765)
     verify = sub.add_parser("verify", help="Verify evidence integrity, optionally against an external anchor")
@@ -46,6 +52,12 @@ def main(argv=None):
     args = parser.parse_args(argv)
     store = None
     try:
+        if args.command == "compare":
+            from .comparison import compare
+            report = compare(args.sim_repo, args.model, args.expected_digest, args.output, args.ollama_port,
+                             lambda label, row: print(f"{label}: {row['id']}: {row['actual']['reason']} ({'PASS' if row['passed'] else 'FAIL'})", file=sys.stderr, flush=True))
+            emit(report)
+            return 0 if report["local_passed_development"] else 1
         provider = Ollama(args.model, args.ollama_port) if getattr(args, "model", None) else Baseline()
         if args.command == "fixture":
             emit(fixture(args.scenario))

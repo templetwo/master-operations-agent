@@ -1,0 +1,28 @@
+{
+  "purpose": "One explicit schema/protocol warmup before capturing scored observations; not a scored case.",
+  "response": {
+    "kind": "abstain",
+    "reason": "insufficient_evidence"
+  },
+  "calls": [
+    {
+      "request_sha256": "ab47cd9a7133d77f1e2a76d809172b663f7992c17ed69ce1bc316c0595286da2",
+      "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "response_sha256": "7749cfec6f1816bcb01382660d4f915154c369fbdded3fdbbe1b1861638fab7f",
+      "reported": {
+        "model": "qwen3:4b",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 798334833,
+        "load_duration": 136799958,
+        "prompt_eval_count": 441,
+        "prompt_eval_duration": 143573000,
+        "eval_count": 22,
+        "eval_duration": 513342000
+      },
+      "content": "{\n  \"kind\": \"abstain\",\n  \"reason\": \"insufficient_evidence\"\n}",
+      "content_truncated": false,
+      "wall_ms": 799.59
+    }
+  ]
+}

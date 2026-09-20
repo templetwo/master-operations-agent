@@ -1,0 +1,126 @@
+{
+  "started_at": "2026-09-20T10:57:46.077Z",
+  "scope": "synthetic-development-only",
+  "promotion": "not_evaluated",
+  "model": "qwen3:4b",
+  "expected_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "manifest_sha256": "ff4bf96574af236bb59ee78805ef94bbb2866052dc6d0ec9138c853da2cba911",
+  "policy_sha256": "4a4242bbaa82b5d52e1336451b467d3ac8dff51fcb7999c6f940b5e90cd39ef1",
+  "system_prompt_sha256": "8ac1cbebc06c303db4dcfcc6a982eb928cd28b2004f591d48b02246de8959841",
+  "source_sha256": {
+    "moa/__init__.py": "fbdcb32200a887e7c659904b270eb7df2352f9a2f0a7296295c9e90829fb1287",
+    "moa/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "moa/cli.py": "7ff04775eaded93bd1de93038486db40ad3852b272ca7c214cdb559d4666639c",
+    "moa/comparison.py": "0e19d56ebb2d4ad142cd6337ddbdab4fd843d654e5e5e053af99c606bccb2d2f",
+    "moa/contracts.py": "11a4318e0408f259d4f7bf9bde823df21fcf4538b0da4ac6aa43d2eb5574069f",
+    "moa/drills.py": "b1a04aa720f9cca1f5b927f095024fb768aff70a7070c0dd61039e31427e7d9c",
+    "moa/engine.py": "f41ef12605aa82abacad66660ac80a122a399f34ad086e49b498e73c5a5dd84d",
+    "moa/evaluation.py": "469f7cfb8c239f4a3205a801854b82628225fa153e7ab501db6839706b5ce6b4",
+    "moa/evidence.py": "5d1f33f68e704e072852cb590468d8c309e365aba8877eb2ff94aef8f5a8f584",
+    "moa/fixtures.py": "72ae7f5c2166ff100a67433dca0e18d8652ee131bf78f7a948171f7c9a098ecd",
+    "moa/knowledge.py": "fe5d885f00759c9f0de685de993a5ee6cfe7d9c26947437594d7bba28e2b1fc4",
+    "moa/providers.py": "54f825017c18a05ec819c52426c616451bf36a1801da5a04d23a95c5a70e5f5e",
+    "moa/server.py": "01fc4396c6283cd7e77d2b734dfebec74314993f9ba552f7e9a7e4cb9274e98e",
+    "moa/web/app.js": "3f146216159a6f7c7328d168680f564f759b04b042e6b0eb1519b362e208728a",
+    "moa/web/index.html": "e888c754ddf8d0155fda7702d92b1bbf83ef20a788252d977d804980028cabed",
+    "moa/web/style.css": "8595be0dfb8c50707f4ec329f53e849da5b1a87afaf76012c8597125615f0e5a",
+    "moa/data/drills-v1.json": "4da8c8d0a2875a6b706798834af46ceece68a381e2401689f40b279b23885b62",
+    "scripts/export_sim.cjs": "940dd8e1c80dc3cd8a05bd8edba5176cce9903200b91202ede059b2a9e7635b7",
+    "scripts/export_trajectory.cjs": "a2e161e8c3a09a669d247f49ee9f9eab168b7c489e09b469c2626b22f3d040f5",
+    "scripts/validate.py": "aad2a3191c35b3607313c8f535225bd59c860b8d07020eb7c004ce807f580be3",
+    "tests/test_comparison.py": "e0ca1cdb75baef2b9983a081f8b3db808963ce757d1cc5b099f01141316747f3",
+    "tests/test_core.py": "842ec2550626e40e2ef045c90f9f661929bf7f5b7f058ddc62e54771c475631e",
+    "tests/test_history.py": "f3f213bd407e7ab611c9a384675613491f647c602072ac45235e69061b6fe8e9",
+    "tests/test_providers.py": "0ace01d1015df2e7de17630f732a09ea63a3ebcdea9ca3e255a0440976aa421d",
+    "tests/test_server.py": "09cd6d198d5e2664c84784968950ae0baa08e13910dd378e15d9cff1204207a4",
+    "tests/test_simulator.py": "bd068b8dc2219592bfa54d046eee5682acf373238364244930d86c2b60113d0f",
+    "pyproject.toml": "9e95238d58cf97cbd28378f612e856ce62515a9544036f95b5d949383da3dfd2"
+  },
+  "hardware": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "memory_bytes": 19327352832,
+    "cpu": "Apple M3 Pro"
+  },
+  "freshness": "Each provider receives independently regenerated fresh observations; timestamps are never renewed.",
+  "pairing": "Compare process data excluding capture times, snapshot IDs and epoch IDs; record original inputs separately.",
+  "order": [
+    "baseline",
+    "always-refuse",
+    "local-model"
+  ],
+  "limits": "Development cases, two seeds, one pass, no held-out estimate or controls review. Daemon identity and isolation are trusted.",
+  "server_version": {
+    "version": "0.32.6"
+  },
+  "loaded_before": [],
+  "artifact": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "4.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 2560
+    },
+    "template_sha256": "433ae36c021cb6103ff8a09e792ed6c4a1d256764cd489f952d69c9fb12607c6",
+    "parameters_sha256": "57302d18a76a2c94507fe902b855072c1d5d26aed3ff8e506e8e2bb17a43050d",
+    "settings": {
+      "temperature": 0,
+      "seed": 0,
+      "num_predict": 768,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "stream": false,
+    "keep_alive": "5m",
+    "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+    "socket_timeout_s": 20,
+    "endpoint": "http://127.0.0.1:11434",
+    "server_isolation": "operator_responsibility"
+  },
+  "artifact_after": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "4.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 2560
+    },
+    "template_sha256": "433ae36c021cb6103ff8a09e792ed6c4a1d256764cd489f952d69c9fb12607c6",
+    "parameters_sha256": "57302d18a76a2c94507fe902b855072c1d5d26aed3ff8e506e8e2bb17a43050d",
+    "settings": {
+      "temperature": 0,
+      "seed": 0,
+      "num_predict": 768,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "stream": false,
+    "keep_alive": "5m",
+    "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+    "socket_timeout_s": 20,
+    "endpoint": "http://127.0.0.1:11434",
+    "server_isolation": "operator_responsibility"
+  },
+  "server_version_after": {
+    "version": "0.32.6"
+  },
+  "status": "completed",
+  "finished_at": "2026-09-20T10:58:02.684Z"
+}

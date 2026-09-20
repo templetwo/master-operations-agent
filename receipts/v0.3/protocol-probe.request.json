@@ -1,0 +1,97 @@
+{
+  "model": "qwen3:4b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Return exactly this JSON object and nothing else: {\"kind\":\"tool\",\"name\":\"read_snapshot\",\"arguments\":{}}"
+    },
+    {
+      "role": "user",
+      "content": "Begin."
+    }
+  ],
+  "format": {
+    "type": "object",
+    "oneOf": [
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name",
+          "arguments"
+        ],
+        "properties": {
+          "kind": {
+            "const": "tool"
+          },
+          "name": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "finding_ids",
+          "check_ids",
+          "evidence"
+        ],
+        "properties": {
+          "kind": {
+            "const": "advice"
+          },
+          "finding_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "check_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "reason"
+        ],
+        "properties": {
+          "kind": {
+            "const": "abstain"
+          },
+          "reason": {
+            "enum": [
+              "insufficient_evidence"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "stream": false,
+  "think": false,
+  "options": {
+    "temperature": 0,
+    "num_predict": 150,
+    "num_ctx": 8192,
+    "seed": 0
+  }
+}

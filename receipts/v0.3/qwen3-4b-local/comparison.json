@@ -1,0 +1,131 @@
+{
+  "finished_at": "2026-09-20T10:58:02.684Z",
+  "completed": true,
+  "comparison_valid": true,
+  "promotion": "not_evaluated",
+  "local_passed_development": false,
+  "integrity": {
+    "paired_process_data": true,
+    "source_unchanged": true,
+    "artifact_metadata_unchanged": true,
+    "server_version_unchanged": true
+  },
+  "pairings": [
+    {
+      "provider": "ollama:qwen3:4b",
+      "matched": true
+    },
+    {
+      "provider": "always-refuse-negative-control",
+      "matched": true
+    }
+  ],
+  "reports": {
+    "baseline": {
+      "file": "baseline.json",
+      "passed": true,
+      "metrics": {
+        "useful_assessment": {
+          "passed": 10,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 10,
+          "total": 10
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 0,
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 8.36,
+          "max": 33.31
+        }
+      },
+      "evidence_anchor": {
+        "events": 124,
+        "head": "f07865364adcb1c7a166ea2d98f56ba24d1b01e4eb4cb77f84fcf910ea1fcb7d"
+      }
+    },
+    "always-refuse": {
+      "file": "always-refuse.json",
+      "passed": false,
+      "metrics": {
+        "useful_assessment": {
+          "passed": 0,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 0,
+          "total": 0
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 10,
+        "tool_denials": 0,
+        "candidate_rejections": 0,
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 3.6100000000000003,
+          "max": 5.48
+        }
+      },
+      "evidence_anchor": {
+        "events": 64,
+        "head": "076f87c89462ad9b65ad3258a799b4384a5c278422cc66a22e1d7e03e6be44bb"
+      }
+    },
+    "local-model": {
+      "file": "local-model.json",
+      "passed": false,
+      "metrics": {
+        "useful_assessment": {
+          "passed": 0,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 0,
+          "total": 0
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 10,
+        "tool_denials": 0,
+        "candidate_rejections": 0,
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 682.71,
+          "max": 717.35
+        }
+      },
+      "evidence_anchor": {
+        "events": 84,
+        "head": "49cc44003f235725718174402f103be05182f39c43a12f3d70164828a324ccc3"
+      }
+    }
+  },
+  "inference": {
+    "calls": 10,
+    "call_wall_ms_total": 6578.01,
+    "call_wall_ms_max": 684.95,
+    "server_reported_totals": {
+      "prompt_eval_count": 3210,
+      "eval_count": 220,
+      "eval_duration": 4993911000,
+      "load_duration": 1229045708
+    },
+    "time_to_first_token": "UNMEASURED: non-streaming requests",
+    "warmup_included": false
+  }
+}

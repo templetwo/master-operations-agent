@@ -1,0 +1,103 @@
+{
+  "recorded_at": "2026-09-20T11:03:50.147Z",
+  "method": "Recompute every exported event hash, sequence, previous link, and final anchor. No external attestation.",
+  "reports": [
+    {
+      "file": "qwen3-4b-entry-v3/baseline.json",
+      "anchor": {
+        "events": 124,
+        "head": "33cd0b80cc496e3c9f4abb1c7f8394b2f6b06d70970a3ad7819f80e768fce4b7"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-entry-v3/always-refuse.json",
+      "anchor": {
+        "events": 64,
+        "head": "2edff9bc9dc4b6b251d07c3d54315e6b7bc4bedc45082e62cb535fd6a4625730"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-entry-v3/local-model.json",
+      "anchor": {
+        "events": 84,
+        "head": "3005b828090a1ffdcecf7092f8c38428ed51d690d5ff1a12434607bbcb0ac72c"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-local/baseline.json",
+      "anchor": {
+        "events": 124,
+        "head": "f07865364adcb1c7a166ea2d98f56ba24d1b01e4eb4cb77f84fcf910ea1fcb7d"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-local/always-refuse.json",
+      "anchor": {
+        "events": 64,
+        "head": "076f87c89462ad9b65ad3258a799b4384a5c278422cc66a22e1d7e03e6be44bb"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-local/local-model.json",
+      "anchor": {
+        "events": 84,
+        "head": "49cc44003f235725718174402f103be05182f39c43a12f3d70164828a324ccc3"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-protocol-v2/baseline.json",
+      "anchor": {
+        "events": 124,
+        "head": "dd90e996906a37a8d414515b8e854b61b3846f4b4965bdf06028de3bfa1e0dfa"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-protocol-v2/always-refuse.json",
+      "anchor": {
+        "events": 64,
+        "head": "3b80475f7a333985e91545ad8be34701c04fab215fd5af2daebb148a390a92af"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen3-4b-protocol-v2/local-model.json",
+      "anchor": {
+        "events": 84,
+        "head": "edfb50d37b4561e29bd30d15538a233e837a23ce30275c5bf42c5880249af9b4"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen35-9b-entry-v3/baseline.json",
+      "anchor": {
+        "events": 124,
+        "head": "3f10aef4a9d92998745e2c18f6ee43b1f803b60a86d47ddb3a8c909a8827c35c"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen35-9b-entry-v3/always-refuse.json",
+      "anchor": {
+        "events": 64,
+        "head": "2026e26666d1cc11b8fde2551281c5be4c5dae02da6004e641e3a2a19de9da7a"
+      },
+      "verified": true
+    },
+    {
+      "file": "qwen35-9b-entry-v3/local-model.json",
+      "anchor": {
+        "events": 84,
+        "head": "87f0b5b4778c905ff5f00f68959285270ecc060be0f8e72433962d5e54978164"
+      },
+      "verified": true
+    }
+  ],
+  "passed": true
+}

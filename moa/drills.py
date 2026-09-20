@@ -73,11 +73,16 @@ def score_case(case, result):
     matched = (result["status"] == expected["status"] and result["reason"] == expected["reason"]
                and {f["id"] for f in result["findings"]} == set(expected["findings"])
                and {c["id"] for c in result["checks"]} == set(expected["checks"]) and fidelity is not False)
+    comparable = copy.deepcopy(case["observation"])
+    for key in ("captured_at", "snapshot_id"): comparable.pop(key, None)
+    for tag in comparable["tags"]: tag.pop("observed_at", None)
+    comparable["history"].pop("epoch_id", None)
     return {"id": case["id"], "expected": expected, "actual": result, "passed": matched,
+            "process_data_sha256": digest(comparable),
             "evidence_fidelity": fidelity, "observation_sha256": digest(case["observation"]), "generator": case["generator"]}
 
 
-def evaluate_drills(sim_repo, provider=None, store=None):
+def evaluate_drills(sim_repo, provider=None, store=None, progress=None):
     manifest = json.loads(MANIFEST_PATH.read_text())
     owned = store is None
     store = store or EvidenceStore(":memory:")
@@ -89,11 +94,13 @@ def evaluate_drills(sim_repo, provider=None, store=None):
             # renew captured timestamps to make an old fixture pass freshness.
             result = agent.assess(case["observation"])
             rows.append(score_case(case, result))
+            if progress: progress(rows[-1])
         # Regenerate a normal source because local inference may have taken minutes.
         first = dict(manifest, seeds=manifest["seeds"][:1], cases=manifest["cases"][:1])
         fresh = next(build_cases(sim_repo, first))["observation"]
         for case in boundary_cases(fresh):
             rows.append(score_case(case, agent.assess(case["observation"])))
+            if progress: progress(rows[-1])
         useful = [r for r in rows if r["expected"]["status"] == "advisory"]
         guards = [r for r in rows if r["expected"]["status"] == "abstain"]
         assessed = [r for r in rows if r["actual"]["status"] == "advisory"]

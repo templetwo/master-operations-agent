@@ -2,7 +2,7 @@
 
 An independent research workbench for an evidence-first operations advisor.
 
-**Working v0.2:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, snapshot and time-series simulator exports, a development drill scorecard, an optional Ollama provider, and a hash-linked evidence log. It runs without downloading a model or installing Python runtime dependencies.
+**Working v0.3:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, a development drill scorecard, a pinned local-model comparison runner, and a hash-linked evidence log. It runs without downloading a model or installing Python runtime dependencies.
 
 This release assesses synthetic observations. Its default provider is a deterministic reference baseline. It is not a trained operations expert, an autonomous controller, or a plant-ready product.
 
@@ -44,6 +44,7 @@ State lives in `.moa/evidence.sqlite3`, ignored by Git. Use `--store /path/to/re
 | Simulator adapters | Export operator-visible snapshots and 120-second observation windows from separate headless instances |
 | Development drills | Six recipes at two seeds and six integrity perturbations; explicit expectations and separate usefulness/guard scores |
 | Provider options | Offline baseline by default; explicitly selected installed Ollama model; no cloud fallback or model pull |
+| Model comparison | Digest pinning, baseline and refusal controls, matched simulator data, durable progress, request and timing receipts |
 
 The policy is intentionally small. The model must follow the read protocol and identify supported catalog findings. It does not yet perform open-ended root-cause analysis. The project thresholds are research sensitivities, not process design limits or alarm-standard requirements. The original demo thresholds are never applied to ESS tags. The new temporal policy retains explicit causal uncertainty and distinguishes falling temperature from complete recovery.
 
@@ -91,7 +92,17 @@ python3 -m moa eval --model 'YOUR_INSTALLED_MODEL:TAG' > local-model-smoke.json
 python3 -m moa serve --model 'YOUR_INSTALLED_MODEL:TAG'
 ```
 
-The provider checks installed metadata and records the reported digest. Each HTTP operation has a 20-second socket timeout and bounded response size; the entire agent has a six-turn limit and a 60-second observation freshness budget. A slow model may produce a valid candidate that is withheld because its observation expired. This version does not stream tokens or measure time to first token. No actual model inference was used to validate v0.2; provider transport tests use mocks.
+The provider checks installed metadata, pins the first accepted digest for its lifetime, and records the requested settings and template hash. Each HTTP operation has a 20-second socket timeout and bounded response size; the agent has a six-turn limit and a 60-second observation freshness budget. A slow model may produce a valid candidate that is withheld because its observation expired. This version does not stream tokens or measure time to first token.
+
+For a reproducible development comparison, supply the installed artifact's exact digest:
+
+```sh
+python3 -m moa compare --sim-repo /path/to/experion-station-sim \
+  --model 'YOUR_INSTALLED_MODEL:TAG' --expected-digest 'EXACT_64_CHARACTER_DIGEST' \
+  --output receipts/my-new-comparison
+```
+
+The output directory must be new. Baseline, always-refuse, and actual model results are reported separately. Failed runs are retained. See [the comparison contract](docs/local-evaluation.md) and [actual v0.3 development results](receipts/v0.3/README.md). The default workbench remains on the deterministic baseline.
 
 ## Evidence and evaluation
 
@@ -103,4 +114,4 @@ See [architecture and boundaries](docs/architecture.md), [the build sequence](do
 
 ## Next build
 
-Review the development drill expectations with a controls engineer, then freeze independent holdouts before comparing local models. The time-series exporter and scorecard are now implemented; the independent review and actual model comparison are still open. Ignition ingestion, peb integration, plant procedures, model tuning, hardware purchases, and any real-plant work remain separate gates. No plant address, credentials, control executor, or arbitrary script tool is present in this release.
+Resolve the local-model protocol failures using separate diagnostic cases. Review the development expectations with a controls engineer, then freeze independent holdouts before selecting or promoting a model. Actual development comparisons are now implemented and receipted; they do not satisfy the independent evaluation gate. Ignition ingestion, peb integration, plant procedures, training, hardware purchases, and any real-plant work remain separate gates.

@@ -46,6 +46,53 @@ class ProviderTests(unittest.TestCase):
         self.assertTrue(all(r["host"] == "127.0.0.1" for r in calls))
         self.assertFalse(calls[-1]["body"]["stream"])
         self.assertIn("oneOf", calls[-1]["body"]["format"])
+        self.assertFalse(calls[-1]["body"]["think"])
+        self.assertEqual(calls[-1]["body"]["options"]["seed"], 0)
+        receipt = provider.drain_receipts()[0]
+        self.assertEqual(receipt["model_digest"], "a" * 64)
+        self.assertIn("request_sha256", receipt)
+        self.assertEqual(provider.drain_receipts(), [])
+
+    def test_digest_pin_and_tag_drift_block_inference(self):
+        self.prepare_responses()
+        provider = Ollama("local:1b", expected_digest="b" * 64)
+        with self.assertRaises(Rejected) as caught: provider.prepare()
+        self.assertEqual(caught.exception.code, "model_changed")
+        self.assertEqual(len(FakeConnection.requests), 1)
+        self.prepare_responses()
+        provider = Ollama("local:1b"); provider.prepare()
+        self.prepare_responses(digest="b" * 64)
+        with self.assertRaises(Rejected): provider.prepare()
+        with self.assertRaises(Rejected): provider.respond([])
+
+    def test_invalid_pin_is_rejected_before_transport(self):
+        for value in (True, "latest", "a" * 63):
+            with self.assertRaises(ValueError): Ollama("local:1b", expected_digest=value)
+        self.assertEqual(FakeConnection.requests, [])
+
+    def test_failed_parse_and_timeout_are_receipted_by_agent(self):
+        from moa.engine import Agent
+        from moa.evidence import EvidenceStore
+        from moa.fixtures import fixture
+        for reply in ((200, {"done": True, "message": {"content": "malformed JSON"}}), (503, {"error": "unavailable"})):
+            self.prepare_responses()
+            FakeConnection.replies.append(reply)
+            store = EvidenceStore(":memory:")
+            try:
+                result = Agent(store, Ollama("local:1b")).assess(fixture("normal"))
+                self.assertEqual(result["status"], "abstain")
+                calls = [e["payload"]["data"] for e in store.export() if e["payload"]["kind"] == "provider_call"]
+                self.assertEqual(len(calls), 1)
+                if reply[0] == 200: self.assertEqual(calls[0]["content"], "malformed JSON")
+                else: self.assertEqual(calls[0]["error"], "provider_error")
+            finally: store.close()
+
+    def test_unexpected_returned_model_withheld(self):
+        self.prepare_responses()
+        provider = Ollama("local:1b"); provider.prepare()
+        FakeConnection.replies.append((200, {"model": "different:1b", "done": True, "message": {"content": '{}'}}))
+        with self.assertRaises(Rejected) as caught: provider.respond([])
+        self.assertEqual(caught.exception.code, "model_changed")
 
     def test_missing_model_is_not_pulled(self):
         FakeConnection.replies = [(200, {"models": []})]
