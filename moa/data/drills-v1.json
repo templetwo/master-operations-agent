@@ -1,0 +1,16 @@
+{
+  "suite": "ess-u1-development-v1",
+  "review_status": "controls_review_pending",
+  "split": "development",
+  "simulator_revision": "3aad7695b8720b291999ef0903fcab7b7e008f1e",
+  "seeds": [20260920, 20260921],
+  "cases": [
+    {"id":"normal","status":"advisory","reason":"supported","findings":["no_reported_alarms","no_large_net_change","cause_unresolved"],"checks":["continue_observation","compare_independent_measurement"]},
+    {"id":"cooling-loss","status":"advisory","reason":"supported","findings":["reported_alarms","reactor_warming","jacket_warming","coolant_output_high","cooling_path_unconfirmed","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement","review_cooling_evidence"]},
+    {"id":"feed-surge","status":"advisory","reason":"supported","findings":["no_reported_alarms","feed_flow_increased","tank_level_increased","cause_unresolved"],"checks":["continue_observation","compare_independent_measurement","review_feed_balance"]},
+    {"id":"bad-quality","status":"abstain","reason":"quality","findings":[],"checks":[]},
+    {"id":"restoration-lag","status":"advisory","reason":"supported","findings":["reported_alarms","reactor_warming","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement"]},
+    {"id":"recovery","status":"advisory","reason":"supported","findings":["reported_alarms","reactor_cooling","coolant_output_high","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement","monitor_thermal_recovery"]}
+  ],
+  "limits": "Project-authored expectations for this pinned simulator revision. Public development cases, not held-out or engineer-approved ground truth. No plant response procedure."
+}

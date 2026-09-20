@@ -14,4 +14,6 @@ Read date: **2026-09-20 UTC**. Project design decisions and authored demo thresh
 | https://github.com/templetwo/experion-station-sim/blob/3aad7695b8720b291999ef0903fcab7b7e008f1e/tools/logic-harness.js | Local checkout read: headless Component loader | 2026-09-20 | Trusted operator-run code, not an agent capability |
 | https://github.com/templetwo/experion-station-sim/blob/3aad7695b8720b291999ef0903fcab7b7e008f1e/tests/coach-projection.test.js | Local checkout read: operator-visible projection and hidden-fault exclusions | 2026-09-20 | Our adapter was also tested on normal and bad-quality exports |
 
+The time-series extension's pinned simulator sources, generation protocol, and measured-result limits are recorded in [drills.md](drills.md). Its expectations are project-authored, with independent controls review pending.
+
 The earlier claim-by-claim research audit remains at the sibling local directory `../master-operations-agent-research/2026-09-20/`. It is background research, not a dependency or a claim that this project completed every roadmap stage. The direct web URL `https://docs.ollama.com/api/show` was not retrievable during this build; the official GitHub API documentation was used instead.

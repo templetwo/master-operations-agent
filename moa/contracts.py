@@ -13,6 +13,7 @@ FUTURE_SKEW_SECONDS = 2
 PROFILES = {
     "demo-cooling-v1": {"TT101": "degC", "FT102": "L/min"},
     "ess-u1-v1": {"TIC201": "DEG C", "TIC202": "DEG C", "FIC102": "M3/H"},
+    "ess-u1-window-v1": {"TIC201": "DEG C", "TIC202": "DEG C", "FIC102": "M3/H", "LIC101": "%", "TIC202.OP": "%"},
 }
 
 
@@ -87,14 +88,18 @@ def text_field(value, limit=160):
 
 def validate_snapshot(raw, now=None):
     now = now or now_utc()
-    keys(raw, {"schema_version", "snapshot_id", "captured_at", "profile", "source", "tags", "alarms", "alarm_coverage"}, "snapshot")
-    if raw["schema_version"] != "1.0" or raw["profile"] not in PROFILES:
+    windowed = isinstance(raw, dict) and raw.get("schema_version") == "1.1"
+    fields = {"schema_version", "snapshot_id", "captured_at", "profile", "source", "tags", "alarms", "alarm_coverage"}
+    keys(raw, fields | ({"history"} if windowed else set()), "snapshot")
+    if raw["schema_version"] not in ("1.0", "1.1") or not isinstance(raw["profile"], str) or raw["profile"] not in PROFILES:
         raise Rejected("profile", "Unsupported observation version or profile.")
+    if windowed != (raw["profile"] == "ess-u1-window-v1"):
+        raise Rejected("profile", "History profile and schema version disagree.")
     identifier(raw["snapshot_id"])
     keys(raw["source"], {"kind", "adapter", "revision", "model_id"}, "source")
     if raw["source"]["kind"] != "synthetic":
         raise Rejected("scope", "Only synthetic research observations are supported.")
-    expected_adapter = "fixtures-v1" if raw["profile"] == "demo-cooling-v1" else "ess-v1"
+    expected_adapter = "ess-window-v1" if windowed else ("fixtures-v1" if raw["profile"] == "demo-cooling-v1" else "ess-v1")
     if raw["source"]["adapter"] != expected_adapter:
         raise Rejected("profile", "Adapter and observation profile disagree.")
     for field in ("revision", "model_id"):
@@ -145,4 +150,54 @@ def validate_snapshot(raw, now=None):
             text_field(alarm[field], 48)
         # Equipment alarms need not refer to an analog tag. They are reported
         # indications only, never interpreted as measured process values.
+    if windowed:
+        validate_history(raw["history"], seen)
     return copy.deepcopy(raw)
+
+
+def validate_history(history, tags):
+    keys(history, {"clock", "epoch_id", "sequence", "sample_period_s", "samples"}, "history")
+    if history["clock"] != "simulation_seconds":
+        raise Rejected("history_clock", "History must declare a simulation clock.")
+    identifier(history["epoch_id"])
+    if type(history["sequence"]) is not int or not 0 <= history["sequence"] <= 2**53:
+        raise Rejected("history_sequence", "Invalid source sequence.")
+    period = history["sample_period_s"]
+    if type(period) not in (int, float) or not math.isfinite(period) or not 1 <= period <= 60:
+        raise Rejected("history_timing", "Invalid sampling interval.")
+    samples = history["samples"]
+    if not isinstance(samples, list) or not 4 <= len(samples) <= 25:
+        raise Rejected("history_incomplete", "A bounded window of 4 to 25 samples is required.")
+    required = PROFILES["ess-u1-window-v1"]
+    previous = None
+    for sample in samples:
+        keys(sample, {"sequence", "elapsed_s", "values", "quality"}, "history sample")
+        if type(sample["sequence"]) is not int or not 0 <= sample["sequence"] <= 2**53:
+            raise Rejected("history_sequence", "Invalid sample sequence.")
+        elapsed = sample["elapsed_s"]
+        if type(elapsed) not in (int, float) or not math.isfinite(elapsed) or elapsed < 0:
+            raise Rejected("history_timing", "Invalid simulation time.")
+        if previous is not None:
+            if sample["sequence"] != previous["sequence"] + 1:
+                raise Rejected("history_sequence", "History contains a sequence gap, duplicate, or reversal.")
+            if not math.isclose(elapsed - previous["elapsed_s"], period, rel_tol=0, abs_tol=0.000001):
+                raise Rejected("history_timing", "History sample times do not match the declared interval.")
+        keys(sample["values"], required, "history values")
+        keys(sample["quality"], required, "history quality")
+        for tag, value in sample["values"].items():
+            quality = sample["quality"][tag]
+            if quality not in ("good", "bad", "uncertain"):
+                raise Rejected("history_quality", "Unknown historical quality.")
+            if value is None and quality != "good":
+                continue
+            if type(value) not in (int, float) or not math.isfinite(value):
+                raise Rejected("invalid_number", "Historical values must be finite or explicitly unavailable.")
+        previous = sample
+    span = samples[-1]["elapsed_s"] - samples[0]["elapsed_s"]
+    if not 30 <= span <= 240:
+        raise Rejected("history_incomplete", "History must cover 30 to 240 simulation seconds.")
+    if samples[-1]["sequence"] != history["sequence"]:
+        raise Rejected("history_sequence", "History head sequence disagrees with its last sample.")
+    for tag in required:
+        if samples[-1]["values"][tag] != tags[tag]["value"] or samples[-1]["quality"][tag] != tags[tag]["quality"]:
+            raise Rejected("history_mismatch", "Current observation disagrees with the final history sample.")

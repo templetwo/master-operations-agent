@@ -31,7 +31,7 @@ def make_server(store, port=8765, provider=None):
     agent = Agent(store, provider)
 
     class Handler(BaseHTTPRequestHandler):
-        server_version = "MOA-Lab/0.1"
+        server_version = "MOA-Lab/0.2"
 
         def log_message(self, *_):
             pass

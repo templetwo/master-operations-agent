@@ -31,6 +31,8 @@ def main(argv=None):
     fixtures = sub.add_parser("fixture", help="Print a fresh synthetic observation")
     fixtures.add_argument("--scenario", choices=SCENARIOS, default="cooling")
     evaluation = sub.add_parser("eval", help="Run public smoke scenarios and export receipts")
+    drills = sub.add_parser("drill-eval", help="Run development trajectories from a trusted simulator checkout")
+    drills.add_argument("--sim-repo", required=True)
     serve = sub.add_parser("serve", help="Open a loopback-only advisory workbench")
     serve.add_argument("--port", type=int, default=8765)
     verify = sub.add_parser("verify", help="Verify evidence integrity, optionally against an external anchor")
@@ -38,7 +40,7 @@ def main(argv=None):
     export = sub.add_parser("export", help="Export the evidence chain and external anchor")
     for command in (demo, assess, serve, verify, export):
         command.add_argument("--store", default=".moa/evidence.sqlite3")
-    for command in (demo, assess, serve, evaluation):
+    for command in (demo, assess, serve, evaluation, drills):
         command.add_argument("--model", help="Explicit installed Ollama name including tag. Otherwise use offline baseline.")
         command.add_argument("--ollama-port", type=int, default=11434)
     args = parser.parse_args(argv)
@@ -50,6 +52,11 @@ def main(argv=None):
             return 0
         if args.command == "eval":
             report = evaluate(provider)
+            emit(report)
+            return 0 if report["passed"] else 1
+        if args.command == "drill-eval":
+            from .drills import evaluate_drills
+            report = evaluate_drills(args.sim_repo, provider)
             emit(report)
             return 0 if report["passed"] else 1
         store = EvidenceStore(args.store)

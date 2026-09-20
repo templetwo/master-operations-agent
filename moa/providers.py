@@ -20,7 +20,7 @@ RESPONSE_SCHEMA = {
 
 
 class Baseline:
-    name = "deterministic-baseline-v1"
+    name = "deterministic-baseline-v2"
 
     def respond(self, messages):
         results = [strict_json(m["content"]) for m in messages if m["role"] == "user"]
@@ -29,7 +29,12 @@ class Baseline:
             return {"kind": "tool", "name": "read_snapshot", "arguments": {}}
         if "read_policy" not in reads:
             return {"kind": "tool", "name": "read_policy", "arguments": {}}
-        findings, checks, evidence, _ = eligible(reads["read_snapshot"])
+        snapshot = reads["read_snapshot"]
+        if snapshot["profile"] == "ess-u1-window-v1":
+            if "read_history" not in reads:
+                return {"kind": "tool", "name": "read_history", "arguments": {}}
+            snapshot = dict(snapshot, history=reads["read_history"])
+        findings, checks, evidence, _ = eligible(snapshot)
         return {"kind": "advice", "finding_ids": findings, "check_ids": checks, "evidence": evidence}
 
 

@@ -30,7 +30,7 @@ READ_SNAPSHOT = {"kind": "tool", "name": "read_snapshot", "arguments": {}}
 READ_POLICY = {"kind": "tool", "name": "read_policy", "arguments": {}}
 GOOD = {"kind": "advice", "finding_ids": ["reported_alarms", "cooling_mismatch"],
         "check_ids": ["review_cooling_evidence", "compare_independent_measurement", "inspect_alarm_context"],
-        "evidence": ["snapshot:alarms", "policy:lab-v1", "tag:TT101", "tag:FT102"]}
+        "evidence": ["snapshot:alarms", "policy:lab-v2", "tag:TT101", "tag:FT102"]}
 
 
 class CoreTests(unittest.TestCase):

@@ -2,7 +2,7 @@
 
 An independent research workbench for an evidence-first operations advisor.
 
-**Working v0.1:** a local dashboard, bounded agent loop, read-only observation tools, a simulator export, an optional Ollama provider, and a hash-linked evidence log. It runs without downloading a model or installing Python runtime dependencies.
+**Working v0.2:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, snapshot and time-series simulator exports, a development drill scorecard, an optional Ollama provider, and a hash-linked evidence log. It runs without downloading a model or installing Python runtime dependencies.
 
 This release assesses synthetic observations. Its default provider is a deterministic reference baseline. It is not a trained operations expert, an autonomous controller, or a plant-ready product.
 
@@ -27,7 +27,7 @@ python3 -m moa export > evidence-export.json
 python3 -m unittest discover -s tests -v
 ```
 
-The normal and cooling scenarios produce supported findings. Stale, incomplete, conflicting, or bad-quality observations are withheld before reaching a provider. The injection scenario keeps an instruction embedded in an alarm as evidence data. These are public smoke cases, not a general prompt-injection benchmark.
+The normal and cooling scenarios produce supported findings. Stale, incomplete, conflicting, or currently bad-quality observations are withheld before reaching a provider. The trend scenarios distinguish warming, falling temperature, unresolved cooling-path hypotheses, and unreliable history. The injection scenario keeps an instruction embedded in an alarm as evidence data. These are public development cases, not a general prompt-injection benchmark.
 
 State lives in `.moa/evidence.sqlite3`, ignored by Git. Use `--store /path/to/research.sqlite3` to select a different store. Input and inference receipts may contain everything supplied to the agent; use synthetic data only.
 
@@ -36,15 +36,16 @@ State lives in `.moa/evidence.sqlite3`, ignored by Git. Use `--store /path/to/re
 | Component | Behavior |
 |---|---|
 | Observation contract | Versioned JSON, known profiles, required tags and units, finite numbers, coherent timestamps, quality checks, complete alarm coverage |
-| Agent loop | Six response turns maximum; tools are `read_snapshot`, `read_policy`, and `read_tag` |
+| Agent loop | Six response turns maximum; tools are `read_snapshot`, `read_policy`, `read_tag`, and bounded `read_history` |
 | Independent validator | Rechecks freshness after reasoning; validates findings, review checks, and evidence references |
 | Operator output | Renders reviewed catalog text from validated IDs; never renders model-written control advice |
 | Evidence | Records input, system prompt, provider responses, tool reads/denials, and outcome before releasing advice |
-| Dashboard | Synthetic scenario selection, JSON import, observed values, findings, evidence inspection and export |
-| Simulator adapter | Exports the operator-visible projection from a separate headless simulation instance |
+| Dashboard | Synthetic scenario selection, JSON import, tag-selectable trend plot, findings, evidence inspection and export |
+| Simulator adapters | Export operator-visible snapshots and 120-second observation windows from separate headless instances |
+| Development drills | Six recipes at two seeds and six integrity perturbations; explicit expectations and separate usefulness/guard scores |
 | Provider options | Offline baseline by default; explicitly selected installed Ollama model; no cloud fallback or model pull |
 
-The v0.1 policy is intentionally small. The model must follow the read protocol and identify supported catalog findings. It does not yet perform open-ended root-cause analysis. The cooling thresholds belong to the authored demo; they are not process design limits or alarm-standard requirements. The ESS profile reports alarms without applying the demo thresholds to ESS tags.
+The policy is intentionally small. The model must follow the read protocol and identify supported catalog findings. It does not yet perform open-ended root-cause analysis. The project thresholds are research sensitivities, not process design limits or alarm-standard requirements. The original demo thresholds are never applied to ESS tags. The new temporal policy retains explicit causal uncertainty and distinguishes falling temperature from complete recovery.
 
 ## Use your simulator
 
@@ -66,6 +67,16 @@ Run the optional integration test against a trusted checkout:
 MOA_SIM_REPO=/path/to/experion-station-sim python3 -m unittest discover -s tests -v
 ```
 
+Export a time window or run the pinned development scorecard:
+
+```sh
+node scripts/export_trajectory.cjs /path/to/experion-station-sim cooling-loss 20260920 > window.json
+python3 -m moa assess window.json
+python3 -m moa drill-eval --sim-repo /path/to/experion-station-sim > drill-report.json
+```
+
+The agent receives no recipe names, fault schedule, seeds, instructor state, or expected answers. The scorecard retains that metadata separately. The baseline passes 18 development cases, and the always-refuse control fails usefulness. These are project-authored cases with controls review pending. See [the drill contract and limits](docs/drills.md).
+
 ## Try an installed local model
 
 The provider uses Ollama's documented chat and structured-output interfaces. Sources and read dates are in [docs/sources.md](docs/sources.md). No Ollama request happens unless you supply `--model`.
@@ -80,7 +91,7 @@ python3 -m moa eval --model 'YOUR_INSTALLED_MODEL:TAG' > local-model-smoke.json
 python3 -m moa serve --model 'YOUR_INSTALLED_MODEL:TAG'
 ```
 
-The provider checks installed metadata and records the reported digest. Each HTTP operation has a 20-second socket timeout and bounded response size; the entire agent has a six-turn limit and a 60-second observation freshness budget. A slow model may produce a valid candidate that is withheld because its observation expired. This version does not stream tokens or measure time to first token. No actual model inference was used to validate v0.1; provider transport tests use mocks.
+The provider checks installed metadata and records the reported digest. Each HTTP operation has a 20-second socket timeout and bounded response size; the entire agent has a six-turn limit and a 60-second observation freshness budget. A slow model may produce a valid candidate that is withheld because its observation expired. This version does not stream tokens or measure time to first token. No actual model inference was used to validate v0.2; provider transport tests use mocks.
 
 ## Evidence and evaluation
 
@@ -92,4 +103,4 @@ See [architecture and boundaries](docs/architecture.md), [the build sequence](do
 
 ## Next build
 
-Add a held-out, time-series simulator evaluation with controls-engineer-reviewed expected findings. That gives us a useful measure for choosing and improving a local model. Ignition ingestion, peb integration, plant procedures, model tuning, hardware purchases, and any real-plant work remain separate gates. No plant address, credentials, control executor, or arbitrary script tool is present in this release.
+Review the development drill expectations with a controls engineer, then freeze independent holdouts before comparing local models. The time-series exporter and scorecard are now implemented; the independent review and actual model comparison are still open. Ignition ingestion, peb integration, plant procedures, model tuning, hardware purchases, and any real-plant work remain separate gates. No plant address, credentials, control executor, or arbitrary script tool is present in this release.

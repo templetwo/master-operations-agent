@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "master-operations-agent"
-version = "0.1.0"
+version = "0.2.0"
 description = "Evidence-first, synthetic-lab operations advisory workbench"
 requires-python = ">=3.10"
 dependencies = []
@@ -13,4 +13,4 @@ dependencies = []
 moa = "moa.cli:main"
 
 [tool.setuptools.package-data]
-moa = ["web/*.html", "web/*.css", "web/*.js"]
+moa = ["web/*.html", "web/*.css", "web/*.js", "data/*.json"]

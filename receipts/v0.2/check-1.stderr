@@ -1,0 +1,59 @@
+test_abstention_and_recovery_are_separate_runs (test_core.CoreTests.test_abstention_and_recovery_are_separate_runs) ... ok
+test_bad_units_future_times_and_incoherent_tags (test_core.CoreTests.test_bad_units_future_times_and_incoherent_tags) ... ok
+test_candidate_cannot_invent_checks_evidence_or_freeform_instructions (test_core.CoreTests.test_candidate_cannot_invent_checks_evidence_or_freeform_instructions) ... ok
+test_candidate_cannot_suppress_alarm_or_cooling_finding (test_core.CoreTests.test_candidate_cannot_suppress_alarm_or_cooling_finding) ... ok
+test_control_and_arbitrary_tools_denied (test_core.CoreTests.test_control_and_arbitrary_tools_denied) ... ok
+test_control_task_refused_before_provider (test_core.CoreTests.test_control_task_refused_before_provider) ... ok
+test_duplicate_keys_and_nonfinite_json_rejected (test_core.CoreTests.test_duplicate_keys_and_nonfinite_json_rejected) ... ok
+test_evidence_failure_prevents_output (test_core.CoreTests.test_evidence_failure_prevents_output) ... ok
+test_missing_evidence_reads_rejected_even_for_correct_answer (test_core.CoreTests.test_missing_evidence_reads_rejected_even_for_correct_answer) ... ok
+test_prompt_injection_is_data_not_rendered_advice (test_core.CoreTests.test_prompt_injection_is_data_not_rendered_advice) ... ok
+test_public_evaluation_and_always_refuse_negative_control (test_core.CoreTests.test_public_evaluation_and_always_refuse_negative_control) ... ok
+test_read_tool_returns_detached_data (test_core.CoreTests.test_read_tool_returns_detached_data) ... ok
+test_stale_during_generation_never_released (test_core.CoreTests.test_stale_during_generation_never_released) ... ok
+test_temperature_alone_is_not_a_cooling_diagnosis (test_core.CoreTests.test_temperature_alone_is_not_a_cooling_diagnosis) ... ok
+test_tool_budget_bounds_loop (test_core.CoreTests.test_tool_budget_bounds_loop) ... ok
+test_unknown_fields_real_scope_and_invalid_numbers_fail_closed (test_core.CoreTests.test_unknown_fields_real_scope_and_invalid_numbers_fail_closed) ... ok
+test_unusable_observations_never_reach_provider (test_core.CoreTests.test_unusable_observations_never_reach_provider) ... ok
+test_useful_baseline_and_receipted_reads (test_core.CoreTests.test_useful_baseline_and_receipted_reads) ... ok
+test_tamper_detected_and_store_refuses_reopen (test_core.EvidenceTests.test_tamper_detected_and_store_refuses_reopen) ... ok
+test_truncation_requires_external_anchor (test_core.EvidenceTests.test_truncation_requires_external_anchor) ... ok
+test_bad_historical_quality_narrows_advice_without_using_bad_values (test_history.HistoryTests.test_bad_historical_quality_narrows_advice_without_using_bad_values) ... ok
+test_current_and_historical_endpoints_must_match (test_history.HistoryTests.test_current_and_historical_endpoints_must_match) ... ok
+test_earlier_peak_is_not_hidden_by_equal_endpoints (test_history.HistoryTests.test_earlier_peak_is_not_hidden_by_equal_endpoints) ... ok
+test_falling_temperature_does_not_authorize_return_to_service (test_history.HistoryTests.test_falling_temperature_does_not_authorize_return_to_service) ... ok
+test_history_read_is_required_and_snapshot_does_not_leak_it (test_history.HistoryTests.test_history_read_is_required_and_snapshot_does_not_leak_it) ... ok
+test_manifest_labels_do_not_claim_independent_review (test_history.HistoryTests.test_manifest_labels_do_not_claim_independent_review) ... ok
+test_missing_reversed_or_duplicate_samples_are_not_trends (test_history.HistoryTests.test_missing_reversed_or_duplicate_samples_are_not_trends) ... ok
+test_non_finite_boolean_and_missing_historical_values_rejected (test_history.HistoryTests.test_non_finite_boolean_and_missing_historical_values_rejected) ... ok
+test_scorecard_rejects_forged_evidence_and_blanket_abstention (test_history.HistoryTests.test_scorecard_rejects_forged_evidence_and_blanket_abstention) ... ok
+test_single_snapshot_cannot_call_history (test_history.HistoryTests.test_single_snapshot_cannot_call_history) ... ok
+test_thermal_pattern_is_a_hypothesis_not_a_proven_cause (test_history.HistoryTests.test_thermal_pattern_is_a_hypothesis_not_a_proven_cause) ... ok
+test_time_gaps_and_clock_mixing_rejected (test_history.HistoryTests.test_time_gaps_and_clock_mixing_rejected) ... ok
+test_unknown_truth_fields_and_downgrades_rejected (test_history.HistoryTests.test_unknown_truth_fields_and_downgrades_rejected) ... ok
+test_cloud_model_name_and_arbitrary_endpoint_disallowed (test_providers.ProviderTests.test_cloud_model_name_and_arbitrary_endpoint_disallowed) ... ok
+test_exact_local_model_schema_and_explicit_loopback (test_providers.ProviderTests.test_exact_local_model_schema_and_explicit_loopback) ... ok
+test_incomplete_or_invalid_output_fails_closed (test_providers.ProviderTests.test_incomplete_or_invalid_output_fails_closed) ... ok
+test_missing_model_is_not_pulled (test_providers.ProviderTests.test_missing_model_is_not_pulled) ... ok
+test_redirect_is_error_and_never_retried (test_providers.ProviderTests.test_redirect_is_error_and_never_retried) ... ok
+test_remote_model_metadata_blocks_chat (test_providers.ProviderTests.test_remote_model_metadata_blocks_chat) ... ok
+test_advisory_and_export_end_to_end (test_server.ServerTests.test_advisory_and_export_end_to_end) ... ok
+test_control_routes_and_path_traversal_absent (test_server.ServerTests.test_control_routes_and_path_traversal_absent) ... ok
+test_cross_origin_and_dns_rebinding_rejected (test_server.ServerTests.test_cross_origin_and_dns_rebinding_rejected) ... ok
+test_dashboard_has_local_only_assets_and_csp (test_server.ServerTests.test_dashboard_has_local_only_assets_and_csp) ... ok
+test_imported_json_retains_duplicate_key_rejection (test_server.ServerTests.test_imported_json_retains_duplicate_key_rejection) ... ok
+test_missing_session_token_rejected (test_server.ServerTests.test_missing_session_token_rejected) ... ok
+test_non_ascii_session_token_is_rejected (test_server.ServerTests.test_non_ascii_session_token_is_rejected) ... ok
+test_oversized_body_and_duplicate_key_rejected (test_server.ServerTests.test_oversized_body_and_duplicate_key_rejected) ... ok
+test_always_refuse_fails_development_usefulness (test_simulator.SimulatorTests.test_always_refuse_fails_development_usefulness) ... /Users/vaquez/master-operations-agent/moa/contracts.py:43: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x1098eda80>
+  out[key] = value
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_development_oracle_and_no_label_leakage (test_simulator.SimulatorTests.test_development_oracle_and_no_label_leakage) ... ok
+test_normal_and_bad_quality_operator_projection (test_simulator.SimulatorTests.test_normal_and_bad_quality_operator_projection) ... ok
+test_window_export_is_reproducible_without_scenario_answers (test_simulator.SimulatorTests.test_window_export_is_reproducible_without_scenario_answers) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 3.965s
+
+OK

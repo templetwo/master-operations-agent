@@ -24,7 +24,10 @@ def main():
     if args.sim_repo: env["MOA_SIM_REPO"] = str(Path(args.sim_repo).resolve())
     commands = [[sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
                 [sys.executable, "-m", "moa", "eval"],
-                ["node", "--check", "moa/web/app.js"], ["node", "--check", "scripts/export_sim.cjs"]]
+                ["node", "--check", "moa/web/app.js"], ["node", "--check", "scripts/export_sim.cjs"],
+                ["node", "--check", "scripts/export_trajectory.cjs"]]
+    if args.sim_repo:
+        commands.append([sys.executable, "-m", "moa", "drill-eval", "--sim-repo", str(Path(args.sim_repo).resolve())])
     records = []
     for index, command in enumerate(commands):
         completed = subprocess.run(command, cwd=ROOT, env=env, text=True, capture_output=True, timeout=120)
@@ -34,7 +37,7 @@ def main():
         records.append({"command": command, "exit_code": completed.returncode, "stdout": stdout, "stderr": stderr})
         print(f"{'PASS' if completed.returncode == 0 else 'FAIL'} {' '.join(command)}", flush=True)
     sources = {}
-    for pattern in ("moa/**/*.py", "moa/web/*", "tests/*.py", "scripts/*", "pyproject.toml"):
+    for pattern in ("moa/**/*.py", "moa/web/*", "moa/data/*.json", "tests/*.py", "scripts/*", "pyproject.toml"):
         for file in ROOT.glob(pattern):
             if file.is_file(): sources[str(file.relative_to(ROOT))] = hashlib.sha256(file.read_bytes()).hexdigest()
     receipt = {"recorded_at": datetime.now(timezone.utc).isoformat(), "python": sys.version, "platform": platform.platform(),

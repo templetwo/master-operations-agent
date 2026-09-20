@@ -10,7 +10,7 @@ This is part of the original Stage 0, not completion of it. The original Ignitio
 
 ## 1. Evidence of useful operations reasoning
 
-Build a versioned time-series projection with units, quality, source clock, monotonic sequence, and explicit coverage. Define a focused R-201 drill set covering cooling loss, feed disturbance, bad instrumentation, contradictory indications, missing context, and recovery. Keep operator-visible data separate from instructor truth.
+Implemented in v0.2: a versioned time-series projection with units, quality, simulation clock, contiguous within-window sequence, endpoint binding, and explicit coverage. The development scorecard covers cooling loss, feed disturbance, bad instrumentation, contradictory/missing history, restoration lag, and falling-temperature recovery windows. Operator-visible data is separated from evaluator labels. This is not authenticated sequence enforcement across successive live reads.
 
 Have a controls engineer review expected findings, missing-evidence requests, and permitted advisory wording. Freeze held-out drills before model selection. Report per-scenario usefulness, unsafe advice, evidence fidelity, freshness failures, voluntary abstention, boundary denials, and latency. Report denominators and uncertainty; do not collapse them into one headline accuracy.
 
