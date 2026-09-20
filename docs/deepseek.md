@@ -32,4 +32,4 @@ Exit 0 means the cloud run met this development scorecard and comparison checks.
 
 ## Current status
 
-The client and runner are tested with mocked transport and actual simulator exports. The two distinct credentials located for this task were both rejected with HTTP 401 by the official API. No successful model call, model availability confirmation, or cloud quality score is claimed. See [v0.5 receipts](../receipts/v0.5/README.md). A valid DeepSeek credential is required to run the actual comparison.
+The updated credential authenticated successfully on 2026-09-20. The actual comparison completed with 40 scored inference calls and one warmup. DeepSeek completed required reads on all 10 usable cases but produced no accepted advisory: nine candidates failed the JSON contract and one failed finding validation. All eight invalid inputs were blocked before inference by application guards. Comparison integrity and all three evidence-chain checks passed. See [actual results and limitations](../receipts/v0.5/deepseek-live-network/README.md). The earlier HTTP 401 receipts remain historical records, separate from this completed run.

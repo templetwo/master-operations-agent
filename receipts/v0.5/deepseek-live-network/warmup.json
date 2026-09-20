@@ -1,0 +1,36 @@
+{
+  "purpose": "One synthetic protocol request, no plant data or process observation.",
+  "response": {
+    "kind": "tool",
+    "name": "read_snapshot",
+    "arguments": {}
+  },
+  "calls": [
+    {
+      "request_sha256": "f44b3fb854cee05d1277405514e6dc0d5739890adfc030445310abff80830180",
+      "request_wire_sha256": "24204f32ea3486626986dd64f9a3be2c0f67354b8e656144d908a039d9f7dd3c",
+      "requested_model": "deepseek-flash",
+      "call_number": 1,
+      "response_sha256": "a9b530972a1a5d34b255a07ec157deab491f957a24fdbd5d85b4612aa5177116",
+      "reported": {
+        "id": "a7c0351d-1376-4ad7-b14b-41fcbaa3b82f",
+        "model": "deepseek-flash",
+        "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "usage": {
+          "prompt_tokens": 531,
+          "completion_tokens": 16,
+          "total_tokens": 547,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 531
+        }
+      },
+      "finish_reason": "stop",
+      "content": "{\"kind\":\"tool\",\"name\":\"read_snapshot\",\"arguments\":{}}",
+      "content_truncated": false,
+      "wall_ms": 851.31
+    }
+  ]
+}

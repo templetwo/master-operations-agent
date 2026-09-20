@@ -1,0 +1,134 @@
+{
+  "completed": true,
+  "finished_at": "2026-09-20T12:55:32.692Z",
+  "comparison_valid": true,
+  "promotion": "not_evaluated",
+  "cloud_passed_development": false,
+  "integrity": {
+    "paired_process_data": true,
+    "source_unchanged": true,
+    "requested_alias_still_listed": true
+  },
+  "pairings": [
+    {
+      "provider": "deepseek:deepseek-flash",
+      "matched": true
+    },
+    {
+      "provider": "always-refuse-negative-control",
+      "matched": true
+    }
+  ],
+  "reports": {
+    "baseline": {
+      "file": "baseline.json",
+      "passed": true,
+      "metrics": {
+        "useful_assessment": {
+          "passed": 10,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 10,
+          "total": 10
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 0,
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 9.940000000000001,
+          "max": 45.71
+        }
+      },
+      "evidence_anchor": {
+        "events": 154,
+        "head": "7b473a32acd801e64c7b742cfc7547df264ef39afc3fc3838324458bf66fa8f6"
+      }
+    },
+    "always-refuse": {
+      "file": "always-refuse.json",
+      "passed": false,
+      "metrics": {
+        "useful_assessment": {
+          "passed": 0,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 0,
+          "total": 0
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 10,
+        "tool_denials": 0,
+        "candidate_rejections": 0,
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 3.5949999999999998,
+          "max": 5.23
+        }
+      },
+      "evidence_anchor": {
+        "events": 64,
+        "head": "ea1f9f41b17c7fcadc577c9924222b983780b6efddca2a248e09de7ea395f1ff"
+      }
+    },
+    "cloud-model": {
+      "file": "cloud-model.json",
+      "passed": false,
+      "metrics": {
+        "useful_assessment": {
+          "passed": 0,
+          "total": 10
+        },
+        "input_guards": {
+          "passed": 8,
+          "total": 8
+        },
+        "evidence_fidelity": {
+          "passed": 0,
+          "total": 0
+        },
+        "unexpected_advisories": 0,
+        "voluntary_abstentions": 0,
+        "tool_denials": 0,
+        "candidate_rejections": 2,
+        "end_to_end_ms": {
+          "count": 18,
+          "median": 3905.225,
+          "max": 4907.83
+        }
+      },
+      "evidence_anchor": {
+        "events": 204,
+        "head": "164e6253ab61debe0354dbb85cd4ca1a6f45830c456ff96ed860e68b9fdf0eeb"
+      }
+    }
+  },
+  "inference": {
+    "calls": 40,
+    "reported_usage": {
+      "prompt_tokens": 71320,
+      "completion_tokens": 1655,
+      "total_tokens": 72975,
+      "prompt_cache_hit_tokens": 40064,
+      "prompt_cache_miss_tokens": 31256
+    },
+    "reported_models": [
+      "deepseek-flash"
+    ],
+    "call_wall_ms_total": 41984.25,
+    "warmup_included": false,
+    "time_to_first_token": "UNMEASURED: non-streaming requests",
+    "cost": "Not inferred from tokens. Consult the provider bill for actual charges."
+  }
+}

@@ -7,8 +7,8 @@ Read date: **2026-09-20 UTC**. Project design decisions and authored demo thresh
 | https://docs.ollama.com/api/chat | `/api/chat`, model/messages, structured `format`, streaming flag, completion fields | 2026-09-20 | Interface documentation; not a model-quality result |
 | https://docs.ollama.com/capabilities/thinking | Model-dependent `think` control, requested as false in v0.3 | 2026-09-20 | Requesting an option does not prove the backend applied it |
 | https://github.com/ggml-org/llama.cpp/blob/master/tests/test-json-schema-to-grammar.cpp | Grammar test preserves declared property order, relevant to the v0.4 serialization diagnosis | 2026-09-20 | Supports a mechanism; the exact running daemon implementation was not inspected |
-| https://api-docs.deepseek.com/quick_start/pricing/ | `deepseek-flash` currently maps to DeepSeek-V4.1-Flash | 2026-09-20 | Mutable API alias; no successful authenticated model listing yet |
-| https://api-docs.deepseek.com/api/create-chat-completion/ | Fixed chat endpoint, thinking toggle, completion status, response metadata and usage | 2026-09-20 | Integration verified with mocks; actual inference awaits valid credentials |
+| https://api-docs.deepseek.com/quick_start/pricing/ | `deepseek-flash` currently maps to DeepSeek-V4.1-Flash | 2026-09-20 | Mutable API alias; authenticated listing and inference confirmed in the v0.5 actual run |
+| https://api-docs.deepseek.com/api/create-chat-completion/ | Fixed chat endpoint, thinking toggle, completion status, response metadata and usage | 2026-09-20 | Mocked transport tests plus actual synthetic inference; see v0.5 receipts for failed answer-quality results |
 | https://api-docs.deepseek.com/guides/json_mode/ | JSON-object response mode and prompt requirement | 2026-09-20 | JSON syntax does not establish candidate correctness |
 | https://docs.ollama.com/capabilities/structured-outputs | JSON schema passed through `format`, client-side validation still used | 2026-09-20 | Schema constraints do not establish process correctness |
 | https://docs.ollama.com/api/tags | Installed-model listing, name and digest fields | 2026-09-20 | Daemon-reported metadata |

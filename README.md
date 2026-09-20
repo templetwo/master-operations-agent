@@ -106,7 +106,7 @@ The output directory must be new. Baseline, always-refuse, and actual model resu
 
 ## Evidence and evaluation
 
-An optional [DeepSeek API comparison](docs/deepseek.md) is available through `compare-deepseek`. It requires an explicit credential-file path and `--allow-cloud-synthetic`, uses only generated simulator cases, and leaves the dashboard and default provider local. The located credentials returned HTTP 401, so actual DeepSeek inference remains untested. [Access attempts and implementation tests](receipts/v0.5/README.md) are recorded separately from model-quality results.
+An optional [DeepSeek API comparison](docs/deepseek.md) is available through `compare-deepseek`. It requires an explicit credential-file path and `--allow-cloud-synthetic`, uses only generated simulator cases, and leaves the dashboard and default provider local. The updated credential worked: DeepSeek completed required reads on 10/10 usable cases but produced 0/10 accepted advisories. Nine candidates failed the JSON contract and one failed finding validation. The application blocked all 8 invalid-input cases before inference. [Actual comparison and receipts](receipts/v0.5/deepseek-live-network/README.md) retain the failures; this configuration is not promoted.
 
 `verify` checks chain consistency. Export the `anchor` object to a separate location if you need to detect truncation or whole-history replacement, then pass that JSON object as `verify --anchor saved-anchor.json`. An unanchored local hash chain is not independent attestation. This implementation is not peb and does not claim peb authorization or review integration.
 

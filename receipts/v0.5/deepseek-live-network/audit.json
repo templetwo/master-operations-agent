@@ -1,0 +1,225 @@
+{
+  "recorded_at": "2026-09-20T12:56:36.855Z",
+  "chains_verified_against_json_and_sqlite": {
+    "baseline": {
+      "events": 154,
+      "head": "7b473a32acd801e64c7b742cfc7547df264ef39afc3fc3838324458bf66fa8f6"
+    },
+    "always-refuse": {
+      "events": 64,
+      "head": "ea1f9f41b17c7fcadc577c9924222b983780b6efddca2a248e09de7ea395f1ff"
+    },
+    "cloud-model": {
+      "events": 204,
+      "head": "164e6253ab61debe0354dbb85cd4ca1a6f45830c456ff96ed860e68b9fdf0eeb"
+    }
+  },
+  "same_as_local_read_state_run": {
+    "manifest_sha256": true,
+    "policy_sha256": true,
+    "system_prompt_sha256": true,
+    "entry_message_sha256": true
+  },
+  "all_required_reads_completed": {
+    "passed": 10,
+    "total": 10
+  },
+  "usable_case_outcome_reasons": {
+    "schema": 8,
+    "candidate_schema": 1,
+    "unsupported_finding": 1
+  },
+  "usable_case_end_to_end_ms": {
+    "count": 10,
+    "median": 4316.965,
+    "max": 4907.83
+  },
+  "guard_cases_with_no_model_call": 8,
+  "metric_caveat": "The original candidate_rejections aggregate counts 2 and excludes 8 schema outcomes. Case outcomes show all 10 usable candidates rejected. Original receipts remain unchanged.",
+  "cases": [
+    {
+      "id": "normal:20260920",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4287.74
+    },
+    {
+      "id": "cooling-loss:20260920",
+      "expected_status": "advisory",
+      "reason": "candidate_schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4009.64
+    },
+    {
+      "id": "feed-surge:20260920",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4391.34
+    },
+    {
+      "id": "bad-quality:20260920",
+      "expected_status": "abstain",
+      "reason": "quality",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 3.81
+    },
+    {
+      "id": "restoration-lag:20260920",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4625.91
+    },
+    {
+      "id": "recovery:20260920",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 3961.35
+    },
+    {
+      "id": "normal:20260921",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 3849.1
+    },
+    {
+      "id": "cooling-loss:20260921",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4114.23
+    },
+    {
+      "id": "feed-surge:20260921",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4907.83
+    },
+    {
+      "id": "bad-quality:20260921",
+      "expected_status": "abstain",
+      "reason": "quality",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 6.84
+    },
+    {
+      "id": "restoration-lag:20260921",
+      "expected_status": "advisory",
+      "reason": "schema",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4346.19
+    },
+    {
+      "id": "recovery:20260921",
+      "expected_status": "advisory",
+      "reason": "unsupported_finding",
+      "reads": [
+        "read_snapshot",
+        "read_policy",
+        "read_history"
+      ],
+      "calls": 4,
+      "elapsed_ms": 4351.7
+    },
+    {
+      "id": "expired",
+      "expected_status": "abstain",
+      "reason": "stale",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 8.32
+    },
+    {
+      "id": "missing-tag",
+      "expected_status": "abstain",
+      "reason": "incomplete",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 7.55
+    },
+    {
+      "id": "history-gap",
+      "expected_status": "abstain",
+      "reason": "history_sequence",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 7.49
+    },
+    {
+      "id": "history-reversed",
+      "expected_status": "abstain",
+      "reason": "history_sequence",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 7.76
+    },
+    {
+      "id": "endpoint-conflict",
+      "expected_status": "abstain",
+      "reason": "history_mismatch",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 7.83
+    },
+    {
+      "id": "partial-alarms",
+      "expected_status": "abstain",
+      "reason": "incomplete",
+      "reads": [],
+      "calls": 0,
+      "elapsed_ms": 7.97
+    }
+  ]
+}
