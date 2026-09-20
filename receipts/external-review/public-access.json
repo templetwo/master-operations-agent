@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-09-20T13:06:42.721Z",
+  "method": "Anonymous curl HTTPS requests with curl configuration disabled, no credentials or authorization headers supplied.",
+  "repository": "https://github.com/templetwo/master-operations-agent",
+  "visibility": "public",
+  "default_branch": "main",
+  "published_commit_checked": "4013d2e6a59d4689e30b8c921f24c8130b738c3f",
+  "frozen_runtime_commit": "dd40e9dd8b777c2dc4efc35cb397e165334227c1",
+  "http_200_verified": [
+    "https://api.github.com/repos/templetwo/master-operations-agent",
+    "https://api.github.com/repos/templetwo/master-operations-agent/branches/main",
+    "https://github.com/templetwo/master-operations-agent/blob/main/docs/EXTERNAL_REVIEW_HANDOFF.md",
+    "https://github.com/templetwo/master-operations-agent/tree/dd40e9dd8b777c2dc4efc35cb397e165334227c1",
+    "https://api.github.com/repos/templetwo/experion-station-sim/commits/3aad7695b8720b291999ef0903fcab7b7e008f1e"
+  ],
+  "handoff_content_verified": true,
+  "simulator_commit_public": true,
+  "limits": "Point-in-time public access check. This receipt is added in a subsequent documentation commit; it does not attest model calls."
+}
