@@ -1,10 +1,22 @@
 """Explicit providers. The default is a deterministic baseline, never a cloud call."""
 
 import http.client
+import hashlib
+import json
 import re
 import time
 from .contracts import Rejected, canonical, digest, strict_json, MAX_BYTES
 from .knowledge import eligible
+
+
+def wire_json(value):
+    """Preserve declared schema property order for grammar-constrained decoding.
+
+    Canonical JSON remains the evidence-hash format, not the HTTP wire format.
+    Sorting a union schema can make its branches start with different fields
+    and bias generation toward whichever branch matches the prompt's prefix.
+    """
+    return json.dumps(value, ensure_ascii=False, allow_nan=False, separators=(",", ":")).encode()
 
 RESPONSE_SCHEMA = {
     "type": "object",
@@ -66,7 +78,7 @@ class Ollama:
     def request(self, method, path, body=None):
         connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=20)
         try:
-            encoded = canonical(body).encode() if body is not None else None
+            encoded = wire_json(body) if body is not None else None
             connection.request(method, path, body=encoded, headers={"Content-Type": "application/json"})
             response = connection.getresponse()
             content = response.read(MAX_BYTES + 1)
@@ -98,6 +110,7 @@ class Ollama:
                         "template_sha256": digest(info.get("template")), "parameters_sha256": digest(info.get("parameters")),
                         "settings": dict(self.settings), "think": False, "stream": False, "keep_alive": "5m",
                         "response_schema_sha256": digest(RESPONSE_SCHEMA), "socket_timeout_s": 20,
+                        "wire_encoding": "declared-order-json-v1", "response_schema_wire_sha256": hashlib.sha256(wire_json(RESPONSE_SCHEMA)).hexdigest(),
                         "endpoint": f"http://127.0.0.1:{self.port}", "server_isolation": "operator_responsibility"}
         return self.receipt
 
@@ -109,7 +122,8 @@ class Ollama:
             "options": dict(self.settings), "think": False, "keep_alive": "5m",
         }
         started = time.monotonic()
-        receipt = {"request_sha256": digest(body), "model_digest": self.receipt["digest"]}
+        receipt = {"request_sha256": digest(body), "request_wire_sha256": hashlib.sha256(wire_json(body)).hexdigest(),
+                   "model_digest": self.receipt["digest"]}
         try:
             response = self.request("POST", "/api/chat", body)
             receipt["response_sha256"] = digest(response)

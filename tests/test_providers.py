@@ -1,8 +1,9 @@
 import json
+import hashlib
 import unittest
 from unittest.mock import patch
 from moa.contracts import Rejected
-from moa.providers import Ollama
+from moa.providers import Ollama, RESPONSE_SCHEMA, wire_json
 
 
 class FakeConnection:
@@ -14,6 +15,7 @@ class FakeConnection:
 
     def request(self, method, path, body=None, headers=None):
         self.requests.append({"host": self.host, "port": self.port, "method": method, "path": path,
+                              "wire": body,
                               "body": json.loads(body) if body else None})
 
     def getresponse(self):
@@ -51,7 +53,24 @@ class ProviderTests(unittest.TestCase):
         receipt = provider.drain_receipts()[0]
         self.assertEqual(receipt["model_digest"], "a" * 64)
         self.assertIn("request_sha256", receipt)
+        self.assertEqual(receipt["request_wire_sha256"], hashlib.sha256(calls[-1]["wire"]).hexdigest())
         self.assertEqual(provider.drain_receipts(), [])
+
+    def test_wire_schema_keeps_discriminator_first_in_every_branch(self):
+        self.prepare_responses(); provider = Ollama("local:1b"); provider.prepare()
+        FakeConnection.replies.append((200, {"done": True, "message": {"content": '{"kind":"tool","name":"read_snapshot","arguments":{}}'}}))
+        provider.respond([])
+        schema = json.loads(FakeConnection.requests[-1]["wire"])["format"]
+        self.assertEqual([list(branch["properties"]) for branch in schema["oneOf"]], [
+            ["kind", "name", "arguments"], ["kind", "finding_ids", "check_ids", "evidence"], ["kind", "reason"]])
+
+    def test_wire_and_evidence_hashes_distinguish_property_order(self):
+        from moa.contracts import digest, canonical
+        reordered = json.loads(canonical(RESPONSE_SCHEMA))
+        self.assertEqual(digest(RESPONSE_SCHEMA), digest(reordered))
+        self.assertNotEqual(wire_json(RESPONSE_SCHEMA), wire_json(reordered))
+        for invalid in (float("nan"), float("inf")):
+            with self.assertRaises(ValueError): wire_json({"value": invalid})
 
     def test_digest_pin_and_tag_drift_block_inference(self):
         self.prepare_responses()

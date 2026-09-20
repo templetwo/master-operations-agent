@@ -1,6 +1,6 @@
 # Validation receipts
 
-The `v0.3/` directory contains actual local-model development comparisons and current implementation validation. See its [run index](v0.3/README.md). `v0.2/` preserves time-series validation and `latest/` preserves the original v0.1 bootstrap run. Run from the repository root:
+The `v0.4/` directory contains schema-order diagnostics, corrected local-model comparisons, and current validation. See its [run index](v0.4/README.md). `v0.3/` preserves the earlier model comparisons affected by the schema serialization bug. `v0.2/` preserves time-series validation and `latest/` preserves the original v0.1 bootstrap run. Run from the repository root:
 
 ```sh
 python3 scripts/validate.py --sim-repo /path/to/experion-station-sim --output receipts/new-run

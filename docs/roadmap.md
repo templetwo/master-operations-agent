@@ -20,6 +20,8 @@ Gate: useful performance exceeds an always-refuse and a simple rule baseline wit
 
 Implemented in v0.3: installed-artifact digest pins, quantization and template metadata, fixed requested settings, hardware and serving-version receipts, separate warmup, per-call counters, paired simulator data, and baseline/refusal controls. Actual results are in `receipts/v0.3/`. These are development diagnostics; no model is promoted. Controlled cold/warm experiments, time to first token, and independent verification of daemon isolation remain open.
 
+V0.4 fixes an order-sensitive schema serialization defect found through an order-only experiment. It preserves schema field order on the wire, receipts exact byte hashes, and explicitly reports remaining required reads after tool results. The policy, independent validator, and development expectations are unchanged. Corrected runs are in `receipts/v0.4/`. Protocol compliance and useful process assessment remain separate measures.
+
 Improve retrieval and evidence selection first. Consider SFT or preference training only after baseline failures identify a learnable gap and independent trajectories exist. Split by drill family, initial state, and disturbance regime to avoid leakage. Quantized and fine-tuned artifacts must rerun the same held-out scorecard.
 
 Gate: reproducible useful improvement with no unacceptable regression. No training recipe, model family, or hardware purchase bypasses this evidence.

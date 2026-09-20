@@ -1,0 +1,27 @@
+{
+  "order": "declared",
+  "semantic_sha256": "ab47cd9a7133d77f1e2a76d809172b663f7992c17ed69ce1bc316c0595286da2",
+  "wire_sha256": "eb0d423da3698caf293aba4bdab0e71f98c90f3922bb108d89f588892926a498",
+  "status": 200,
+  "response_sha256": "0b7c5d394107fe0080a8f8cbf8bca0d329397044a9e18b4a1db1ea0c43215942",
+  "response": {
+    "model": "qwen3:4b",
+    "created_at": "2026-09-20T11:39:44.373757Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 650445875,
+    "load_duration": 99907459,
+    "prompt_eval_count": 441,
+    "prompt_eval_duration": 31933000,
+    "eval_count": 23,
+    "eval_duration": 514851000
+  },
+  "content": "{\n  \"kind\": \"tool\",\n  \"name\": \"read_snapshot\",\n  \"arguments\": {}\n}",
+  "candidate": {
+    "kind": "tool",
+    "name": "read_snapshot",
+    "arguments": {}
+  },
+  "requested_read": true,
+  "wall_ms": 651.68
+}

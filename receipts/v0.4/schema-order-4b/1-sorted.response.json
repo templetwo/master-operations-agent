@@ -1,0 +1,26 @@
+{
+  "order": "sorted",
+  "semantic_sha256": "ab47cd9a7133d77f1e2a76d809172b663f7992c17ed69ce1bc316c0595286da2",
+  "wire_sha256": "ab47cd9a7133d77f1e2a76d809172b663f7992c17ed69ce1bc316c0595286da2",
+  "status": 200,
+  "response_sha256": "a91a7c15a78e712e5bd7ec135715468ab66050aad3a46cce4e83975541c3f9b0",
+  "response": {
+    "model": "qwen3:4b",
+    "created_at": "2026-09-20T11:39:43.719518Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 681016250,
+    "load_duration": 118764709,
+    "prompt_eval_count": 441,
+    "prompt_eval_duration": 39715000,
+    "eval_count": 22,
+    "eval_duration": 519460000
+  },
+  "content": "{\n  \"kind\": \"abstain\",\n  \"reason\": \"insufficient_evidence\"\n}",
+  "candidate": {
+    "kind": "abstain",
+    "reason": "insufficient_evidence"
+  },
+  "requested_read": false,
+  "wall_ms": 681.95
+}

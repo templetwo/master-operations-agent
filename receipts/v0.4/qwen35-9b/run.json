@@ -1,0 +1,137 @@
+{
+  "started_at": "2026-09-20T11:41:59.713Z",
+  "scope": "synthetic-development-only",
+  "promotion": "not_evaluated",
+  "model": "qwen3.5:9b-q4_K_M",
+  "expected_digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+  "manifest_sha256": "ff4bf96574af236bb59ee78805ef94bbb2866052dc6d0ec9138c853da2cba911",
+  "policy_sha256": "4a4242bbaa82b5d52e1336451b467d3ac8dff51fcb7999c6f940b5e90cd39ef1",
+  "system_prompt_sha256": "1fe455ec019c4bd65291ac8abf9587d425e61362935f607482dc406664cdad86",
+  "entry_message_sha256": "f1e8bc88470799cdd144447d6784559ff970612087724436bdf41f3ecfe76cb0",
+  "source_sha256": {
+    "moa/__init__.py": "fbdcb32200a887e7c659904b270eb7df2352f9a2f0a7296295c9e90829fb1287",
+    "moa/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "moa/cli.py": "7ff04775eaded93bd1de93038486db40ad3852b272ca7c214cdb559d4666639c",
+    "moa/comparison.py": "e1caa1a3277830a1649b8ecc62844c3c9f08bef99c9a2e842ee4d8ab7a065289",
+    "moa/contracts.py": "11a4318e0408f259d4f7bf9bde823df21fcf4538b0da4ac6aa43d2eb5574069f",
+    "moa/drills.py": "b1a04aa720f9cca1f5b927f095024fb768aff70a7070c0dd61039e31427e7d9c",
+    "moa/engine.py": "c2202a6b30c58198d79544271e3e7dc10eca6bfa219318e9388ba551c28fc7d3",
+    "moa/evaluation.py": "469f7cfb8c239f4a3205a801854b82628225fa153e7ab501db6839706b5ce6b4",
+    "moa/evidence.py": "5d1f33f68e704e072852cb590468d8c309e365aba8877eb2ff94aef8f5a8f584",
+    "moa/fixtures.py": "72ae7f5c2166ff100a67433dca0e18d8652ee131bf78f7a948171f7c9a098ecd",
+    "moa/knowledge.py": "fe5d885f00759c9f0de685de993a5ee6cfe7d9c26947437594d7bba28e2b1fc4",
+    "moa/providers.py": "d722ef799b95498ef5ff6da3dc7d6a20bdef80acee2dd717d99de6d2eee352f8",
+    "moa/server.py": "01fc4396c6283cd7e77d2b734dfebec74314993f9ba552f7e9a7e4cb9274e98e",
+    "moa/web/app.js": "3f146216159a6f7c7328d168680f564f759b04b042e6b0eb1519b362e208728a",
+    "moa/web/index.html": "e888c754ddf8d0155fda7702d92b1bbf83ef20a788252d977d804980028cabed",
+    "moa/web/style.css": "8595be0dfb8c50707f4ec329f53e849da5b1a87afaf76012c8597125615f0e5a",
+    "moa/data/drills-v1.json": "4da8c8d0a2875a6b706798834af46ceece68a381e2401689f40b279b23885b62",
+    "scripts/export_sim.cjs": "940dd8e1c80dc3cd8a05bd8edba5176cce9903200b91202ede059b2a9e7635b7",
+    "scripts/export_trajectory.cjs": "a2e161e8c3a09a669d247f49ee9f9eab168b7c489e09b469c2626b22f3d040f5",
+    "scripts/probe_serialization.py": "494918121badfb790684bd7e73c0b1114531f8d37731fabaa6def0db45dab2ed",
+    "scripts/validate.py": "aad2a3191c35b3607313c8f535225bd59c860b8d07020eb7c004ce807f580be3",
+    "tests/test_comparison.py": "8c1057707effd7ac3aa57d2bcad51b841d0ed38dc386635053e766f90f0a8b77",
+    "tests/test_core.py": "842ec2550626e40e2ef045c90f9f661929bf7f5b7f058ddc62e54771c475631e",
+    "tests/test_history.py": "f3f213bd407e7ab611c9a384675613491f647c602072ac45235e69061b6fe8e9",
+    "tests/test_providers.py": "d1bf3efb200a308296da626c7626c6d87876d0050978b48467626a2dfe31bd7f",
+    "tests/test_server.py": "09cd6d198d5e2664c84784968950ae0baa08e13910dd378e15d9cff1204207a4",
+    "tests/test_simulator.py": "bd068b8dc2219592bfa54d046eee5682acf373238364244930d86c2b60113d0f",
+    "pyproject.toml": "db44acbc1e7d49e99f364185dfd66457481d359a5049b6f748f3606e74875a6c"
+  },
+  "hardware": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "memory_bytes": 19327352832,
+    "cpu": "Apple M3 Pro"
+  },
+  "freshness": "Each provider receives independently regenerated fresh observations; timestamps are never renewed.",
+  "pairing": "Compare process data excluding capture times, snapshot IDs and epoch IDs; record original inputs separately.",
+  "order": [
+    "baseline",
+    "always-refuse",
+    "local-model"
+  ],
+  "limits": "Development cases, two seeds, one pass, no held-out estimate or controls review. Daemon identity and isolation are trusted.",
+  "server_version": {
+    "version": "0.32.6"
+  },
+  "loaded_before": [
+    {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+    }
+  ],
+  "artifact": {
+    "name": "qwen3.5:9b-q4_K_M",
+    "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.7B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 4096
+    },
+    "template_sha256": "39302355407942b6b0b50e1a78741740fc8a31926a4febea429526497e0e6008",
+    "parameters_sha256": "c51991ca7fd62c655105279958987eb50777e7dbe7f655efb9f634d930ba9e6f",
+    "settings": {
+      "temperature": 0,
+      "seed": 0,
+      "num_predict": 768,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "stream": false,
+    "keep_alive": "5m",
+    "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+    "socket_timeout_s": 20,
+    "wire_encoding": "declared-order-json-v1",
+    "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+    "endpoint": "http://127.0.0.1:11434",
+    "server_isolation": "operator_responsibility"
+  },
+  "artifact_after": {
+    "name": "qwen3.5:9b-q4_K_M",
+    "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.7B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 4096
+    },
+    "template_sha256": "39302355407942b6b0b50e1a78741740fc8a31926a4febea429526497e0e6008",
+    "parameters_sha256": "c51991ca7fd62c655105279958987eb50777e7dbe7f655efb9f634d930ba9e6f",
+    "settings": {
+      "temperature": 0,
+      "seed": 0,
+      "num_predict": 768,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "stream": false,
+    "keep_alive": "5m",
+    "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+    "socket_timeout_s": 20,
+    "wire_encoding": "declared-order-json-v1",
+    "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+    "endpoint": "http://127.0.0.1:11434",
+    "server_isolation": "operator_responsibility"
+  },
+  "server_version_after": {
+    "version": "0.32.6"
+  },
+  "status": "completed",
+  "finished_at": "2026-09-20T11:43:15.863Z"
+}

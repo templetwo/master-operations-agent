@@ -1,0 +1,233 @@
+{
+  "recorded_at": "2026-09-20T11:48:32.742Z",
+  "method": "Recompute exported chains and anchors, derive required-read completion from tool_read events on usable cases, and verify diagnostic hashes from actual saved request bytes. No external attestation.",
+  "reports": [
+    {
+      "file": "qwen3-4b/baseline.json",
+      "file_sha256": "d9c7657f29af33f08fc3c7f8c767a23db64dd76c8027355406587e0dcceb4f6f",
+      "chain_verified": true,
+      "anchor": {
+        "events": 124,
+        "head": "c06ac2794759a497d4fc5873a8533bd31495064e34ea8e1c853afa6f7ab5f51d"
+      },
+      "required_read_completion": {
+        "passed": 10,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "supported": 10
+      },
+      "usable_attempt_ms": {
+        "min": 5.69,
+        "median": 19.86,
+        "max": 34.6
+      }
+    },
+    {
+      "file": "qwen3-4b/always-refuse.json",
+      "file_sha256": "f34185c0f9ce9d0ffe7c3077a25882895fd9c527de1b8149f8d06abaaad5c9db",
+      "chain_verified": true,
+      "anchor": {
+        "events": 64,
+        "head": "c25e263f7943bee000a867b403e98c3e4a750a84baa2e1d78e485e6df0e0d508"
+      },
+      "required_read_completion": {
+        "passed": 0,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "model_abstained": 10
+      },
+      "usable_attempt_ms": {
+        "min": 1.83,
+        "median": 3.8949999999999996,
+        "max": 5.52
+      }
+    },
+    {
+      "file": "qwen3-4b/local-model.json",
+      "file_sha256": "ff3d491d8e7050b76250334cf383c4bd997f356ee68bbdfbbe16bb1c2172eaf0",
+      "chain_verified": true,
+      "anchor": {
+        "events": 144,
+        "head": "1ea68ebf6596df1c42dcadc262e594623384804f77c19670168746d136c92474"
+      },
+      "required_read_completion": {
+        "passed": 0,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "ungrounded": 10
+      },
+      "usable_attempt_ms": {
+        "min": 6959.26,
+        "median": 10004.23,
+        "max": 10214.12
+      }
+    },
+    {
+      "file": "qwen35-9b/baseline.json",
+      "file_sha256": "cff45812eb01740549c4170071c25be81abc775c0da86221751a46f168615b3d",
+      "chain_verified": true,
+      "anchor": {
+        "events": 124,
+        "head": "825b355090c71185a853bfe644665ae01737b6c95712831a8e2d0607d5176c8a"
+      },
+      "required_read_completion": {
+        "passed": 10,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "supported": 10
+      },
+      "usable_attempt_ms": {
+        "min": 5.99,
+        "median": 20.305,
+        "max": 34.51
+      }
+    },
+    {
+      "file": "qwen35-9b/always-refuse.json",
+      "file_sha256": "815c0beddc080e7a0a80ec587c98a0b198e986130683d10a55bdc8042e2d3c8a",
+      "chain_verified": true,
+      "anchor": {
+        "events": 64,
+        "head": "27246614b4da6caa756cedbaf996fe0a8ae8eb1270aed9b28f90637c61c06e39"
+      },
+      "required_read_completion": {
+        "passed": 0,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "model_abstained": 10
+      },
+      "usable_attempt_ms": {
+        "min": 2.05,
+        "median": 3.94,
+        "max": 5.86
+      }
+    },
+    {
+      "file": "qwen35-9b/local-model.json",
+      "file_sha256": "3ff8c1a98fcda4bd473e410456bab64312112db41a9d8373521e160e2c924f85",
+      "chain_verified": true,
+      "anchor": {
+        "events": 120,
+        "head": "d4069b31e6adf803dfaf80a729afa2fe90a5e32c2334c132594586f488668920"
+      },
+      "required_read_completion": {
+        "passed": 0,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "ungrounded": 10
+      },
+      "usable_attempt_ms": {
+        "min": 4624.69,
+        "median": 5691.375,
+        "max": 8595.42
+      }
+    },
+    {
+      "file": "qwen35-9b-read-state/baseline.json",
+      "file_sha256": "6848a0f66f011bb1ee9c7c8ddfbe6a414b9e5ba82df80fcccbd4e19bd88b5006",
+      "chain_verified": true,
+      "anchor": {
+        "events": 154,
+        "head": "be782a3b53bbc0cca51622060dfbe3da2650c0d1888332fd244b3ee8136b58b3"
+      },
+      "required_read_completion": {
+        "passed": 10,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "supported": 10
+      },
+      "usable_attempt_ms": {
+        "min": 6.36,
+        "median": 27.035,
+        "max": 46.92
+      }
+    },
+    {
+      "file": "qwen35-9b-read-state/always-refuse.json",
+      "file_sha256": "5ba64a8a3bf3a432dbdc4b575ebd6fbffae9120b493efa13e7dc1182ad9698e3",
+      "chain_verified": true,
+      "anchor": {
+        "events": 64,
+        "head": "b984866b834a5329ce9a40c3e85071c64760910c9b383eaeb4fbbc8d50ec7358"
+      },
+      "required_read_completion": {
+        "passed": 0,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "model_abstained": 10
+      },
+      "usable_attempt_ms": {
+        "min": 2.39,
+        "median": 3.7800000000000002,
+        "max": 5.51
+      }
+    },
+    {
+      "file": "qwen35-9b-read-state/local-model.json",
+      "file_sha256": "c3bdb95dc359063c0912533cdba092352c99fe606e2dec1ad84b1e86ed6664ae",
+      "chain_verified": true,
+      "anchor": {
+        "events": 204,
+        "head": "4464a21b61c7dac0a1343cbaa3e24543a544ab9df34ff028e1a31b9ca4b59d38"
+      },
+      "required_read_completion": {
+        "passed": 10,
+        "total": 10
+      },
+      "usable_case_outcomes": {
+        "candidate_schema": 9,
+        "unsupported_finding": 1
+      },
+      "usable_attempt_ms": {
+        "min": 16091.5,
+        "median": 19722.34,
+        "max": 21416.83
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "directory": "serialization-4b",
+      "actual_wire_hashes_verified": true,
+      "actual_semantic_values_identical": true,
+      "sequence": [
+        "sorted",
+        "declared",
+        "declared",
+        "sorted"
+      ],
+      "response_kinds": [
+        "abstain",
+        "tool",
+        "tool",
+        "abstain"
+      ]
+    },
+    {
+      "directory": "schema-order-4b",
+      "actual_wire_hashes_verified": true,
+      "actual_semantic_values_identical": true,
+      "sequence": [
+        "sorted",
+        "declared",
+        "declared",
+        "sorted"
+      ],
+      "response_kinds": [
+        "abstain",
+        "tool",
+        "tool",
+        "abstain"
+      ]
+    }
+  ],
+  "passed": true
+}

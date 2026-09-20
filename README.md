@@ -2,7 +2,7 @@
 
 An independent research workbench for an evidence-first operations advisor.
 
-**Working v0.3:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, a development drill scorecard, a pinned local-model comparison runner, and a hash-linked evidence log. It runs without downloading a model or installing Python runtime dependencies.
+**Working v0.4:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, a development drill scorecard, a pinned local-model comparison runner, and a hash-linked evidence log. The local provider preserves schema field order and receipts exact request-byte hashes. It runs without downloading a model or installing Python runtime dependencies.
 
 This release assesses synthetic observations. Its default provider is a deterministic reference baseline. It is not a trained operations expert, an autonomous controller, or a plant-ready product.
 
@@ -102,7 +102,7 @@ python3 -m moa compare --sim-repo /path/to/experion-station-sim \
   --output receipts/my-new-comparison
 ```
 
-The output directory must be new. Baseline, always-refuse, and actual model results are reported separately. Failed runs are retained. See [the comparison contract](docs/local-evaluation.md) and [actual v0.3 development results](receipts/v0.3/README.md). The default workbench remains on the deterministic baseline.
+The output directory must be new. Baseline, always-refuse, and actual model results are reported separately. Failed runs are retained. See [the comparison contract](docs/local-evaluation.md), [the serialization bug and fix](docs/protocol-order.md), and [actual v0.4 development results](receipts/v0.4/README.md). The earlier v0.3 comparisons used a defective schema serializer and remain preserved as debugging evidence. The default workbench remains on the deterministic baseline.
 
 ## Evidence and evaluation
 
@@ -114,4 +114,4 @@ See [architecture and boundaries](docs/architecture.md), [the build sequence](do
 
 ## Next build
 
-Resolve the local-model protocol failures using separate diagnostic cases. Review the development expectations with a controls engineer, then freeze independent holdouts before selecting or promoting a model. Actual development comparisons are now implemented and receipted; they do not satisfy the independent evaluation gate. Ignition ingestion, peb integration, plant procedures, training, hardware purchases, and any real-plant work remain separate gates.
+Improve supported finding and check selection now that the corrected 9B protocol completes the required evidence reads. Its current development answer-quality score is still 0/10, so the baseline remains the default. Review the expectations with a controls engineer and freeze independent holdouts before model selection or promotion. Ignition ingestion, peb integration, plant procedures, training, hardware purchases, and any real-plant work remain separate gates.

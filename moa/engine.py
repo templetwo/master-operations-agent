@@ -20,6 +20,10 @@ After receiving those results, request read_history when the profile requires it
 then assess the evidence. No separate native function-call API is needed.
 For profile ess-u1-window-v1 also read_history and apply policy trend_rules.
 read_snapshot omits history; read_history supplies its bounded simulation window.
+After each tool result the client supplies protocol_state with remaining required
+reads. Request those reads before final advice. A policy catalog lists options,
+not findings to copy wholesale. Once the reads are complete, apply the policy to
+the actual values and include only supported findings, checks, and references.
 Tool request: {\"kind\":\"tool\",\"name\":\"read_snapshot\",\"arguments\":{}}.
 Final: {\"kind\":\"advice\",\"finding_ids\":[...],\"check_ids\":[...],\"evidence\":[...]}.
 Use only policy finding/check IDs supported by the actual observation. Report
@@ -41,6 +45,13 @@ class ReadTools:
         self.record = record
         self.clock = clock
         self.read = set()
+
+    def protocol_state(self):
+        required = ["read_snapshot", "read_policy"] + (["read_history"] if "history" in self._snapshot else [])
+        remaining = [name for name in required if name not in self.read]
+        return {"remaining_required_reads": remaining,
+                "instruction": "Request an outstanding read, or abstain if unable to continue." if remaining else
+                "All required reads completed. Apply the policy to the observed values. Return only supported finding/check IDs and evidence references, or abstain if insufficient."}
 
     def call(self, name, arguments):
         validate_snapshot(self._snapshot, self.clock())
@@ -142,8 +153,11 @@ class Agent:
                     if not isinstance(reply["name"], str):
                         raise Rejected("candidate_schema", "Tool name must be text.")
                     result = boundary.call(reply["name"], reply["arguments"])
+                    state = boundary.protocol_state()
+                    record("protocol_state", state)
                     messages += [{"role": "assistant", "content": canonical(reply)},
-                                 {"role": "user", "content": canonical({"tool": reply["name"], "result": result})}]
+                                 {"role": "user", "content": canonical({"tool": reply["name"], "result": result})},
+                                 {"role": "user", "content": canonical({"protocol_state": state})}]
                     continue
                 if reply.get("kind") == "abstain":
                     keys(reply, {"kind", "reason"}, "abstention")

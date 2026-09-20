@@ -1,0 +1,30 @@
+{
+  "purpose": "One explicit schema/protocol warmup before capturing scored observations; not a scored case.",
+  "response": {
+    "kind": "tool",
+    "name": "read_snapshot",
+    "arguments": {}
+  },
+  "calls": [
+    {
+      "request_sha256": "64d17858ef46f6603dd94f3e5c7a1255ee7671d842d2fde3d08d9d303eb9b3f1",
+      "request_wire_sha256": "d22ec6717389e4c81aca678544a16dae501f271f82b8cae7263f54913a5d4c60",
+      "model_digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "response_sha256": "1758bd7219d5e65ee944b296e8093f2fde5d36fd3879ec0432917b00126c16bf",
+      "reported": {
+        "model": "qwen3.5:9b-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 10678336917,
+        "load_duration": 8237680292,
+        "prompt_eval_count": 456,
+        "prompt_eval_duration": 1550576000,
+        "eval_count": 20,
+        "eval_duration": 878728000
+      },
+      "content": "{ \"kind\": \"tool\", \"name\": \"read_snapshot\", \"arguments\": {} }",
+      "content_truncated": false,
+      "wall_ms": 10685.51
+    }
+  ]
+}

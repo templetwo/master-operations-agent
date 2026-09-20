@@ -6,6 +6,7 @@ Read date: **2026-09-20 UTC**. Project design decisions and authored demo thresh
 |---|---|---|---|
 | https://docs.ollama.com/api/chat | `/api/chat`, model/messages, structured `format`, streaming flag, completion fields | 2026-09-20 | Interface documentation; not a model-quality result |
 | https://docs.ollama.com/capabilities/thinking | Model-dependent `think` control, requested as false in v0.3 | 2026-09-20 | Requesting an option does not prove the backend applied it |
+| https://github.com/ggml-org/llama.cpp/blob/master/tests/test-json-schema-to-grammar.cpp | Grammar test preserves declared property order, relevant to the v0.4 serialization diagnosis | 2026-09-20 | Supports a mechanism; the exact running daemon implementation was not inspected |
 | https://docs.ollama.com/capabilities/structured-outputs | JSON schema passed through `format`, client-side validation still used | 2026-09-20 | Schema constraints do not establish process correctness |
 | https://docs.ollama.com/api/tags | Installed-model listing, name and digest fields | 2026-09-20 | Daemon-reported metadata |
 | https://github.com/ollama/ollama/blob/main/docs/api.md | `/api/show` metadata endpoint | 2026-09-20 | Moving branch; actual provider transport verified with mocks |

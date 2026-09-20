@@ -10,6 +10,23 @@ from test_core import Sequence, READ_SNAPSHOT, READ_POLICY
 
 
 class HistoryTests(unittest.TestCase):
+    def test_protocol_state_tracks_reads_without_supplying_answers(self):
+        from moa.providers import Baseline
+        from moa.contracts import strict_json
+        seen = []
+        class Recording(Baseline):
+            def respond(self, messages):
+                last = strict_json(messages[-1]["content"])
+                if "protocol_state" in last: seen.append(last["protocol_state"])
+                return super().respond(messages)
+        result = self.assess(window_fixture(), Recording())
+        self.assertEqual(result["status"], "advisory")
+        self.assertEqual([s["remaining_required_reads"] for s in seen], [["read_policy", "read_history"], ["read_history"], []])
+        for state in seen:
+            self.assertEqual(set(state), {"remaining_required_reads", "instruction"})
+        snapshot = self.assess(window_fixture(), Sequence(READ_SNAPSHOT, READ_POLICY, {"kind": "abstain", "reason": "insufficient_evidence"}))
+        self.assertEqual(snapshot["reason"], "model_abstained")
+
     def setUp(self):
         self.store = EvidenceStore(":memory:")
         self.addCleanup(self.store.close)
