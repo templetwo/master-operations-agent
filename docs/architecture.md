@@ -58,6 +58,8 @@ The baseline reads the snapshot and policy and selects the applicable catalog en
 
 The optional provider checks `/api/tags` and `/api/show` before `/api/chat`. It records the model digest reported during preparation, not an attestation that weights could not change later. It has no `/api/pull` path. Responses must complete within bounded size and freshness; there is no automatic retry or alternate model. The client uses socket timeouts, not a hard whole-process inference deadline.
 
+V0.5 adds a separate, explicitly invoked DeepSeek comparison command. It generates cases through the trusted simulator exporter and sends those synthetic observations to the fixed official HTTPS API. It cannot accept imported snapshots or enable cloud in the dashboard. Its literal dotenv loader requires an explicit path, never executes file contents, and never stores the key in receipts. JSON-mode responses pass through the same candidate validator. It uses a mutable API alias rather than claiming a local artifact digest. Actual inference is pending valid credentials; the discovered keys returned HTTP 401. See [DeepSeek setup](deepseek.md).
+
 ## Relationship to peb and Ignition
 
 This repository defines a separate advisory boundary. It does not import peb internals, open peb operator state, or route plant effects through peb. A future peb integration must use an agreed, versioned interface and preserve the difference between a declaration, a permission, and an effect.

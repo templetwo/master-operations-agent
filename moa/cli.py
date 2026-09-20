@@ -39,6 +39,11 @@ def main(argv=None):
     comparison.add_argument("--expected-digest", required=True)
     comparison.add_argument("--output", required=True, help="New local receipt directory; existing directories are refused")
     comparison.add_argument("--ollama-port", type=int, default=11434)
+    cloud = sub.add_parser("compare-deepseek", help="Explicit DeepSeek API comparison using generated synthetic drills only")
+    cloud.add_argument("--sim-repo", required=True)
+    cloud.add_argument("--env-file", required=True, help="Explicit dotenv file containing DEEPSEEK_API_KEY; never sourced or copied")
+    cloud.add_argument("--output", required=True, help="New comparison receipt directory")
+    cloud.add_argument("--allow-cloud-synthetic", action="store_true", required=True)
     serve = sub.add_parser("serve", help="Open a loopback-only advisory workbench")
     serve.add_argument("--port", type=int, default=8765)
     verify = sub.add_parser("verify", help="Verify evidence integrity, optionally against an external anchor")
@@ -52,6 +57,12 @@ def main(argv=None):
     args = parser.parse_args(argv)
     store = None
     try:
+        if args.command == "compare-deepseek":
+            from .cloud_comparison import compare_deepseek
+            report = compare_deepseek(args.sim_repo, args.env_file, args.output, allow_cloud_synthetic=args.allow_cloud_synthetic,
+                                     progress=lambda label, row: print(f"{label}: {row['id']}: {row['actual']['reason']} ({'PASS' if row['passed'] else 'FAIL'})", file=sys.stderr, flush=True))
+            emit(report)
+            return 0 if report["cloud_passed_development"] else 1
         if args.command == "compare":
             from .comparison import compare
             report = compare(args.sim_repo, args.model, args.expected_digest, args.output, args.ollama_port,

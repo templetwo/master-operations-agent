@@ -22,6 +22,8 @@ Implemented in v0.3: installed-artifact digest pins, quantization and template m
 
 V0.4 fixes an order-sensitive schema serialization defect found through an order-only experiment. It preserves schema field order on the wire, receipts exact byte hashes, and explicitly reports remaining required reads after tool results. The policy, independent validator, and development expectations are unchanged. Corrected runs are in `receipts/v0.4/`. Protocol compliance and useful process assessment remain separate measures.
 
+V0.5 adds the user-requested DeepSeek-V4.1-Flash synthetic comparison through the documented `deepseek-flash` API alias. Transport and simulator-runner tests pass with mocks. Both discovered credentials were rejected with HTTP 401, so no DeepSeek inference or quality score exists yet. A working credential is required to continue this evaluation.
+
 Improve retrieval and evidence selection first. Consider SFT or preference training only after baseline failures identify a learnable gap and independent trajectories exist. Split by drill family, initial state, and disturbance regime to avoid leakage. Quantized and fine-tuned artifacts must rerun the same held-out scorecard.
 
 Gate: reproducible useful improvement with no unacceptable regression. No training recipe, model family, or hardware purchase bypasses this evidence.

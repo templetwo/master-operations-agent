@@ -1,0 +1,111 @@
+{
+  "recorded_at": "2026-09-20T12:11:49.990441+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "simulator_checkout": "/Users/vaquez/experion-station-sim",
+  "commands": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "check-1.stdout",
+      "stderr": "check-1.stderr"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "moa",
+        "eval"
+      ],
+      "exit_code": 0,
+      "stdout": "check-2.stdout",
+      "stderr": "check-2.stderr"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "moa/web/app.js"
+      ],
+      "exit_code": 0,
+      "stdout": "check-3.stdout",
+      "stderr": "check-3.stderr"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/export_sim.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": "check-4.stdout",
+      "stderr": "check-4.stderr"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/export_trajectory.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": "check-5.stdout",
+      "stderr": "check-5.stderr"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "moa",
+        "drill-eval",
+        "--sim-repo",
+        "/Users/vaquez/experion-station-sim"
+      ],
+      "exit_code": 0,
+      "stdout": "check-6.stdout",
+      "stderr": "check-6.stderr"
+    }
+  ],
+  "source_sha256": {
+    "moa/server.py": "01fc4396c6283cd7e77d2b734dfebec74314993f9ba552f7e9a7e4cb9274e98e",
+    "moa/cloud_comparison.py": "fabbfc99fc2ca6cf11f7e2c6c28c21ecf6d2cbbcede6184abdbfb30666f57ec9",
+    "moa/evaluation.py": "469f7cfb8c239f4a3205a801854b82628225fa153e7ab501db6839706b5ce6b4",
+    "moa/__init__.py": "fbdcb32200a887e7c659904b270eb7df2352f9a2f0a7296295c9e90829fb1287",
+    "moa/comparison.py": "e1caa1a3277830a1649b8ecc62844c3c9f08bef99c9a2e842ee4d8ab7a065289",
+    "moa/providers.py": "d722ef799b95498ef5ff6da3dc7d6a20bdef80acee2dd717d99de6d2eee352f8",
+    "moa/engine.py": "a69615b6c57469eac582c7aa1247ddcbe10c8f46183c0c9d88f8803cfc6513fd",
+    "moa/cli.py": "efdc1214f0d6ea1f8c5b485f0801ef3027eb391ea79eaf2d4cdc32fdab1c0c53",
+    "moa/deepseek.py": "cf2987b916ee758ef6c53dd8c30833bdc08d965d582fe878563c015770b1356a",
+    "moa/contracts.py": "11a4318e0408f259d4f7bf9bde823df21fcf4538b0da4ac6aa43d2eb5574069f",
+    "moa/drills.py": "b1a04aa720f9cca1f5b927f095024fb768aff70a7070c0dd61039e31427e7d9c",
+    "moa/evidence.py": "5d1f33f68e704e072852cb590468d8c309e365aba8877eb2ff94aef8f5a8f584",
+    "moa/knowledge.py": "fe5d885f00759c9f0de685de993a5ee6cfe7d9c26947437594d7bba28e2b1fc4",
+    "moa/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "moa/fixtures.py": "72ae7f5c2166ff100a67433dca0e18d8652ee131bf78f7a948171f7c9a098ecd",
+    "moa/web/index.html": "e888c754ddf8d0155fda7702d92b1bbf83ef20a788252d977d804980028cabed",
+    "moa/web/style.css": "8595be0dfb8c50707f4ec329f53e849da5b1a87afaf76012c8597125615f0e5a",
+    "moa/web/app.js": "3f146216159a6f7c7328d168680f564f759b04b042e6b0eb1519b362e208728a",
+    "moa/data/drills-v1.json": "4da8c8d0a2875a6b706798834af46ceece68a381e2401689f40b279b23885b62",
+    "tests/test_simulator.py": "bd068b8dc2219592bfa54d046eee5682acf373238364244930d86c2b60113d0f",
+    "tests/test_providers.py": "d1bf3efb200a308296da626c7626c6d87876d0050978b48467626a2dfe31bd7f",
+    "tests/test_core.py": "842ec2550626e40e2ef045c90f9f661929bf7f5b7f058ddc62e54771c475631e",
+    "tests/test_comparison.py": "8c1057707effd7ac3aa57d2bcad51b841d0ed38dc386635053e766f90f0a8b77",
+    "tests/test_server.py": "09cd6d198d5e2664c84784968950ae0baa08e13910dd378e15d9cff1204207a4",
+    "tests/test_history.py": "a598fd2be7a3302667a8a979470dfdb31ed1657adcddc50797b1a80fc933099f",
+    "tests/test_deepseek.py": "bcb3310867b3ccfc9bbeffea68452dcccb3789f77278c4e41c87ed0b42fc305f",
+    "scripts/export_sim.cjs": "940dd8e1c80dc3cd8a05bd8edba5176cce9903200b91202ede059b2a9e7635b7",
+    "scripts/export_trajectory.cjs": "a2e161e8c3a09a669d247f49ee9f9eab168b7c489e09b469c2626b22f3d040f5",
+    "scripts/validate.py": "aad2a3191c35b3607313c8f535225bd59c860b8d07020eb7c004ce807f580be3",
+    "scripts/probe_serialization.py": "494918121badfb790684bd7e73c0b1114531f8d37731fabaa6def0db45dab2ed",
+    "pyproject.toml": "c755aaa6eaef1ae8ecc751a4d716c36016a71b207370c8598a14c7b1fa285588"
+  },
+  "passed": true,
+  "scope": "Synthetic baseline and mocked provider validation. No actual model inference or plant connection."
+}

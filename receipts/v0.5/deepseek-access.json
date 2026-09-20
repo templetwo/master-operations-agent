@@ -1,0 +1,6 @@
+{
+  "recorded_at": "2026-09-20T12:06:00.307Z",
+  "operation": "authenticated-model-availability-check",
+  "error": "provider_http_error",
+  "detail": "DeepSeek returned HTTP 401. No retry or fallback attempted."
+}

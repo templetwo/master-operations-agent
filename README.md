@@ -2,7 +2,7 @@
 
 An independent research workbench for an evidence-first operations advisor.
 
-**Working v0.4:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, a development drill scorecard, a pinned local-model comparison runner, and a hash-linked evidence log. The local provider preserves schema field order and receipts exact request-byte hashes. It runs without downloading a model or installing Python runtime dependencies.
+**Working v0.5:** a local dashboard with sampled trends, a bounded agent loop, read-only observation tools, simulator exports, local-model comparisons, an explicitly enabled DeepSeek synthetic comparison, and a hash-linked evidence log. The local provider preserves schema field order and receipts exact request-byte hashes. Python runtime dependencies and model downloads are not required.
 
 This release assesses synthetic observations. Its default provider is a deterministic reference baseline. It is not a trained operations expert, an autonomous controller, or a plant-ready product.
 
@@ -43,7 +43,7 @@ State lives in `.moa/evidence.sqlite3`, ignored by Git. Use `--store /path/to/re
 | Dashboard | Synthetic scenario selection, JSON import, tag-selectable trend plot, findings, evidence inspection and export |
 | Simulator adapters | Export operator-visible snapshots and 120-second observation windows from separate headless instances |
 | Development drills | Six recipes at two seeds and six integrity perturbations; explicit expectations and separate usefulness/guard scores |
-| Provider options | Offline baseline by default; explicitly selected installed Ollama model; no cloud fallback or model pull |
+| Provider options | Offline baseline by default; installed Ollama model or explicitly enabled DeepSeek synthetic comparison; no automatic fallback or model pull |
 | Model comparison | Digest pinning, baseline and refusal controls, matched simulator data, durable progress, request and timing receipts |
 
 The policy is intentionally small. The model must follow the read protocol and identify supported catalog findings. It does not yet perform open-ended root-cause analysis. The project thresholds are research sensitivities, not process design limits or alarm-standard requirements. The original demo thresholds are never applied to ESS tags. The new temporal policy retains explicit causal uncertainty and distinguishes falling temperature from complete recovery.
@@ -82,7 +82,7 @@ The agent receives no recipe names, fault schedule, seeds, instructor state, or 
 
 The provider uses Ollama's documented chat and structured-output interfaces. Sources and read dates are in [docs/sources.md](docs/sources.md). No Ollama request happens unless you supply `--model`.
 
-Configure your trusted Ollama daemon for local-only operation, disable its cloud features, and control its network egress. A loopback client cannot prove what a server does internally. This repository refuses cloud-named and remote-metadata models, uses `127.0.0.1`, ignores proxy variables, does not follow redirects, and has no download or fallback path.
+Configure your trusted Ollama daemon for local-only operation, disable its cloud features, and control its network egress. A loopback client cannot prove what a server does internally. The Ollama provider refuses cloud-named and remote-metadata models, uses `127.0.0.1`, ignores proxy variables, does not follow redirects, and has no download or fallback path.
 
 Use the **exact installed name including its tag**. The following placeholder is not a model recommendation:
 
@@ -105,6 +105,8 @@ python3 -m moa compare --sim-repo /path/to/experion-station-sim \
 The output directory must be new. Baseline, always-refuse, and actual model results are reported separately. Failed runs are retained. See [the comparison contract](docs/local-evaluation.md), [the serialization bug and fix](docs/protocol-order.md), and [actual v0.4 development results](receipts/v0.4/README.md). The earlier v0.3 comparisons used a defective schema serializer and remain preserved as debugging evidence. The default workbench remains on the deterministic baseline.
 
 ## Evidence and evaluation
+
+An optional [DeepSeek API comparison](docs/deepseek.md) is available through `compare-deepseek`. It requires an explicit credential-file path and `--allow-cloud-synthetic`, uses only generated simulator cases, and leaves the dashboard and default provider local. The located credentials returned HTTP 401, so actual DeepSeek inference remains untested. [Access attempts and implementation tests](receipts/v0.5/README.md) are recorded separately from model-quality results.
 
 `verify` checks chain consistency. Export the `anchor` object to a separate location if you need to detect truncation or whole-history replacement, then pass that JSON object as `verify --anchor saved-anchor.json`. An unanchored local hash chain is not independent attestation. This implementation is not peb and does not claim peb authorization or review integration.
 
