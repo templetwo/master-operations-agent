@@ -6,6 +6,8 @@ An independent research workbench for an evidence-first operations advisor.
 
 This release assesses synthetic observations. Its default provider is a deterministic reference baseline. It is not a trained operations expert, an autonomous controller, or a plant-ready product.
 
+**Outside reviewers:** start with the [external review handoff](docs/EXTERNAL_REVIEW_HANDOFF.md). It traces the repeated 0/10 useful-assessment results, confirmed harness defects, unresolved specification risks, and reproduction steps. The [latest public branch](https://github.com/templetwo/master-operations-agent/tree/main) includes the underlying failure receipts.
+
 ## Start here
 
 Python 3.10 or newer. From this checkout:
