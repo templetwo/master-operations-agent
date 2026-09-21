@@ -1,0 +1,1 @@
+{"model":"gemma4:12b-it-q4_K_M","created_at":"2026-09-21T09:03:21.777871Z","message":{"role":"assistant","content":"{\"probe\":\"schema_only_7c92\"}"},"done":true,"done_reason":"stop","total_duration":12130472416,"load_duration":10747947750,"prompt_eval_count":34,"prompt_eval_duration":385143000,"eval_count":14,"eval_duration":988892000}

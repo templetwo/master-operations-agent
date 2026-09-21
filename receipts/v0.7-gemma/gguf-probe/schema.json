@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-09-21T09:03:09.647Z",
+  "request_wire_sha256": "f57f4ab7b158847255b65d73cdc1f0e37ecb452a4b630a95aa7b3df039f9a986",
+  "passed": true,
+  "http_status": 200,
+  "response_sha256": "f76d98f4172794233b62001262b104b1f9a0728ea66d24896031f729d9e2dc6f",
+  "reported_model": "gemma4:12b-it-q4_K_M",
+  "done": true,
+  "finish_reason": "stop",
+  "parsed_content": {
+    "probe": "schema_only_7c92"
+  },
+  "wall_ms": 12151.72
+}

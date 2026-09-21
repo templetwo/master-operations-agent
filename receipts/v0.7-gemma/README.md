@@ -41,3 +41,11 @@ Publication checks: 122 tests passed with `MOA_SIM_REPO=/Users/vaquez/experion-s
 - [Ollama structured-output documentation](https://github.com/ollama/ollama/blob/main/docs/capabilities/structured-outputs.mdx): documents passing a JSON schema through `format`.
 - [Ollama issue 17183](https://github.com/ollama/ollama/issues/17183): reporter describes schema non-enforcement on `gemma4:12b-mlx` and other MLX models, with GGUF comparisons. This is a user report in the upstream tracker, not vendor certification.
 - [Ollama issue 17933](https://github.com/ollama/ollama/issues/17933): another reporter describes silent MLX structured-output failure; closed as a duplicate. We have not verified that report's implementation diagnosis.
+
+## GGUF follow-up, 2026-09-21
+
+After the user said to proceed, the official `gemma4:12b-it-q4_K_M` build was downloaded alongside MLX. Ollama verified its digest and completed installation. Installed size is 7,556,508,396 bytes, artifact digest `4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c`, reported format GGUF and quantization Q4_K_M. The [official tag list](https://ollama.com/library/gemma4/tags), read 2026-09-21, identifies this build. Representation and quantization differ from the MLX build; this is not a backend-only ablation.
+
+The [GGUF run](gguf-probe/run.json) used the same schema-conflict prompt and settings. It [passed schema enforcement](gguf-probe/schema.json), returning the sole permitted object. The daemon reported 8,192 loaded context tokens. The subsequent [public operations window](gguf-probe/public-window.json) completed three required reads and a final candidate in four calls, but the unchanged validator withheld it with `unsupported_finding`. Its whole-assessment elapsed time was 35.002 seconds, not time to first token. Total diagnostic inference was five calls: one schema probe plus four public-window calls.
+
+Source and metadata remained unchanged during the probe, executed from commit `d4cb159`. This resolves the observed schema gate for this GGUF configuration, not operations usefulness. The separate [Gemma campaign protocol](../../docs/gemma-holdout-v0.7.md) preserves that failed public example and fixes evaluation settings before private execution.

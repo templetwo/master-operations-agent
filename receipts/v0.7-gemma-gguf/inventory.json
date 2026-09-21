@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-09-21T09:03:56.849Z",
+  "mode": "Metadata retained by completed public GGUF probe; no additional inference for inventory.",
+  "server_version": {
+    "version": "0.32.6"
+  },
+  "loaded_models": [
+    {
+      "name": "gemma4:12b-it-q4_K_M",
+      "digest": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+      "context_length": 8192,
+      "size": 7832590088,
+      "size_vram": 7832590088
+    }
+  ],
+  "selected_models": [
+    {
+      "name": "gemma4:12b-it-q4_K_M",
+      "digest": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "gemma4",
+        "families": [
+          "gemma4"
+        ],
+        "parameter_size": "11.9B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 3840
+      },
+      "template_sha256": "39302355407942b6b0b50e1a78741740fc8a31926a4febea429526497e0e6008",
+      "parameters_sha256": "f2523a87438fefa51ac9161eca23464f66349d38ca1c39e0e76eba5bbcae82e2",
+      "settings": {
+        "temperature": 0,
+        "seed": 0,
+        "num_predict": 768,
+        "num_ctx": 8192
+      },
+      "think": false,
+      "stream": false,
+      "keep_alive": "5m",
+      "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+      "socket_timeout_s": 20,
+      "wire_encoding": "declared-order-json-v1",
+      "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+      "endpoint": "http://127.0.0.1:11434",
+      "server_isolation": "operator_responsibility"
+    }
+  ],
+  "hardware": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "hardware_details": "UNVERIFIED: hardware query unavailable"
+  },
+  "source_receipt": "receipts/v0.7-gemma/gguf-probe/run.json"
+}

@@ -1,9 +1,11 @@
 """Registered local comparative extension. Private case data never goes public."""
 
 import argparse
+from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
+import re
 import runpy
 import sys
 
@@ -27,23 +29,61 @@ PROTOCOL = ROOT / 'docs' / 'local-holdout-v0.7.md'
 INVENTORY = ROOT / 'receipts' / 'v0.7-local' / 'inventory.json'
 
 
-def _inventory():
-    value = sealed._load(INVENTORY)
+@dataclass(frozen=True)
+class ModelSpec:
+    id: str
+    model: str
+    digest: str
+
+    def __post_init__(self):
+        if (not isinstance(self.id, str) or not re.fullmatch(r'[a-z0-9-]{1,64}', self.id)
+                or not isinstance(self.model, str) or not self.model
+                or not isinstance(self.digest, str) or not re.fullmatch(r'[a-f0-9]{64}', self.digest)):
+            raise ValueError('Invalid immutable model specification.')
+
+    def record(self):
+        return {'id': self.id, 'model': self.model, 'digest': self.digest}
+
+
+@dataclass(frozen=True)
+class LocalStudy:
+    """Immutable explicit configuration; never swaps module globals per study."""
+    models: tuple[ModelSpec, ...]
+    protocol: Path
+    inventory: Path
+
+    def __post_init__(self):
+        if (type(self.models) is not tuple or not 1 <= len(self.models) <= 2
+                or any(not isinstance(model, ModelSpec) for model in self.models)
+                or len({model.id for model in self.models}) != len(self.models)
+                or len({model.model for model in self.models}) != len(self.models)
+                or not isinstance(self.protocol, Path) or not isinstance(self.inventory, Path)):
+            raise ValueError('A study needs one or two unique immutable model specifications and explicit paths.')
+
+
+def _study(value=None):
+    return value if value is not None else LocalStudy(tuple(ModelSpec(**row) for row in MODELS), PROTOCOL, INVENTORY)
+
+
+def _inventory(study=None):
+    study = _study(study)
+    value = sealed._load(study.inventory)
     rows = value.get('selected_models', [])
     if (value.get('server_version') != {'version': OLLAMA_VERSION}
-            or [(r.get('name'), r.get('digest')) for r in rows] != [(m['model'], m['digest']) for m in MODELS]):
+            or [(r.get('name'), r.get('digest')) for r in rows] != [(m.model, m.digest) for m in study.models]):
         raise ValueError('Public inventory differs from registered model identities.')
     return {row['name']: row for row in rows}
 
 
-def design():
+def design(study=None):
+    study = _study(study)
     base = sealed.design()
-    inventory = _inventory()
+    inventory = _inventory(study)
     return {'schema': 'moa-local-holdout-extension-design-v1',
             'reviewed_manifest_sha256': sealed.REVIEWED_SHA256,
             'candidate_prompt_sha256': sealed.PROMPT_SHA256, 'entry_sha256': digest(ENTRY),
-            'policy_sha256': base['policy_sha256'], 'models': list(MODELS), 'ollama_version': OLLAMA_VERSION,
-            'inventory_sha256': sealed.file_sha(INVENTORY),
+            'policy_sha256': base['policy_sha256'], 'models': [m.record() for m in study.models], 'ollama_version': OLLAMA_VERSION,
+            'inventory_sha256': sealed.file_sha(study.inventory),
             'approved_metadata_sha256': {model: digest(metadata) for model, metadata in inventory.items()},
             'endpoint': 'http://127.0.0.1:11434', 'settings': SETTINGS,
             'think': False, 'stream': False, 'keep_alive': '5m', 'socket_timeout_s': 20,
@@ -54,7 +94,8 @@ def design():
             'order': 'Baseline, always-refuse, then the listed models sequentially; frozen private case order.',
             'primary': base['primary'], 'secondary': base['secondary'],
             'controls': 'Both controls must pass before any model request. Stop on baseline or negative-control disagreement without label repair.',
-            'interruption': 'Infrastructure interruption stops that model. The second registered model may proceed once, after independent preflight and shared source/freeze rechecks. No first-model retry.',
+            'interruption': ('Infrastructure interruption stops that model. The second registered model may proceed once, after independent preflight and shared source/freeze rechecks. No first-model retry.'
+                             if len(study.models) > 1 else 'Infrastructure interruption stops the single registered model. Preserve the first attempt; no retry or alternate model.'),
             'warmup': 'One public protocol warmup, no private observation. Warmup failure ends that model before scored cases.',
             'limits': ['New comparative extension after a cloud campaign, not a new unseen dataset.',
                        'Runner author reviewed corpus; executing evaluator has prior cloud-case exposure. No tuning from that exposure is authorized.',
@@ -62,15 +103,17 @@ def design():
                        'Loopback daemon isolation is operator responsibility. Small synthetic policy/contract evaluation, not plant readiness or general capability.']}
 
 
-def register(path):
-    sealed._new_json(path, {'registered_at': stamp(), 'design': design(), 'source_sha256': source_hashes(),
-                            'protocol_sha256': sealed.file_sha(PROTOCOL)}, private=False)
+def register(path, *, study=None):
+    study = _study(study)
+    sealed._new_json(path, {'registered_at': stamp(), 'design': design(study), 'source_sha256': source_hashes(),
+                            'protocol_sha256': sealed.file_sha(study.protocol)}, private=False)
     return {'preregistration_sha256': sealed.file_sha(path)}
 
 
 class BoundedLocal:
     """Call cap around unchanged Ollama transport, schema and sampling behavior."""
-    def __init__(self, spec):
+    def __init__(self, spec, *, study=None):
+        self.study = _study(study)
         self.spec = spec
         self.inner = Ollama(spec['model'], expected_digest=spec['digest'])
         self.name = self.inner.name
@@ -84,7 +127,7 @@ class BoundedLocal:
                     'response_schema_wire_sha256': hashlib.sha256(wire_json(RESPONSE_SCHEMA)).hexdigest()}
         if any(metadata.get(key) != value for key, value in required.items()):
             raise Rejected('provider_error', 'Local preparation differs from registration.')
-        if metadata != _inventory()[self.spec['model']]:
+        if metadata != _inventory(self.study)[self.spec['model']]:
             raise Rejected('model_changed', 'Local metadata differs from the approved preflight inventory.')
         return metadata
 
@@ -138,10 +181,11 @@ def _candidate_phase(provider, cases, materialize, folder):
             store.close()
 
 
-def _shared_integrity(package, registration):
+def _shared_integrity(package, registration, study=None):
+    study = _study(study)
     sealed.verify_package(package)
-    if (source_hashes() != registration['source_sha256'] or sealed.file_sha(PROTOCOL) != registration['protocol_sha256']
-            or sealed.file_sha(INVENTORY) != registration['design']['inventory_sha256']):
+    if (source_hashes() != registration['source_sha256'] or sealed.file_sha(study.protocol) != registration['protocol_sha256']
+            or sealed.file_sha(study.inventory) != registration['design']['inventory_sha256']):
         raise RuntimeError('Registered source or protocol changed.')
 
 
@@ -155,7 +199,8 @@ def _result(metrics, completed):
     return primary, secondary
 
 
-def _run_candidate(spec, cases, materialize, private, package, registration):
+def _run_candidate(spec, cases, materialize, private, package, registration, study=None):
+    study = _study(study)
     folder = private / spec['id']
     folder.mkdir(mode=0o700)
     started = stamp()
@@ -165,8 +210,8 @@ def _run_candidate(spec, cases, materialize, private, package, registration):
     provider = None
     metadata_unchanged = version_unchanged = source_unchanged = freeze_unchanged = None
     try:
-        _shared_integrity(package, registration)
-        provider = BoundedLocal(spec)
+        _shared_integrity(package, registration, study)
+        provider = BoundedLocal(spec, study=study)
         version_before = provider.version()
         metadata_before = provider.prepare()
         sealed._new_json(folder / 'provider-before.json', {'version': version_before, 'metadata': metadata_before})
@@ -191,8 +236,8 @@ def _run_candidate(spec, cases, materialize, private, package, registration):
         sealed.verify_package(package)
         freeze_unchanged = True
         source_unchanged = (source_hashes() == registration['source_sha256']
-                            and sealed.file_sha(PROTOCOL) == registration['protocol_sha256']
-                            and sealed.file_sha(INVENTORY) == registration['design']['inventory_sha256'])
+                            and sealed.file_sha(study.protocol) == registration['protocol_sha256']
+                            and sealed.file_sha(study.inventory) == registration['design']['inventory_sha256'])
         if not source_unchanged:
             raise RuntimeError('Registered source changed during candidate.')
         verify_bundle(sealed._load(folder / 'attempts/evidence.json'))
@@ -214,21 +259,22 @@ def _run_candidate(spec, cases, materialize, private, package, registration):
     return result
 
 
-def run(package, private_output, public_output, preregistration, expected_sha256):
+def run(package, private_output, public_output, preregistration, expected_sha256, *, study=None):
+    study = _study(study)
     if sealed.file_sha(preregistration) != expected_sha256:
         raise ValueError('Local preregistration hash mismatch.')
     registration = sealed._load(preregistration)
-    if registration.get('design') != design():
+    if registration.get('design') != design(study):
         raise ValueError('Local registered design differs.')
     package = Path(package).resolve()
-    _shared_integrity(package, registration)
+    _shared_integrity(package, registration, study)
     corpus = sealed.verify_package(package)
     private = sealed._private_path(private_output, package)
     public_output = Path(public_output).resolve()
     if public_output.exists() or public_output.is_relative_to(package) or public_output.is_relative_to(private):
         raise ValueError('Public local aggregate requires a new path outside private outputs.')
     # This is a distinct explicitly registered extension. Never touch cloud claim.
-    identity = digest({'reviewed': sealed.REVIEWED_SHA256, 'prompt': sealed.PROMPT_SHA256, 'models': list(MODELS)})
+    identity = digest({'reviewed': sealed.REVIEWED_SHA256, 'prompt': sealed.PROMPT_SHA256, 'models': [m.record() for m in study.models]})
     claim = package.parent / ('.local-comparison-' + identity[:32] + '.json')
     started_at = stamp()
     sealed._new_json(claim, {'preregistration_sha256': expected_sha256, 'started_at': started_at, 'private_output': str(private)})
@@ -251,31 +297,32 @@ def run(package, private_output, public_output, preregistration, expected_sha256
         controls_passed = sealed._controls_pass(controls)
         if not controls_passed:
             raise RuntimeError('Control prerequisites failed.')
-        for spec in MODELS:
+        for model in study.models:
+            spec = model.record()
             phase = 'shared_integrity'
-            _shared_integrity(package, registration)
+            _shared_integrity(package, registration, study)
             phase = spec['id']
-            candidates[spec['id']] = _run_candidate(spec, corpus['cases'], materialize, private, package, registration)
+            candidates[spec['id']] = _run_candidate(spec, corpus['cases'], materialize, private, package, registration, study)
         phase = 'final_shared_integrity'
-        _shared_integrity(package, registration)
+        _shared_integrity(package, registration, study)
         for label in controls:
             verify_bundle(sealed._load(private / label / 'evidence.json'))
         shared_integrity = True
     except Exception as exc:
         shared_integrity = False
         sealed._new_json(private / 'interruption.json', {'phase': phase, 'type': type(exc).__name__, 'at': stamp()})
-    completed = controls_passed and shared_integrity and len(candidates) == len(MODELS) and all(r['completed'] for r in candidates.values())
+    completed = controls_passed and shared_integrity and len(candidates) == len(study.models) and all(r['completed'] for r in candidates.values())
     summary = {'schema': 'moa-local-holdout-extension-aggregate-v1', 'started_at': started_at, 'finished_at': stamp(),
                'completed': completed, 'status': 'completed' if completed else 'incomplete',
                'interrupted_phase': phase if not shared_integrity else None,
                'controls_passed': controls_passed, 'shared_integrity_passed': shared_integrity,
                'all_candidates_primary_passed': completed and all(r['primary_passed'] for r in candidates.values()),
-               'candidate_count_registered': len(MODELS), 'candidate_count_attempted': len(candidates),
+               'candidate_count_registered': len(study.models), 'candidate_count_attempted': len(candidates),
                'candidates': candidates,
                'controls': {label: sealed.aggregate(sealed._phase_rows(private, label)) for label in ('baseline','always-refuse')},
                'preregistration_sha256': expected_sha256, 'reviewed_manifest_sha256': sealed.REVIEWED_SHA256,
                'candidate_prompt_sha256': sealed.PROMPT_SHA256, 'ollama_version_registered': OLLAMA_VERSION,
-               'promotion': 'not_authorized', 'limits': design()['limits']}
+               'promotion': 'not_authorized', 'limits': design(study)['limits']}
     sealed._new_json(private / 'aggregate.json', summary)
     sealed._new_json(private / 'artifact-manifest.json', {'files': {str(p.relative_to(private)): sealed.file_sha(p)
                     for p in sorted(private.rglob('*')) if p.is_file()}})
@@ -284,7 +331,7 @@ def run(package, private_output, public_output, preregistration, expected_sha256
     return summary
 
 
-def main(argv=None):
+def main(argv=None, *, study=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     reg = sub.add_parser('register'); reg.add_argument('--output', required=True)
@@ -293,8 +340,8 @@ def main(argv=None):
         execute.add_argument('--' + name, required=True)
     args = parser.parse_args(argv)
     try:
-        result = register(args.output) if args.command == 'register' else run(
-            args.package, args.private_output, args.public_output, args.preregistration, args.expected_sha256)
+        result = register(args.output, study=study) if args.command == 'register' else run(
+            args.package, args.private_output, args.public_output, args.preregistration, args.expected_sha256, study=study)
         print(json.dumps(result, allow_nan=False))
         return 0 if args.command == 'register' or result['all_candidates_primary_passed'] else 1
     except Exception:
