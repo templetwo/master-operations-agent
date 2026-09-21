@@ -1,0 +1,84 @@
+{
+  "checked_at": "2026-09-21T02:59:00.395Z",
+  "mode": "metadata-only; no inference",
+  "server_version": {
+    "version": "0.32.6"
+  },
+  "loaded_models": [],
+  "selected_models": [
+    {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "4.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2560
+      },
+      "template_sha256": "433ae36c021cb6103ff8a09e792ed6c4a1d256764cd489f952d69c9fb12607c6",
+      "parameters_sha256": "57302d18a76a2c94507fe902b855072c1d5d26aed3ff8e506e8e2bb17a43050d",
+      "settings": {
+        "temperature": 0,
+        "seed": 0,
+        "num_predict": 768,
+        "num_ctx": 8192
+      },
+      "think": false,
+      "stream": false,
+      "keep_alive": "5m",
+      "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+      "socket_timeout_s": 20,
+      "wire_encoding": "declared-order-json-v1",
+      "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+      "endpoint": "http://127.0.0.1:11434",
+      "server_isolation": "operator_responsibility"
+    },
+    {
+      "name": "qwen3.5:9b-q4_K_M",
+      "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.7B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096
+      },
+      "template_sha256": "39302355407942b6b0b50e1a78741740fc8a31926a4febea429526497e0e6008",
+      "parameters_sha256": "c51991ca7fd62c655105279958987eb50777e7dbe7f655efb9f634d930ba9e6f",
+      "settings": {
+        "temperature": 0,
+        "seed": 0,
+        "num_predict": 768,
+        "num_ctx": 8192
+      },
+      "think": false,
+      "stream": false,
+      "keep_alive": "5m",
+      "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+      "socket_timeout_s": 20,
+      "wire_encoding": "declared-order-json-v1",
+      "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+      "endpoint": "http://127.0.0.1:11434",
+      "server_isolation": "operator_responsibility"
+    }
+  ],
+  "hardware": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "memory_bytes": 19327352832,
+    "cpu": "Apple M3 Pro"
+  }
+}

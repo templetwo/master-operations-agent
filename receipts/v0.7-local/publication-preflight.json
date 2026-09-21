@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-21T03:06:56.066Z",
+  "passed": true,
+  "new_files_scanned": 20,
+  "method": "Common API/private-key pattern scan of new public files. No API credential files accessed; not exhaustive secret detection.",
+  "source_matches_preregistration": true,
+  "original_provider_candidate_cloud_and_historical_receipts_unchanged": true,
+  "private_content_accessed_by_root": false,
+  "inference_started": false
+}
