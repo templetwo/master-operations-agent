@@ -12,6 +12,8 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **Latest research, v0.7:** the frozen policy-only DeepSeek candidate achieved **7/24 useful answers** on the private synthetic holdout; the deterministic baseline achieved 24/24. All six guards passed. All 24 model answers completed required reads and passed envelope checks, but 17 failed content validation. The [preregistered campaign and aggregate receipts](receipts/v0.7/README.md) retain the failed acceptance result. The release validator and deterministic default remain unchanged. [Failure accounting](docs/failure-schema.md), [implementation provenance](docs/provenance.md), and the [separate explanation-task proposal](docs/next-explanation-task.md) describe the next research question.
 
+**Local retest:** under a separately registered extension using the same policy-only prompt and private cases, **Qwen3 4B and Qwen3.5 9B each scored 0/24 useful answers**, with 6/6 guards and 24/24 required-read completion. Both completed without transport interruption; all candidates were withheld for shape or content failures. [Local results, comparison limits and audit](receipts/v0.7-local/README.md) preserve the failure rather than promote a model.
+
 ## Start here
 
 Python 3.10 or newer. From this checkout:

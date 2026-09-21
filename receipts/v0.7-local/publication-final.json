@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-09-21T03:25:14.728Z",
+  "passed": true,
+  "public_aggregate_sha256": "658df8e0dd9ec4be577a31cb72e6b1a168b27ac91f98414e8092a2debce91176",
+  "preregistration_published_before_execution": true,
+  "fixed_denominators_and_call_counts_reconcile": true,
+  "registered_source_protocol_unchanged": true,
+  "old_cloud_and_historical_receipts_unchanged": true,
+  "private_content_accessed_by_root": false,
+  "changed_public_files_pattern_scanned": 7,
+  "credential_files_accessed": false,
+  "limit": "Public aggregate consistency and common credential-pattern checks only. Private evidence audit is recorded by the isolated evaluator; no external inference attestation."
+}

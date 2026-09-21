@@ -1,0 +1,498 @@
+{
+  "all_candidates_primary_passed": false,
+  "candidate_count_attempted": 2,
+  "candidate_count_registered": 2,
+  "candidate_prompt_sha256": "31ae7ee05f17f1f2501083e3e826ad615e0e6adf550f35dafddf754f933aa404",
+  "candidates": {
+    "qwen3-4b": {
+      "completed": true,
+      "completion_calls_including_warmup": 97,
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "finished_at": "2026-09-21T03:15:33.952Z",
+      "freeze_unchanged": true,
+      "inference": {
+        "call_wall_ms_max": 7544.48,
+        "call_wall_ms_total": 272098.35,
+        "calls": 96,
+        "server_reported_totals": {
+          "eval_count": 5183,
+          "eval_duration": 133758533999,
+          "load_duration": 11258765739,
+          "prompt_eval_count": 256366
+        },
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "warmup_included": false
+      },
+      "interrupted_phase": null,
+      "metadata_unchanged": true,
+      "metrics": {
+        "exact_advice_envelopes": 21,
+        "failure_categories": {
+          "candidate_content": 21,
+          "candidate_shape": 3,
+          "input_validation": 6
+        },
+        "failure_stages": {
+          "candidate_validation": 24,
+          "input_validation": 6
+        },
+        "identifiers": {
+          "checks": {
+            "exact_sets": 0,
+            "expected": 74,
+            "extras": 45,
+            "fixed_campaign_usable_total": 24,
+            "matched": 44,
+            "micro_precision": 0.4943820224719101,
+            "micro_recall": 0.5945945945945946,
+            "observed_lists": 24,
+            "omitted": 30,
+            "predicted": 89,
+            "total_cases": 24,
+            "unsupported_released": 0
+          },
+          "evidence": {
+            "exact_sets": 17,
+            "expected": 168,
+            "extras": 4,
+            "fixed_campaign_usable_total": 24,
+            "matched": 127,
+            "micro_precision": 0.9694656488549618,
+            "micro_recall": 0.7559523809523809,
+            "observed_lists": 24,
+            "omitted": 41,
+            "predicted": 131,
+            "total_cases": 24,
+            "unsupported_released": 0
+          },
+          "findings": {
+            "exact_sets": 0,
+            "expected": 112,
+            "extras": 67,
+            "fixed_campaign_usable_total": 24,
+            "matched": 65,
+            "micro_precision": 0.49242424242424243,
+            "micro_recall": 0.5803571428571429,
+            "observed_lists": 24,
+            "omitted": 47,
+            "predicted": 132,
+            "total_cases": 24,
+            "unsupported_released": 0
+          }
+        },
+        "input_guards": {
+          "observed": 6,
+          "passed": 6,
+          "total": 6
+        },
+        "latency_ms": {
+          "guard_attempts": {
+            "count": 6,
+            "max": 18.57,
+            "median": 15.51,
+            "min": 15.37
+          },
+          "usable_attempts": {
+            "count": 24,
+            "max": 13408.16,
+            "median": 11874.630000000001,
+            "min": 8105.37
+          },
+          "useful_accepted": {
+            "count": 0,
+            "max": null,
+            "median": null,
+            "min": null
+          },
+          "withheld_usable": {
+            "count": 24,
+            "max": 13408.16,
+            "median": 11874.630000000001,
+            "min": 8105.37
+          }
+        },
+        "observed_total": 30,
+        "released_evidence_fidelity": {
+          "fraction": null,
+          "passed": 0,
+          "total": 0
+        },
+        "required_reads": {
+          "observed": 24,
+          "passed": 24,
+          "total": 24
+        },
+        "unexpected_guard_advisories": 0,
+        "useful_assessment": {
+          "observed": 24,
+          "passed": 0,
+          "total": 24
+        }
+      },
+      "model": "qwen3:4b",
+      "primary_passed": false,
+      "secondary_passed": false,
+      "source_unchanged": true,
+      "started_at": "2026-09-21T03:10:52.077Z",
+      "status": "completed",
+      "version_unchanged": true
+    },
+    "qwen35-9b": {
+      "completed": true,
+      "completion_calls_including_warmup": 97,
+      "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "finished_at": "2026-09-21T03:22:42.437Z",
+      "freeze_unchanged": true,
+      "inference": {
+        "call_wall_ms_max": 10732.2,
+        "call_wall_ms_total": 411249.73,
+        "calls": 96,
+        "server_reported_totals": {
+          "eval_count": 2970,
+          "eval_duration": 134625246000,
+          "load_duration": 20414080790,
+          "prompt_eval_count": 259258
+        },
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "warmup_included": false
+      },
+      "interrupted_phase": null,
+      "metadata_unchanged": true,
+      "metrics": {
+        "exact_advice_envelopes": 24,
+        "failure_categories": {
+          "candidate_content": 24,
+          "input_validation": 6
+        },
+        "failure_stages": {
+          "candidate_validation": 24,
+          "input_validation": 6
+        },
+        "identifiers": {
+          "checks": {
+            "exact_sets": 3,
+            "expected": 74,
+            "extras": 4,
+            "fixed_campaign_usable_total": 24,
+            "matched": 37,
+            "micro_precision": 0.9024390243902439,
+            "micro_recall": 0.5,
+            "observed_lists": 24,
+            "omitted": 37,
+            "predicted": 41,
+            "total_cases": 24,
+            "unsupported_released": 0
+          },
+          "evidence": {
+            "exact_sets": 2,
+            "expected": 168,
+            "extras": 3,
+            "fixed_campaign_usable_total": 24,
+            "matched": 63,
+            "micro_precision": 0.9545454545454546,
+            "micro_recall": 0.375,
+            "observed_lists": 24,
+            "omitted": 105,
+            "predicted": 66,
+            "total_cases": 24,
+            "unsupported_released": 0
+          },
+          "findings": {
+            "exact_sets": 1,
+            "expected": 112,
+            "extras": 3,
+            "fixed_campaign_usable_total": 24,
+            "matched": 33,
+            "micro_precision": 0.9166666666666666,
+            "micro_recall": 0.29464285714285715,
+            "observed_lists": 24,
+            "omitted": 79,
+            "predicted": 36,
+            "total_cases": 24,
+            "unsupported_released": 0
+          }
+        },
+        "input_guards": {
+          "observed": 6,
+          "passed": 6,
+          "total": 6
+        },
+        "latency_ms": {
+          "guard_attempts": {
+            "count": 6,
+            "max": 15.55,
+            "median": 13.41,
+            "min": 13.18
+          },
+          "usable_attempts": {
+            "count": 24,
+            "max": 22561.49,
+            "median": 16802.02,
+            "min": 13022.23
+          },
+          "useful_accepted": {
+            "count": 0,
+            "max": null,
+            "median": null,
+            "min": null
+          },
+          "withheld_usable": {
+            "count": 24,
+            "max": 22561.49,
+            "median": 16802.02,
+            "min": 13022.23
+          }
+        },
+        "observed_total": 30,
+        "released_evidence_fidelity": {
+          "fraction": null,
+          "passed": 0,
+          "total": 0
+        },
+        "required_reads": {
+          "observed": 24,
+          "passed": 24,
+          "total": 24
+        },
+        "unexpected_guard_advisories": 0,
+        "useful_assessment": {
+          "observed": 24,
+          "passed": 0,
+          "total": 24
+        }
+      },
+      "model": "qwen3.5:9b-q4_K_M",
+      "primary_passed": false,
+      "secondary_passed": false,
+      "source_unchanged": true,
+      "started_at": "2026-09-21T03:15:33.956Z",
+      "status": "completed",
+      "version_unchanged": true
+    }
+  },
+  "completed": true,
+  "controls": {
+    "always-refuse": {
+      "exact_advice_envelopes": 0,
+      "failure_categories": {
+        "input_validation": 6,
+        "model_abstention": 24
+      },
+      "failure_stages": {
+        "abstention": 24,
+        "input_validation": 6
+      },
+      "identifiers": {
+        "checks": {
+          "exact_sets": 0,
+          "expected": 74,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 0,
+          "micro_precision": null,
+          "micro_recall": 0.0,
+          "observed_lists": 0,
+          "omitted": 74,
+          "predicted": 0,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "evidence": {
+          "exact_sets": 0,
+          "expected": 168,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 0,
+          "micro_precision": null,
+          "micro_recall": 0.0,
+          "observed_lists": 0,
+          "omitted": 168,
+          "predicted": 0,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "findings": {
+          "exact_sets": 0,
+          "expected": 112,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 0,
+          "micro_precision": null,
+          "micro_recall": 0.0,
+          "observed_lists": 0,
+          "omitted": 112,
+          "predicted": 0,
+          "total_cases": 24,
+          "unsupported_released": 0
+        }
+      },
+      "input_guards": {
+        "observed": 6,
+        "passed": 6,
+        "total": 6
+      },
+      "latency_ms": {
+        "guard_attempts": {
+          "count": 6,
+          "max": 5.0,
+          "median": 4.71,
+          "min": 4.5
+        },
+        "usable_attempts": {
+          "count": 24,
+          "max": 6.22,
+          "median": 3.8200000000000003,
+          "min": 1.21
+        },
+        "useful_accepted": {
+          "count": 0,
+          "max": null,
+          "median": null,
+          "min": null
+        },
+        "withheld_usable": {
+          "count": 24,
+          "max": 6.22,
+          "median": 3.8200000000000003,
+          "min": 1.21
+        }
+      },
+      "observed_total": 30,
+      "released_evidence_fidelity": {
+        "fraction": null,
+        "passed": 0,
+        "total": 0
+      },
+      "required_reads": {
+        "observed": 24,
+        "passed": 0,
+        "total": 24
+      },
+      "unexpected_guard_advisories": 0,
+      "useful_assessment": {
+        "observed": 24,
+        "passed": 0,
+        "total": 24
+      }
+    },
+    "baseline": {
+      "exact_advice_envelopes": 24,
+      "failure_categories": {
+        "input_validation": 6
+      },
+      "failure_stages": {
+        "input_validation": 6
+      },
+      "identifiers": {
+        "checks": {
+          "exact_sets": 24,
+          "expected": 74,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 74,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "observed_lists": 24,
+          "omitted": 0,
+          "predicted": 74,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "evidence": {
+          "exact_sets": 24,
+          "expected": 168,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 168,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "observed_lists": 24,
+          "omitted": 0,
+          "predicted": 168,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "findings": {
+          "exact_sets": 24,
+          "expected": 112,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 112,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "observed_lists": 24,
+          "omitted": 0,
+          "predicted": 112,
+          "total_cases": 24,
+          "unsupported_released": 0
+        }
+      },
+      "input_guards": {
+        "observed": 6,
+        "passed": 6,
+        "total": 6
+      },
+      "latency_ms": {
+        "guard_attempts": {
+          "count": 6,
+          "max": 12.19,
+          "median": 11.81,
+          "min": 11.4
+        },
+        "usable_attempts": {
+          "count": 24,
+          "max": 67.22,
+          "median": 37.15,
+          "min": 5.49
+        },
+        "useful_accepted": {
+          "count": 24,
+          "max": 67.22,
+          "median": 37.15,
+          "min": 5.49
+        },
+        "withheld_usable": {
+          "count": 0,
+          "max": null,
+          "median": null,
+          "min": null
+        }
+      },
+      "observed_total": 30,
+      "released_evidence_fidelity": {
+        "fraction": 1.0,
+        "passed": 24,
+        "total": 24
+      },
+      "required_reads": {
+        "observed": 24,
+        "passed": 24,
+        "total": 24
+      },
+      "unexpected_guard_advisories": 0,
+      "useful_assessment": {
+        "observed": 24,
+        "passed": 24,
+        "total": 24
+      }
+    }
+  },
+  "controls_passed": true,
+  "finished_at": "2026-09-21T03:22:42.450Z",
+  "interrupted_phase": null,
+  "limits": [
+    "New comparative extension after a cloud campaign, not a new unseen dataset.",
+    "Runner author reviewed corpus; executing evaluator has prior cloud-case exposure. No tuning from that exposure is authorized.",
+    "Local schema-constrained output differs from cloud JSON-object mode. Fixed order and shared machine allow cache/load/order effects.",
+    "Loopback daemon isolation is operator responsibility. Small synthetic policy/contract evaluation, not plant readiness or general capability."
+  ],
+  "ollama_version_registered": "0.32.6",
+  "preregistration_sha256": "8820557db02cf553966931da7c50634977318bb3c6c8508ce1f5337a8af34a4e",
+  "private_artifact_manifest_sha256": "cdefbce0440ce2151b23ad78c23387a69d14fed7262b53557bac0a121acd40c6",
+  "promotion": "not_authorized",
+  "reviewed_manifest_sha256": "29aad4f3c8bfa841954925f378a2a740659246a5a0af31f515b328a85fa845e0",
+  "schema": "moa-local-holdout-extension-aggregate-v1",
+  "shared_integrity_passed": true,
+  "started_at": "2026-09-21T03:10:50.552Z",
+  "status": "completed"
+}

@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-09-21T03:09:47.236Z",
+  "source_commit": "eaea94efe2d7dae5263680396a820f1abff282aa",
+  "url": "https://github.com/templetwo/master-operations-agent/actions/runs/35556411007",
+  "conclusion": "success",
+  "python_versions": [
+    "3.10",
+    "3.12",
+    "3.14"
+  ],
+  "full_local_validation": "122 tests passed with simulator; CI omits optional simulator checks."
+}

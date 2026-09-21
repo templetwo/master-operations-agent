@@ -1,0 +1,100 @@
+{
+  "audit_passed": true,
+  "audit_script_sha256": "089924d5f44a963b6d1988f8b670edcf0e63f4453f53a1034a0aaaba36d249bc",
+  "audited_at": "2026-09-21T03:23:05.853Z",
+  "completion_accounting": {
+    "qwen3-4b": {
+      "calls_without_response_digest": 0,
+      "delivered_calls_without_parsed_response": 0,
+      "guard_calls": 0,
+      "maximum_calls_per_observed_assessment": 4,
+      "parsed_response_bindings_verified": 97,
+      "registered_cap": 145,
+      "request_digests_verified": 97,
+      "scored_calls": 96,
+      "total_calls": 97,
+      "warmup_calls": 1
+    },
+    "qwen35-9b": {
+      "calls_without_response_digest": 0,
+      "delivered_calls_without_parsed_response": 0,
+      "guard_calls": 0,
+      "maximum_calls_per_observed_assessment": 4,
+      "parsed_response_bindings_verified": 97,
+      "registered_cap": 145,
+      "request_digests_verified": 97,
+      "scored_calls": 96,
+      "total_calls": 97,
+      "warmup_calls": 1
+    }
+  },
+  "execution": {
+    "additional_audit_inference_calls": 0,
+    "case_exclusions": 0,
+    "finished_at": "2026-09-21T03:22:42.450Z",
+    "inference_retries": 0,
+    "invocations": 1,
+    "manual_prewarm_calls": 0,
+    "preregistration_commit": "eaea94efe2d7dae5263680396a820f1abff282aa",
+    "preregistration_sha256": "8820557db02cf553966931da7c50634977318bb3c6c8508ce1f5337a8af34a4e",
+    "started_at": "2026-09-21T03:10:50.552Z",
+    "status": "completed"
+  },
+  "integrity": {
+    "aggregate_sha256": "658df8e0dd9ec4be577a31cb72e6b1a168b27ac91f98414e8092a2debce91176",
+    "bound_results": 120,
+    "cloud_claim_and_artifacts_preserved": true,
+    "frozen_package_verified": true,
+    "private_artifact_manifest_sha256": "cdefbce0440ce2151b23ad78c23387a69d14fed7262b53557bac0a121acd40c6",
+    "private_manifest_files_verified": 262,
+    "source_protocol_inventory_unchanged": true,
+    "sqlite_exports_verified": true
+  },
+  "limits": [
+    "Corpus-exposed evaluator and aggregate-exposed coordinator; this is a new comparison on the same private corpus, not a fresh unseen holdout or independent organization review.",
+    "Full HTTP response envelope bytes are not retained, only digests and selected metadata, so full-envelope digests cannot be recomputed. Parsed completion content and request digests were verified where responses exist.",
+    "Local receipts have no global completion sequence numbers; accounting reconciles event order and warmup receipts with the retained attempt counters.",
+    "Local hashes cannot externally attest inference or prevent whole-history replacement.",
+    "Interrupted arms retain fixed primary denominators; zero observed useful successes is not a completed usefulness estimate.",
+    "No claim of plant safety, model added value, independent process truth, or promotion follows."
+  ],
+  "methods": [
+    "Rehashed retained artifact manifests and frozen package; checked source, protocol, inventory and fixed prompt without materializer execution.",
+    "Verified chains and read-only SQLite exports; bound ordered inputs, frozen labels, exact final candidates and scored results to terminal outcomes.",
+    "Recomputed primary and evidence fidelity checks independently and reproduced public aggregate metrics from retained rows.",
+    "Reconstructed canonical and wire request hashes from fixed prompt/entry and retained tool, protocol and response events; compared retained raw content to parsed response events without repair.",
+    "Reconciled all retained completion receipts, including warmups and failed calls, against the per-model attempt counters; no additional inference."
+  ],
+  "phase_audits": {
+    "always-refuse": {
+      "chain_events_verified": 114,
+      "chain_head_sha256": "35ee5f50705d16fca190c128e7e4aa4b1d351ed49235baa3cd35b8caba286f3f",
+      "independent_guards_passed": 6,
+      "independent_useful_passed": 0,
+      "observed_results_bound": 30
+    },
+    "baseline": {
+      "chain_events_verified": 330,
+      "chain_head_sha256": "4f89773c4cb00ed28aaab1c928445e2f35270e4bf47654b49c53155e4bfec919",
+      "independent_guards_passed": 6,
+      "independent_useful_passed": 24,
+      "observed_results_bound": 30
+    },
+    "qwen3-4b": {
+      "chain_events_verified": 450,
+      "chain_head_sha256": "09bf8cb8e96d761258e3c15e7542cfe9e709b3fb0dc1c6d7f3147c52fbe7c779",
+      "independent_guards_passed": 6,
+      "independent_useful_passed": 0,
+      "observed_results_bound": 30
+    },
+    "qwen35-9b": {
+      "chain_events_verified": 450,
+      "chain_head_sha256": "8378b8b90a0fe5a1e23c741bf741ab4ecbaba2eb41cacf9047ae738a16de2b72",
+      "independent_guards_passed": 6,
+      "independent_useful_passed": 0,
+      "observed_results_bound": 30
+    }
+  },
+  "prior_exposure": "Evaluator previously executed and audited the cloud campaign and was corpus-exposed before this extension; no tuning or source/prompt changes were performed. Root received aggregates only.",
+  "schema": "moa-local-isolated-evaluator-audit-v1"
+}

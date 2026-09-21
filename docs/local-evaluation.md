@@ -2,6 +2,8 @@
 
 This is a development harness, not a model promotion gate. The simulator cases are public and their expected answers have not had independent controls review. Prompt changes made after observing a run are development tuning. Scores on these same cases are not held-out estimates.
 
+The later [v0.7 local comparison extension](../receipts/v0.7-local/README.md) is a separate registered protocol using complete policy guidance and the private u1-v1 corpus. Both previously tested local models completed that retest with 0/24 useful answers. Its private raw evidence, first-attempt controls and aggregate reporting are distinct from the public development commands below.
+
 ## Run a pinned comparison
 
 Use a trusted simulator checkout and an exact model already installed in the local Ollama service. Read its digest from that service's `/api/tags` response. No command here pulls a model or chooses a cloud provider.
