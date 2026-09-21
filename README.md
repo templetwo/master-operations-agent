@@ -14,6 +14,8 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **Local retest:** under a separately registered extension using the same policy-only prompt and private cases, **Qwen3 4B and Qwen3.5 9B each scored 0/24 useful answers**, with 6/6 guards and 24/24 required-read completion. Both completed without transport interruption; all candidates were withheld for shape or content failures. [Local results, comparison limits and audit](receipts/v0.7-local/README.md) preserve the failure rather than promote a model.
 
+**Gemma compatibility check:** the installed `gemma4:12b-mlx` returned schema-invalid JSON in a public probe on Ollama 0.32.6. The matched Qwen3 4B GGUF control passed. [Exact requests, responses and limits](receipts/v0.7-gemma/README.md) are public. Gemma's private holdout was not run; this is a compatibility result, not an operations score.
+
 ## Start here
 
 Python 3.10 or newer. From this checkout:

@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-09-21T07:40:34.707Z",
+  "request_wire_sha256": "b875556f928346821caea03de854931f33979ad8f2e5e6ddeefeae99249fef9c",
+  "passed": true,
+  "http_status": 200,
+  "response_sha256": "d48bf2092df3ae693308c0b5e49ee1dfd59726acf2e3fb4c3cd7066560ce1388",
+  "reported_model": "qwen3:4b",
+  "done": true,
+  "finish_reason": "stop",
+  "parsed_content": {
+    "probe": "schema_only_7c92"
+  },
+  "wall_ms": 2915.53
+}
