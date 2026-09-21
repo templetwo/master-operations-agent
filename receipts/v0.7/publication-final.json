@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-21T02:12:49.789Z",
+  "passed": true,
+  "files_scanned": 352,
+  "method": "Actual credential bytes compared only in memory plus common key/private-key patterns. No credential or key digest retained; not exhaustive secret detection.",
+  "source_matches_preregistration": true,
+  "evaluator_audit_matches_public_aggregate": true,
+  "private_content_accessed_by_root": false,
+  "historical_receipts_unchanged": true
+}

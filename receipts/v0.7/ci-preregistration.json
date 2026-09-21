@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-09-21T02:03:58.540Z",
+  "source_commit": "96eba349f2dd258de3930615a1bf91e2fcb1d02d",
+  "run_id": 35552848543,
+  "url": "https://github.com/templetwo/master-operations-agent/actions/runs/35552848543",
+  "conclusion": "success",
+  "python_versions": [
+    "3.10",
+    "3.12",
+    "3.14"
+  ],
+  "scope": "Unit discovery and deterministic smoke; optional simulator tests skipped in CI, covered by recorded full local validation."
+}

@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-21T02:03:22.310Z",
+  "source_commit": "96eba349f2dd258de3930615a1bf91e2fcb1d02d",
+  "preregistration_sha256": "77283b112ed6080b0df047253ac76a9ad117c6951a6fd0b4bd418dd8b4b89b02",
+  "anonymous_raw_download_matches": true,
+  "url": "https://raw.githubusercontent.com/templetwo/master-operations-agent/96eba349f2dd258de3930615a1bf91e2fcb1d02d/receipts/v0.7/holdout-preregistration.json",
+  "github_workflow_created_at": "2026-09-21T02:02:50Z",
+  "github_workflow_url": "https://github.com/templetwo/master-operations-agent/actions/runs/35552848543",
+  "evaluation_started": false
+}

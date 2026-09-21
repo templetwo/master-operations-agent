@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-21T02:10:51.584Z",
+  "public_aggregate_sha256": "3e1f9ba5197854c62f6d7191c23b08e5dd94baec01b973550c93b6752ee786ba",
+  "public_preregistration_precedes_campaign": true,
+  "source_matches_registered_hashes": true,
+  "fixed_denominators_and_outcome_counts_reconcile": true,
+  "identifier_totals_reconcile": true,
+  "private_content_accessed_by_root": false,
+  "limit": "Aggregate consistency checks only; private evidence verification belongs to isolated evaluator. No external API attestation or independent process truth."
+}
