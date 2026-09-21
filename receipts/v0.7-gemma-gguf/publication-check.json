@@ -1,0 +1,24 @@
+{
+  "verified_at": "2026-09-21T09:10:50.019Z",
+  "commit": "cb7b729f9ab25e748799256b10709ac84b588ae5",
+  "url": "https://raw.githubusercontent.com/templetwo/master-operations-agent/cb7b729f9ab25e748799256b10709ac84b588ae5/receipts/v0.7-gemma-gguf/preregistration.json",
+  "anonymous_fetch": true,
+  "byte_identical": true,
+  "preregistration_sha256": "48153b2532ea5dd3dded8e12170e6bd98defbb1a5b676621745f02c01b4650b5",
+  "before_private_execution": true,
+  "local_tests": {
+    "passed": 127,
+    "optional_simulator_included": true
+  },
+  "public_review": "Separate Codex agent, no private access, no blocker. Same-team procedural review, not external attestation.",
+  "ci": {
+    "url": "https://github.com/templetwo/master-operations-agent/actions/runs/35581781513",
+    "conclusion": "success",
+    "python_versions": [
+      "3.10",
+      "3.12",
+      "3.14"
+    ]
+  },
+  "execution_orchestration": "Evaluator-agent escalation request never started (no claim, process or output). Parent subsequently launched the exact unmodified registered subprocess after root UI approval. Subprocess stdout contains only aggregates; evaluator agent monitors/audits private artifacts, without tuning."
+}

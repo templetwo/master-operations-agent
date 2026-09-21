@@ -1,0 +1,359 @@
+{
+  "all_candidates_primary_passed": false,
+  "candidate_count_attempted": 1,
+  "candidate_count_registered": 1,
+  "candidate_prompt_sha256": "31ae7ee05f17f1f2501083e3e826ad615e0e6adf550f35dafddf754f933aa404",
+  "candidates": {
+    "gemma4-12b-gguf": {
+      "completed": false,
+      "completion_calls_including_warmup": 1,
+      "digest": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+      "finished_at": "2026-09-21T10:27:57.289Z",
+      "freeze_unchanged": null,
+      "inference": {
+        "call_wall_ms_max": null,
+        "call_wall_ms_total": 0,
+        "calls": 0,
+        "server_reported_totals": {
+          "eval_count": null,
+          "eval_duration": null,
+          "load_duration": null,
+          "prompt_eval_count": null
+        },
+        "time_to_first_token": "UNMEASURED: non-streaming requests",
+        "warmup_included": false
+      },
+      "interrupted_phase": "warmup",
+      "metadata_unchanged": null,
+      "metrics": {
+        "exact_advice_envelopes": 0,
+        "failure_categories": {},
+        "failure_stages": {},
+        "identifiers": {
+          "checks": {
+            "exact_sets": 0,
+            "expected": 0,
+            "extras": 0,
+            "fixed_campaign_usable_total": 24,
+            "matched": 0,
+            "micro_precision": null,
+            "micro_recall": null,
+            "observed_lists": 0,
+            "omitted": 0,
+            "predicted": 0,
+            "total_cases": 0,
+            "unsupported_released": 0
+          },
+          "evidence": {
+            "exact_sets": 0,
+            "expected": 0,
+            "extras": 0,
+            "fixed_campaign_usable_total": 24,
+            "matched": 0,
+            "micro_precision": null,
+            "micro_recall": null,
+            "observed_lists": 0,
+            "omitted": 0,
+            "predicted": 0,
+            "total_cases": 0,
+            "unsupported_released": 0
+          },
+          "findings": {
+            "exact_sets": 0,
+            "expected": 0,
+            "extras": 0,
+            "fixed_campaign_usable_total": 24,
+            "matched": 0,
+            "micro_precision": null,
+            "micro_recall": null,
+            "observed_lists": 0,
+            "omitted": 0,
+            "predicted": 0,
+            "total_cases": 0,
+            "unsupported_released": 0
+          }
+        },
+        "input_guards": {
+          "observed": 0,
+          "passed": 0,
+          "total": 6
+        },
+        "latency_ms": {
+          "guard_attempts": {
+            "count": 0,
+            "max": null,
+            "median": null,
+            "min": null
+          },
+          "usable_attempts": {
+            "count": 0,
+            "max": null,
+            "median": null,
+            "min": null
+          },
+          "useful_accepted": {
+            "count": 0,
+            "max": null,
+            "median": null,
+            "min": null
+          },
+          "withheld_usable": {
+            "count": 0,
+            "max": null,
+            "median": null,
+            "min": null
+          }
+        },
+        "observed_total": 0,
+        "released_evidence_fidelity": {
+          "fraction": null,
+          "passed": 0,
+          "total": 0
+        },
+        "required_reads": {
+          "observed": 0,
+          "passed": 0,
+          "total": 24
+        },
+        "unexpected_guard_advisories": 0,
+        "useful_assessment": {
+          "observed": 0,
+          "passed": 0,
+          "total": 24
+        }
+      },
+      "model": "gemma4:12b-it-q4_K_M",
+      "primary_passed": false,
+      "secondary_passed": false,
+      "source_unchanged": null,
+      "started_at": "2026-09-21T10:27:37.227Z",
+      "status": "incomplete",
+      "version_unchanged": null
+    }
+  },
+  "completed": false,
+  "controls": {
+    "always-refuse": {
+      "exact_advice_envelopes": 0,
+      "failure_categories": {
+        "input_validation": 6,
+        "model_abstention": 24
+      },
+      "failure_stages": {
+        "abstention": 24,
+        "input_validation": 6
+      },
+      "identifiers": {
+        "checks": {
+          "exact_sets": 0,
+          "expected": 74,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 0,
+          "micro_precision": null,
+          "micro_recall": 0.0,
+          "observed_lists": 0,
+          "omitted": 74,
+          "predicted": 0,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "evidence": {
+          "exact_sets": 0,
+          "expected": 168,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 0,
+          "micro_precision": null,
+          "micro_recall": 0.0,
+          "observed_lists": 0,
+          "omitted": 168,
+          "predicted": 0,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "findings": {
+          "exact_sets": 0,
+          "expected": 112,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 0,
+          "micro_precision": null,
+          "micro_recall": 0.0,
+          "observed_lists": 0,
+          "omitted": 112,
+          "predicted": 0,
+          "total_cases": 24,
+          "unsupported_released": 0
+        }
+      },
+      "input_guards": {
+        "observed": 6,
+        "passed": 6,
+        "total": 6
+      },
+      "latency_ms": {
+        "guard_attempts": {
+          "count": 6,
+          "max": 4.98,
+          "median": 4.765000000000001,
+          "min": 4.42
+        },
+        "usable_attempts": {
+          "count": 24,
+          "max": 6.39,
+          "median": 3.745,
+          "min": 1.29
+        },
+        "useful_accepted": {
+          "count": 0,
+          "max": null,
+          "median": null,
+          "min": null
+        },
+        "withheld_usable": {
+          "count": 24,
+          "max": 6.39,
+          "median": 3.745,
+          "min": 1.29
+        }
+      },
+      "observed_total": 30,
+      "released_evidence_fidelity": {
+        "fraction": null,
+        "passed": 0,
+        "total": 0
+      },
+      "required_reads": {
+        "observed": 24,
+        "passed": 0,
+        "total": 24
+      },
+      "unexpected_guard_advisories": 0,
+      "useful_assessment": {
+        "observed": 24,
+        "passed": 0,
+        "total": 24
+      }
+    },
+    "baseline": {
+      "exact_advice_envelopes": 24,
+      "failure_categories": {
+        "input_validation": 6
+      },
+      "failure_stages": {
+        "input_validation": 6
+      },
+      "identifiers": {
+        "checks": {
+          "exact_sets": 24,
+          "expected": 74,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 74,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "observed_lists": 24,
+          "omitted": 0,
+          "predicted": 74,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "evidence": {
+          "exact_sets": 24,
+          "expected": 168,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 168,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "observed_lists": 24,
+          "omitted": 0,
+          "predicted": 168,
+          "total_cases": 24,
+          "unsupported_released": 0
+        },
+        "findings": {
+          "exact_sets": 24,
+          "expected": 112,
+          "extras": 0,
+          "fixed_campaign_usable_total": 24,
+          "matched": 112,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "observed_lists": 24,
+          "omitted": 0,
+          "predicted": 112,
+          "total_cases": 24,
+          "unsupported_released": 0
+        }
+      },
+      "input_guards": {
+        "observed": 6,
+        "passed": 6,
+        "total": 6
+      },
+      "latency_ms": {
+        "guard_attempts": {
+          "count": 6,
+          "max": 12.23,
+          "median": 12.07,
+          "min": 11.66
+        },
+        "usable_attempts": {
+          "count": 24,
+          "max": 68.69,
+          "median": 36.815,
+          "min": 5.56
+        },
+        "useful_accepted": {
+          "count": 24,
+          "max": 68.69,
+          "median": 36.815,
+          "min": 5.56
+        },
+        "withheld_usable": {
+          "count": 0,
+          "max": null,
+          "median": null,
+          "min": null
+        }
+      },
+      "observed_total": 30,
+      "released_evidence_fidelity": {
+        "fraction": 1.0,
+        "passed": 24,
+        "total": 24
+      },
+      "required_reads": {
+        "observed": 24,
+        "passed": 24,
+        "total": 24
+      },
+      "unexpected_guard_advisories": 0,
+      "useful_assessment": {
+        "observed": 24,
+        "passed": 24,
+        "total": 24
+      }
+    }
+  },
+  "controls_passed": true,
+  "finished_at": "2026-09-21T10:27:57.320Z",
+  "interrupted_phase": null,
+  "limits": [
+    "New comparative extension after a cloud campaign, not a new unseen dataset.",
+    "Runner author reviewed corpus; executing evaluator has prior cloud-case exposure. No tuning from that exposure is authorized.",
+    "Local schema-constrained output differs from cloud JSON-object mode. Fixed order and shared machine allow cache/load/order effects.",
+    "Loopback daemon isolation is operator responsibility. Small synthetic policy/contract evaluation, not plant readiness or general capability."
+  ],
+  "ollama_version_registered": "0.32.6",
+  "preregistration_sha256": "48153b2532ea5dd3dded8e12170e6bd98defbb1a5b676621745f02c01b4650b5",
+  "private_artifact_manifest_sha256": "3d83154e7abcb72b2077f626e8bba258448c34d0f8d4f446efc594d85bf2e534",
+  "promotion": "not_authorized",
+  "reviewed_manifest_sha256": "29aad4f3c8bfa841954925f378a2a740659246a5a0af31f515b328a85fa845e0",
+  "schema": "moa-local-holdout-extension-aggregate-v1",
+  "shared_integrity_passed": true,
+  "started_at": "2026-09-21T10:27:35.675Z",
+  "status": "incomplete"
+}

@@ -14,7 +14,7 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **Local retest:** under a separately registered extension using the same policy-only prompt and private cases, **Qwen3 4B and Qwen3.5 9B each scored 0/24 useful answers**, with 6/6 guards and 24/24 required-read completion. Both completed without transport interruption; all candidates were withheld for shape or content failures. [Local results, comparison limits and audit](receipts/v0.7-local/README.md) preserve the failure rather than promote a model.
 
-**Gemma follow-up:** `gemma4:12b-mlx` failed public schema enforcement, while the downloaded `gemma4:12b-it-q4_K_M` GGUF build passed. GGUF completed the public tool sequence but its advisory failed content validation. [Exact requests, responses and limits](receipts/v0.7-gemma/README.md) are public. A [separate single-model comparison](receipts/v0.7-gemma-gguf/README.md) preserves the original policy, validator and scoring rules. Compatibility success is not model promotion.
+**Gemma follow-up:** `gemma4:12b-mlx` failed public schema enforcement, while `gemma4:12b-it-q4_K_M` GGUF passed. GGUF completed the public tool sequence but its advisory failed content validation. The [registered private comparison](receipts/v0.7-gemma-gguf/README.md) then stopped during its single warmup request, before any scored Gemma case. This is an incomplete benchmark, not 0/24 accuracy. [Public compatibility receipts](receipts/v0.7-gemma/README.md) remain separate, and no model was promoted.
 
 ## Start here
 
