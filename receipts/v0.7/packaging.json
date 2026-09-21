@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-21T01:55:07.580075+00:00",
+  "python": "3.10",
+  "wheel": "master_operations_agent-0.7.0-py3-none-any.whl",
+  "version": "0.7.0",
+  "receipts_and_tests_excluded": true,
+  "unpacked_wheel_baseline_advisory": true,
+  "initial_issue": "Setuptools flat-layout auto-discovery included receipts; restricted package discovery to moa*.",
+  "model_calls": 0
+}

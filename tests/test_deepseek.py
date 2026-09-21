@@ -104,6 +104,24 @@ class DeepSeekTests(unittest.TestCase):
         self.assertEqual(caught.exception.code, "provider_budget")
         self.assertEqual(len(HTTPS.calls), 1)
 
+    def test_explicit_campaign_cap_is_bounded_and_enforced_before_network(self):
+        self.assertEqual(DeepSeek(KEY, allow_cloud_synthetic=True).max_calls, 61)
+        for invalid in (True, False, 0, -1, 146, 1.0, "145", None):
+            with self.assertRaises(ValueError):
+                DeepSeek(KEY, allow_cloud_synthetic=True, max_calls=invalid)
+        self.assertEqual(HTTPS.calls, [])
+        HTTPS.replies.append((200, {"data": [{"id": "deepseek-flash"}]}))
+        provider = DeepSeek(KEY, allow_cloud_synthetic=True, max_calls=145)
+        self.assertEqual(provider.prepare()["maximum_inference_calls"], 145)
+        provider.calls = 144
+        HTTPS.replies.append((200, completion()))
+        provider.respond([])
+        self.assertEqual(provider.calls, 145)
+        with self.assertRaises(Rejected) as caught:
+            provider.respond([])
+        self.assertEqual(caught.exception.code, "provider_budget")
+        self.assertEqual(len(HTTPS.calls), 2)
+
     def test_literal_dotenv_only_without_execution_or_interpolation(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / ".env"; marker = Path(directory) / "never-created"

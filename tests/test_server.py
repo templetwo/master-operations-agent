@@ -67,8 +67,10 @@ class ServerTests(unittest.TestCase):
         self.assertEqual(self.request("POST", "/api/assess", '{"observation":{},"observation":{}}', self.headers())[0], 400)
 
     def test_dashboard_has_local_only_assets_and_csp(self):
+        from moa import __version__
         status, headers, body = self.request("GET", "/")
         self.assertEqual(status, 200)
+        self.assertTrue(headers["Server"].startswith("MOA-Lab/" + __version__ + " "))
         self.assertIn("frame-ancestors 'none'", headers["Content-Security-Policy"])
         self.assertIn(b"SYNTHETIC ENVIRONMENT", body)
         self.assertNotIn(b"https://", body)

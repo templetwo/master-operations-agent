@@ -47,17 +47,19 @@ def read_api_key(path):
 class DeepSeek:
     name = "deepseek:deepseek-flash"
 
-    def __init__(self, api_key, *, allow_cloud_synthetic=False):
+    def __init__(self, api_key, *, allow_cloud_synthetic=False, max_calls=61):
         if allow_cloud_synthetic is not True:
             raise ValueError("Cloud synthetic comparison must be explicitly enabled.")
         if not isinstance(api_key, str) or not re.fullmatch(r"sk-[A-Za-z0-9_-]{16,197}", api_key):
             raise ValueError("Invalid DeepSeek credential.")
+        if type(max_calls) is not int or not 1 <= max_calls <= 145:
+            raise ValueError("Inference call limit must be an integer from 1 to 145.")
         self._api_key = api_key
         self.model = MODEL
         self.receipt = None
         self.call_receipts = []
         self.calls = 0
-        self.max_calls = 61
+        self.max_calls = max_calls
 
     def drain_receipts(self):
         rows, self.call_receipts = self.call_receipts, []

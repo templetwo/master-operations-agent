@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-09-21T02:02:22.122Z",
+  "passed": true,
+  "files_scanned": 346,
+  "method": "Actual credential bytes compared only in memory plus common key/private-key patterns; no key or key digest retained. Not exhaustive secret detection.",
+  "source_matches_preregistration": true,
+  "candidate_core_and_historical_receipts_unchanged": true,
+  "holdout_exposure": "Root has received public code, methods, hashes and aggregate metadata only; no private corpus or per-case evidence opened."
+}

@@ -8,6 +8,7 @@ import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
+from . import __version__
 from .contracts import Rejected, MAX_BYTES, canonical, keys, strict_json
 from .engine import Agent
 from .evidence import EvidenceError
@@ -31,7 +32,7 @@ def make_server(store, port=8765, provider=None):
     agent = Agent(store, provider)
 
     class Handler(BaseHTTPRequestHandler):
-        server_version = "MOA-Lab/0.2"
+        server_version = "MOA-Lab/" + __version__
 
         def log_message(self, *_):
             pass

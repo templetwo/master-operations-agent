@@ -10,6 +10,8 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **Latest research, v0.6 series:** [five-stage remediation and receipts](receipts/v0.6/README.md). A preregistered four-arm DeepSeek development experiment produced 0/10 accepted advisories unchanged, 0/10 with output guidance, 5/10 with complete policy guidance, and 4/10 with both. Stage-specific accounting and separate offline content diagnostics explain the differences. The release validator and default deterministic provider are unchanged; these are development results, not model promotion.
 
+**v0.7 preparation:** a single frozen policy-only candidate will be evaluated against the private u1-v1 holdout under the [existing acceptance rules](docs/holdout-protocol.md). No default-provider promotion is planned. [Failure accounting](docs/failure-schema.md), [implementation provenance](docs/provenance.md), and the [separate explanation-task proposal](docs/next-explanation-task.md) describe what this work can and cannot establish.
+
 ## Start here
 
 Python 3.10 or newer. From this checkout:
