@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-09-24T00:33:04.872Z",
+  "anonymous_byte_equality": true,
+  "commit": "e0d3a53a9e024c1e04521082c5c28753b3f4951c",
+  "registration_sha256": "8a1ae8cdfcc90de76da3654ede50bc10cf98bd749e0bca190e5ac5be50064cd2",
+  "before_inference": true,
+  "tests_passed": 133,
+  "trusted_simulator_included": true,
+  "review": "Separate Codex agent public-only review; finalization issue fixed and regression tested; no remaining blocker.",
+  "ci": {
+    "url": "https://github.com/templetwo/master-operations-agent/actions/runs/35938895482",
+    "status": "completed",
+    "conclusion": "success"
+  }
+}

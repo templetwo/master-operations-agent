@@ -16,6 +16,8 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **Gemma follow-up:** `gemma4:12b-mlx` failed public schema enforcement, while `gemma4:12b-it-q4_K_M` GGUF passed. GGUF completed the public tool sequence but its advisory failed content validation. The [registered private comparison](receipts/v0.7-gemma-gguf/README.md) then stopped during its single warmup request, before any scored Gemma case. This is an incomplete benchmark, not 0/24 accuracy. [Public compatibility receipts](receipts/v0.7-gemma/README.md) remain separate, and no model was promoted.
 
+**Public startup timing:** three Gemma pairs completed at **11.62–22.29 seconds unloaded versus 1.39–1.60 seconds loaded**, with six correct first-tool replies. The [preregistered timing diagnostic](receipts/v0.7-gemma-timing/README.md) supports a future separate 60-second warmup allowance; scored-request and freshness limits remain unchanged. No private campaign was rerun.
+
 ## Start here
 
 Python 3.10 or newer. From this checkout:

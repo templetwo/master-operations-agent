@@ -1,0 +1,25 @@
+{
+  "state": "loaded",
+  "started_at": "2026-09-24T00:38:47.889Z",
+  "valid_first_read": true,
+  "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+  "http_status": 200,
+  "response_wire_sha256": "206e999f14cb72f4a9c40412fddc4715d0eecea2d60b52f5ff4190ae52ba7cf4",
+  "reported": {
+    "model": "gemma4:12b-it-q4_K_M",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 1593123917,
+    "load_duration": 342708500,
+    "prompt_eval_count": 1741,
+    "prompt_eval_duration": 130191000,
+    "eval_count": 16,
+    "eval_duration": 1097299000
+  },
+  "parsed_content": {
+    "kind": "tool",
+    "name": "read_snapshot",
+    "arguments": {}
+  },
+  "wall_ms": 1597.81
+}

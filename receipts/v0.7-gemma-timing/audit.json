@@ -1,0 +1,50 @@
+{
+  "schema": "moa-public-warmup-timing-audit-v1",
+  "checked_at": "2026-09-24T00:40:55.693351+00:00",
+  "scope": "Same-team read-only audit of public saved receipts; no inference or private corpus access.",
+  "passed": true,
+  "registered_commit": "e0d3a53a9e024c1e04521082c5c28753b3f4951c",
+  "registration_sha256": "8a1ae8cdfcc90de76da3654ede50bc10cf98bd749e0bca190e5ac5be50064cd2",
+  "run_sha256": "2b2d2cc9e0091009b3c3c98455f9279568453808fe28b078f63b346f941a358a",
+  "checks": {
+    "registration_copy_and_published_commit_bytes_match": true,
+    "publication_receipt_precedes_first_inference": true,
+    "source_files_match_registration_and_commit": 48,
+    "protocol_and_inventory_hashes_match": true,
+    "provider_metadata_before_after_matches_inventory": true,
+    "completion_request_hashes_verified": 6,
+    "completion_response_hashes_verified": 6,
+    "original_first_read_responses_verified": 6,
+    "aggregate_rows_equal_individual_receipts": true,
+    "empty_post_unload_inventories_verified": 3,
+    "loaded_target_digest_and_8192_context_verified": 3,
+    "target_only_unload_receipts": 2,
+    "completion_attempts": 6,
+    "fixed_recommendation_recomputed": true
+  },
+  "unloaded_seconds": [
+    22.28914,
+    18.40457,
+    11.61903
+  ],
+  "loaded_seconds": [
+    1.59781,
+    1.42377,
+    1.3865699999999999
+  ],
+  "future_registration_warmup_timeout_proposal_s": 60,
+  "limits": [
+    "Publication precedence relies on the saved anonymous-byte-equality publication receipt and matching Git commit; this audit did not repeat the network fetch.",
+    "Saved HTTP response bodies, hashes, timestamps and daemon inventories are local evidence, not external traffic or timing attestation.",
+    "Unloaded means absent from daemon residency inventory, not cleared operating-system caches. Fixed order and repeated prompts permit cache and load confounds.",
+    "Six correct startup replies do not establish useful operations advice or reliable latency across workloads.",
+    "The 60-second suggestion follows the preregistered engineering margin and requires a separate future registration. Production/scored timeout remains 20 seconds.",
+    "These measurements do not retrospectively prove the cause of the earlier generic provider failure at approximately 20 seconds."
+  ],
+  "actions": {
+    "new_model_calls": 0,
+    "private_reads": 0,
+    "source_edits": 0,
+    "written_artifact": "receipts/v0.7-gemma-timing/audit.json"
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "started_at": "2026-09-24T00:38:25.416Z",
+  "status": "completed",
+  "registration_sha256": "8a1ae8cdfcc90de76da3654ede50bc10cf98bd749e0bca190e5ac5be50064cd2",
+  "hardware": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "memory_bytes": 19327352832,
+    "cpu": "Apple M3 Pro"
+  },
+  "completion_attempts": 6,
+  "rows": [
+    {
+      "state": "unloaded",
+      "started_at": "2026-09-24T00:38:25.527Z",
+      "valid_first_read": true,
+      "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+      "http_status": 200,
+      "response_wire_sha256": "854ccc9657e36de7a788f6f872fb0ba216fef5fcb522a2b2a4b8dc8bf87d42b0",
+      "reported": {
+        "model": "gemma4:12b-it-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 22274140541,
+        "load_duration": 12312363083,
+        "prompt_eval_count": 1741,
+        "prompt_eval_duration": 8839543000,
+        "eval_count": 16,
+        "eval_duration": 999225000
+      },
+      "parsed_content": {
+        "kind": "tool",
+        "name": "read_snapshot",
+        "arguments": {}
+      },
+      "wall_ms": 22289.14,
+      "pair": 1
+    },
+    {
+      "state": "loaded",
+      "started_at": "2026-09-24T00:38:47.889Z",
+      "valid_first_read": true,
+      "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+      "http_status": 200,
+      "response_wire_sha256": "206e999f14cb72f4a9c40412fddc4715d0eecea2d60b52f5ff4190ae52ba7cf4",
+      "reported": {
+        "model": "gemma4:12b-it-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1593123917,
+        "load_duration": 342708500,
+        "prompt_eval_count": 1741,
+        "prompt_eval_duration": 130191000,
+        "eval_count": 16,
+        "eval_duration": 1097299000
+      },
+      "parsed_content": {
+        "kind": "tool",
+        "name": "read_snapshot",
+        "arguments": {}
+      },
+      "wall_ms": 1597.81,
+      "pair": 1
+    },
+    {
+      "state": "unloaded",
+      "started_at": "2026-09-24T00:38:49.693Z",
+      "valid_first_read": true,
+      "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+      "http_status": 200,
+      "response_wire_sha256": "30bf3c54a3e4c2d7e75a04a262470385bbeb70b9804fe814d9563644b9cf98a0",
+      "reported": {
+        "model": "gemma4:12b-it-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 18401050500,
+        "load_duration": 8485057417,
+        "prompt_eval_count": 1741,
+        "prompt_eval_duration": 8848492000,
+        "eval_count": 16,
+        "eval_duration": 1050744999
+      },
+      "parsed_content": {
+        "kind": "tool",
+        "name": "read_snapshot",
+        "arguments": {}
+      },
+      "wall_ms": 18404.57,
+      "pair": 2
+    },
+    {
+      "state": "loaded",
+      "started_at": "2026-09-24T00:39:08.137Z",
+      "valid_first_read": true,
+      "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+      "http_status": 200,
+      "response_wire_sha256": "c783a69f3c80598718cb3b5560b067ebfa2498af532915be2e918ac6a64efd29",
+      "reported": {
+        "model": "gemma4:12b-it-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1422122750,
+        "load_duration": 267813958,
+        "prompt_eval_count": 1741,
+        "prompt_eval_duration": 121817000,
+        "eval_count": 16,
+        "eval_duration": 1019979000
+      },
+      "parsed_content": {
+        "kind": "tool",
+        "name": "read_snapshot",
+        "arguments": {}
+      },
+      "wall_ms": 1423.77,
+      "pair": 2
+    },
+    {
+      "state": "unloaded",
+      "started_at": "2026-09-24T00:39:09.766Z",
+      "valid_first_read": true,
+      "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+      "http_status": 200,
+      "response_wire_sha256": "eccc29d0a38fdbe278f8586f920cdfe87b5ca4cca5a012130aa209b54177ce27",
+      "reported": {
+        "model": "gemma4:12b-it-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 11616130334,
+        "load_duration": 1875345834,
+        "prompt_eval_count": 1741,
+        "prompt_eval_duration": 8728355000,
+        "eval_count": 16,
+        "eval_duration": 999478000
+      },
+      "parsed_content": {
+        "kind": "tool",
+        "name": "read_snapshot",
+        "arguments": {}
+      },
+      "wall_ms": 11619.03,
+      "pair": 3
+    },
+    {
+      "state": "loaded",
+      "started_at": "2026-09-24T00:39:21.432Z",
+      "valid_first_read": true,
+      "request_wire_sha256": "0256d49c9082a83a9e735c9052d994f9de0bbcb907259b5cd2cea2bbfe9be15b",
+      "http_status": 200,
+      "response_wire_sha256": "4550d31121537c2e9ae24345c8cf2532ddf55e447c50c997dea229441ec6c555",
+      "reported": {
+        "model": "gemma4:12b-it-q4_K_M",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1383761417,
+        "load_duration": 289525000,
+        "prompt_eval_count": 1741,
+        "prompt_eval_duration": 93144000,
+        "eval_count": 16,
+        "eval_duration": 992914000
+      },
+      "parsed_content": {
+        "kind": "tool",
+        "name": "read_snapshot",
+        "arguments": {}
+      },
+      "wall_ms": 1386.57,
+      "pair": 3
+    }
+  ],
+  "private_data_accessed": false,
+  "metadata_before": {
+    "name": "gemma4:12b-it-q4_K_M",
+    "digest": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gemma4",
+      "families": [
+        "gemma4"
+      ],
+      "parameter_size": "11.9B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 3840
+    },
+    "template_sha256": "39302355407942b6b0b50e1a78741740fc8a31926a4febea429526497e0e6008",
+    "parameters_sha256": "f2523a87438fefa51ac9161eca23464f66349d38ca1c39e0e76eba5bbcae82e2",
+    "settings": {
+      "temperature": 0,
+      "seed": 0,
+      "num_predict": 768,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "stream": false,
+    "keep_alive": "5m",
+    "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+    "socket_timeout_s": 20,
+    "wire_encoding": "declared-order-json-v1",
+    "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+    "endpoint": "http://127.0.0.1:11434",
+    "server_isolation": "operator_responsibility"
+  },
+  "metadata_after": {
+    "name": "gemma4:12b-it-q4_K_M",
+    "digest": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gemma4",
+      "families": [
+        "gemma4"
+      ],
+      "parameter_size": "11.9B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 3840
+    },
+    "template_sha256": "39302355407942b6b0b50e1a78741740fc8a31926a4febea429526497e0e6008",
+    "parameters_sha256": "f2523a87438fefa51ac9161eca23464f66349d38ca1c39e0e76eba5bbcae82e2",
+    "settings": {
+      "temperature": 0,
+      "seed": 0,
+      "num_predict": 768,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "stream": false,
+    "keep_alive": "5m",
+    "response_schema_sha256": "565e93d2f514da8e4b284ed250087e9d43e80ecdc059c9323d016ffb035428e6",
+    "socket_timeout_s": 20,
+    "wire_encoding": "declared-order-json-v1",
+    "response_schema_wire_sha256": "284ddecdc88fa92ff41c97ae122d95c3790467aabd8dfc2aef6eb9d96f57cea2",
+    "endpoint": "http://127.0.0.1:11434",
+    "server_isolation": "operator_responsibility"
+  },
+  "loaded_after": [
+    {
+      "name": "gemma4:12b-it-q4_K_M",
+      "model": "gemma4:12b-it-q4_K_M",
+      "size": 8059627764,
+      "digest": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "gemma4",
+        "families": [
+          "gemma4"
+        ],
+        "parameter_size": "11.9B",
+        "quantization_level": "Q4_K_M"
+      },
+      "expires_at": "2026-09-23T20:44:22.817198-04:00",
+      "size_vram": 8059627764,
+      "context_length": 8192
+    }
+  ],
+  "source_unchanged": true,
+  "recommendation": {
+    "unloaded_max_s": 22.28914,
+    "loaded_max_s": 1.59781,
+    "proposed_warmup_timeout_s": 60,
+    "status": "separate_warmup_registration_supported"
+  },
+  "finished_at": "2026-09-24T00:39:22.855Z"
+}
