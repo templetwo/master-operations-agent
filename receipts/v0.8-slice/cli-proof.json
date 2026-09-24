@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "moa",
+    "stream",
+    "output/cli-proof/stream/run-01"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "{\"schema\": \"1.2\", \"policy\": \"lab-v2-deps\", \"accepted\": 601, \"stream_events\": []}\n",
+  "results_match": true,
+  "result_count": 601,
+  "candidate_revision": "d3c09b74df6df12344c88c229f22b88a3d457e3b",
+  "checkout_status": ""
+}

@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: observer output ignores forbidden objects and point/alarm extras without aliases
+ok 1 - observer output ignores forbidden objects and point/alarm extras without aliases
+  ---
+  duration_ms: 1.551708
+  type: 'test'
+  ...
+# Subtest: BAD values become null while source quality remains explicit
+ok 2 - BAD values become null while source quality remains explicit
+  ---
+  duration_ms: 0.084583
+  type: 'test'
+  ...
+# Subtest: ambiguous, missing or nested point values fail the observation boundary
+ok 3 - ambiguous, missing or nested point values fail the observation boundary
+  ---
+  duration_ms: 0.219583
+  type: 'test'
+  ...
+# Subtest: config extracts only named fields and preserves descriptive trip declarations
+ok 4 - config extracts only named fields and preserves descriptive trip declarations
+  ---
+  duration_ms: 0.189459
+  type: 'test'
+  ...
+# Subtest: canonical hashes recursively exclude only the two wall clock fields
+ok 5 - canonical hashes recursively exclude only the two wall clock fields
+  ---
+  duration_ms: 0.335916
+  type: 'test'
+  ...
+# Subtest: fixed scenario schedules use ending tick and deterministic opaque ordering
+ok 6 - fixed scenario schedules use ending tick and deterministic opaque ordering
+  ---
+  duration_ms: 0.169667
+  type: 'test'
+  ...
+# Subtest: pinned subject projection ignores changes to hidden checkpoint truth and future schedules
+ok 7 - pinned subject projection ignores changes to hidden checkpoint truth and future schedules
+  ---
+  duration_ms: 15.786917
+  type: 'test'
+  ...
+# Subtest: observer canonical form matches kernel stable after wall clock removal
+ok 8 - observer canonical form matches kernel stable after wall clock removal
+  ---
+  duration_ms: 3.3695
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 63.860542

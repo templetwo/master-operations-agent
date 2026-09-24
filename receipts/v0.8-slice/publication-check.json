@@ -1,0 +1,8 @@
+{
+  "candidate_revision": "d3c09b74df6df12344c88c229f22b88a3d457e3b",
+  "scanned_files": 81,
+  "credential_pattern_file_hits": [],
+  "raw_output_tracked": [],
+  "passed": true,
+  "limits": "Pattern scan of changed publication files, not proof that all possible secrets are absent."
+}

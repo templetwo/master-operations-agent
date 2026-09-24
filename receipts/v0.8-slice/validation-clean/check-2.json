@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "moa",
+    "eval"
+  ],
+  "started_at": "2026-09-24T15:50:53.499902+00:00",
+  "stdout": "check-2.stdout",
+  "stderr": "check-2.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 0.13265816698549315,
+  "stdout_bytes": 82217,
+  "stdout_sha256": "838c9aaaec05bc17b267378cf6a5e82f706930d9e9051740e432990abb818f4c",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

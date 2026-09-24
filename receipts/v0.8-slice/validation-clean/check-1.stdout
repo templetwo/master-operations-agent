@@ -1,0 +1,8 @@
+PASSED /opt/homebrew/opt/python@3.14/bin/python3.14 -c print('ok')
+PASSED /opt/homebrew/opt/python@3.14/bin/python3.14 -c print('first')
+PASSED /opt/homebrew/opt/python@3.14/bin/python3.14 -c print('second')
+LAUNCH_ERROR /var/folders/m3/93dz__bx387249x2qyglb2sw0000gn/T/moa-validation-test-d7m5qqz3/does-not-exist
+FAILED /opt/homebrew/opt/python@3.14/bin/python3.14 -c raise SystemExit(7)
+PASSED /opt/homebrew/opt/python@3.14/bin/python3.14 -c print('next')
+PASSED /opt/homebrew/opt/python@3.14/bin/python3.14 -c from pathlib import Path; Path('scripts/new.py').write_text('changed\n')
+TIMEOUT /opt/homebrew/opt/python@3.14/bin/python3.14 -c import sys,time; print('partial stdout', flush=True); print('partial stderr', file=sys.stderr, flush=True); time.sleep(10)

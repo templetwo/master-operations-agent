@@ -1,0 +1,151 @@
+{
+  "schema": "moa-v08-slice-acceptance",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "scripts/check_slice.py",
+    "--slice",
+    "output/slice",
+    "--replay",
+    "output/slice-replay",
+    "--validation",
+    "/Users/vaquez/master-operations-agent/receipts/v0.8-slice/validation-clean/validation.json",
+    "--output",
+    "/Users/vaquez/master-operations-agent/receipts/v0.8-slice/tests.json"
+  ],
+  "passed": true,
+  "tests": {
+    "T1": {
+      "passed": true,
+      "detail": {
+        "prefix_samples": 300,
+        "read_tools_per_sample": 8,
+        "label_swap_results": 601
+      }
+    },
+    "T2": {
+      "passed": true,
+      "detail": {
+        "visible_records_scanned": 4576,
+        "read_responses_scanned": 18280,
+        "static_negative_control": "rejected"
+      }
+    },
+    "T3": {
+      "passed": true,
+      "detail": {
+        "old_tick": 0,
+        "new_tick": 10,
+        "late_superseded": true
+      }
+    },
+    "T4": {
+      "passed": true,
+      "detail": {
+        "warming_tick": 240,
+        "urgent_observable_tick_1hz": 368,
+        "urgent_kernel_tick": 368,
+        "gap_to_kernel_limit_s": 64.0,
+        "trip_tick_scoring_only": 460
+      }
+    },
+    "T5": {
+      "passed": true,
+      "detail": {
+        "bad_samples_with_scoped_findings": 176,
+        "first_bad_tick": 250,
+        "unrelated_trend_dependencies_available": true
+      }
+    },
+    "T6": {
+      "passed": true,
+      "detail": {
+        "first_recovery_check_tick": 800,
+        "active_alarm_samples": 539
+      }
+    },
+    "T7": {
+      "passed": true,
+      "detail": {
+        "full_window_normal_results": 481
+      }
+    },
+    "T8": {
+      "passed": true,
+      "detail": {
+        "gap": "reset",
+        "duplicate": "rejected",
+        "reversal": "rejected",
+        "inline_epoch": "rejected",
+        "explicit_epoch": "reset",
+        "restart": "refill"
+      }
+    },
+    "T9": {
+      "passed": true,
+      "detail": {
+        "runs": 5,
+        "canonical_files": 38,
+        "sha256": {
+          "runner/completion.json": "f1b132b381fdb76b553a9878055ca3c277f02fd85323a87504ba16dcdc6799f6",
+          "runner/manifest.json": "7f746be880d126b4059424d9c6a1c4ba59377680b1cd2464902977dfa8d0f4b4",
+          "runner/run-01/actions.jsonl": "bf9eddaf70d5eac750c34671b41c513be0ca8cf53db457f145caebdcb1a47093",
+          "runner/run-01/generation.json": "8a89ebc7084e036c4844f74f855cd8df9a8a39224d9f580e1f1e339f92da14d9",
+          "runner/run-01/labels.json": "0e05d9d9f7e57dc8659b2e1e496f6f043cae22a352804f7cf9823ffd4d070560",
+          "runner/run-01/truth.jsonl": "6522af7e73610874398dfc513b337e87bc35946a1be89f2a2f7df1baf884faf7",
+          "runner/run-02/actions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "runner/run-02/generation.json": "9986bece2987c366a9f164bb268e0f64fdbb4393e19ac65a65b6f1b79a715000",
+          "runner/run-02/labels.json": "69e35e283192246e5ab8431c070076ea343869a7a81111d9c61211442c1d2067",
+          "runner/run-02/truth.jsonl": "28d21aa5d09ee16ef154f3cbacc50cfc478e9854b8c303092c3c0606b539f15e",
+          "runner/run-03/actions.jsonl": "9254b13c7234239607b5ebc67414c2d7021959a85edf31ae56e675148935584c",
+          "runner/run-03/generation.json": "5852a3f57ebf23d40d4351f673d0991a76863a4be018954be99bdaa0a1507d78",
+          "runner/run-03/labels.json": "b1db7f7fa7e593fcb52f0b8cbcc9eee1cc84a93e1a0a77405012684a0f2fffde",
+          "runner/run-03/truth.jsonl": "12268452d51781035bcfb5f041a7adfe971afe50dde6985a87ef3944b5b641ed",
+          "runner/run-04/actions.jsonl": "62c14456aa5a3edbfeb89e4758c9eedad474d8880066d26abcad70bcf6e1432f",
+          "runner/run-04/generation.json": "e300f52c53f9743a30aae9a12bcad9378022e1ecbea84abd4d768cef10c2143b",
+          "runner/run-04/labels.json": "66bf456f940a838109d28fe497245bbc1d807b6c62c9c5558885e998e449bf85",
+          "runner/run-04/truth.jsonl": "4a2d3d75f64473a058cda5435d052c033c9aa276e6b5a6639591ca0d3ecce42a",
+          "runner/run-05/actions.jsonl": "03a6948698916d6c037ae742472b45ca78e007e1385d532449e8663629774401",
+          "runner/run-05/generation.json": "99bd76e6b8dfa928e92e1657db18b6075c114cc9f57243d011d85c6bc1bede13",
+          "runner/run-05/labels.json": "f1f8f688132d7a78b1a9c18fb0b250cfb23c744043ff2c4c65ac5aa3a4ec29ee",
+          "runner/run-05/truth.jsonl": "6664e491cd2cbc5ff07156c65b4338bf782ea056a214ab767f1e8f779081a7ea",
+          "stream/config.json": "129b449c91789ab08ea03e4d233e49bbbbb70c5d4e407aded357b8cf7fe061ac",
+          "stream/run-01/observation.json": "03b1135d16af3d365f5aab3684928dfe930bbb56b5cb61880f5ae3ca63a3e7dc",
+          "stream/run-01/operator.jsonl": "4ae51926759c9573d1f1bfcfe1af51aa61e7d8a4d13cc6ad4f1e309c3883bc1f",
+          "stream/run-01/results.jsonl": "4effa3a4ecb57e533c63f116ebf977982edeea9ed2291d52390d6619044f0887",
+          "stream/run-02/observation.json": "03b1135d16af3d365f5aab3684928dfe930bbb56b5cb61880f5ae3ca63a3e7dc",
+          "stream/run-02/operator.jsonl": "e0eacbe2f49907679867ef89abc1be6b36865b0eb161cbdde9211d598f3f6e72",
+          "stream/run-02/results.jsonl": "47e16d09a8c946e9ec598863bc1bbe2919a01860bdb30ddb85150ba3c585e2a2",
+          "stream/run-03/observation.json": "03b1135d16af3d365f5aab3684928dfe930bbb56b5cb61880f5ae3ca63a3e7dc",
+          "stream/run-03/operator.jsonl": "f4e6daf088f2779c240a31afa0d354381b886dd1625f8a8ffff27da92dcb3421",
+          "stream/run-03/results.jsonl": "ec3e7e1302d66a4f95ff46a17bcb6b354f5f664f107e5f95ff927ec278c3ef92",
+          "stream/run-04/observation.json": "03b1135d16af3d365f5aab3684928dfe930bbb56b5cb61880f5ae3ca63a3e7dc",
+          "stream/run-04/operator.jsonl": "aaeb33cb7d6e00a3797c12300b571e90edccbc47775b8a35613d2df3924b2eaa",
+          "stream/run-04/results.jsonl": "3b9c42c6dfc9c3ec2053bef6a242342b9135a6828c26e276f84e07736d47e3b4",
+          "stream/run-05/observation.json": "03b1135d16af3d365f5aab3684928dfe930bbb56b5cb61880f5ae3ca63a3e7dc",
+          "stream/run-05/operator.jsonl": "0ca250164b0eb8abb79dd87c969bb5a39cee276c1aaaf11c8d21f714d7f802f6",
+          "stream/run-05/results.jsonl": "d2c5b4dd1a98b725bc1768a932d2fa5012e701efbceea03a165ca44b1285033b"
+        }
+      }
+    },
+    "T10": {
+      "passed": true,
+      "detail": {
+        "value_milli": 170600,
+        "lo": 0,
+        "hi": 100,
+        "source_quality": "GOOD",
+        "over_range": true
+      }
+    },
+    "T11": {
+      "passed": true,
+      "detail": {
+        "legacy_receipts_byte_identical": 370,
+        "legacy_useful": "10/10",
+        "legacy_guards": "8/8",
+        "validation_sha256": "788a1471bd638d43993260211de380878d47a42b260de164d7f4fbc0be92dce3"
+      }
+    }
+  },
+  "scope": "Authored synthetic interface checks. No model calls, controls approval or physics commissioning."
+}

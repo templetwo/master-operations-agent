@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tests/stream-boundary.test.cjs"
+  ],
+  "started_at": "2026-09-24T15:50:55.532385+00:00",
+  "stdout": "check-4.stdout",
+  "stderr": "check-4.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 0.131376083008945,
+  "stdout_bytes": 1861,
+  "stdout_sha256": "2b0689257757239ab0199a2c56a51f06557c2b7f1a77491710ab53e300a94edc",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
