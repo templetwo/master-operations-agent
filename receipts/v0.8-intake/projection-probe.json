@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-09-24T01:10:31.656Z",
+  "simulator_revision": "edd9dbcbb2b175fbf57121f3265794f8a082c146",
+  "node": "v22.23.2",
+  "scope": "Public sentinel diagnostic; no models, private cases, simulator edits or plant connection.",
+  "subject_has_station": false,
+  "subject_contains_sentinel": false,
+  "operator_contains_sentinel": true,
+  "subject_keys": [
+    "tick",
+    "sim_time_ms",
+    "points",
+    "product",
+    "batch",
+    "alarms",
+    "alarms_total_matched",
+    "alarms_omitted",
+    "trend_windows",
+    "public_messages"
+  ],
+  "point_count": 30,
+  "FI100": {
+    "tag": "FI100",
+    "value_milli": 60000,
+    "unit": "M3/H",
+    "quality": "GOOD",
+    "sample_tick": 0,
+    "sample_sim_time_ms": 0,
+    "age_sim_ms": 0,
+    "mode": null,
+    "sp_milli": null,
+    "op_milli": null,
+    "control_revision": 0,
+    "owner": "SUBJECT"
+  },
+  "example_controller": {
+    "tag": "FIC102",
+    "value_milli": 60000,
+    "unit": "M3/H",
+    "quality": "GOOD",
+    "sample_tick": 0,
+    "sample_sim_time_ms": 0,
+    "age_sim_ms": 0,
+    "mode": "CAS",
+    "sp_milli": 60000,
+    "op_milli": 50000,
+    "control_revision": 0,
+    "owner": "SUBJECT"
+  },
+  "trend_tags": [
+    "TIC201",
+    "TI312",
+    "LIC503"
+  ],
+  "limitations": "One sentinel example plus source inspection, not proof against arbitrary leakage or acceptance test T1–T11."
+}

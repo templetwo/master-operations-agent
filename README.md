@@ -20,6 +20,8 @@ This release assesses synthetic observations. Its default provider is a determin
 
 ## Start here
 
+**Next revision:** the [v0.8 intake and work order](docs/v0.8-intake.md) tracks the provider-free stream path beside the legacy advisor. The subject-view boundary has a public sentinel probe; schema 1.2 and the first slice are not yet implemented. The referenced full build brief and T1–T11 definitions remain required.
+
 Python 3.10 or newer. From this checkout:
 
 ```sh
