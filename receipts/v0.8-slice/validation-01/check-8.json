@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "--check",
+    "scripts/export_trajectory.cjs"
+  ],
+  "started_at": "2026-09-24T06:08:09.955620+00:00",
+  "stdout": "check-8.stdout",
+  "stderr": "check-8.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 0.037271292007062584,
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "--check",
+    "moa/web/app.js"
+  ],
+  "started_at": "2026-09-24T06:08:09.873767+00:00",
+  "stdout": "check-6.stdout",
+  "stderr": "check-6.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 0.04054466699017212,
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

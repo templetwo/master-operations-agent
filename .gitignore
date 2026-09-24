@@ -9,3 +9,6 @@ build/
 dist/
 .env*
 !.env.example
+
+# Regenerable synthetic stream recordings and review patches
+output/

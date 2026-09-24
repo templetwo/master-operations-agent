@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "started_at": "2026-09-24T06:07:10.471896+00:00",
+  "stdout": "check-1.stdout",
+  "stderr": "check-1.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 57.449717417010106,
+  "stdout_bytes": 765,
+  "stdout_sha256": "d789756d2ad18ddb51f65b896d10d8c51bd9df0d79d4e560149f5dfd330b7f3b",
+  "stderr_bytes": 25379,
+  "stderr_sha256": "c6b75a240bdbca2c16963fddf37d1a75730ac1f370e9571ea54d6fd521ce6bb3"
+}

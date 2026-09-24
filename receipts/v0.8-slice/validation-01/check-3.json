@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "moa",
+    "drill-eval",
+    "--sim-repo",
+    "/Users/vaquez/experion-station-sim"
+  ],
+  "started_at": "2026-09-24T06:08:07.999957+00:00",
+  "stdout": "check-3.stdout",
+  "stderr": "check-3.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 1.7000406669976655,
+  "stdout_bytes": 842698,
+  "stdout_sha256": "182baf3928bded857d4a69fbdcc476def9b00ca8bf7ffde30fc77027dd8aa777",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

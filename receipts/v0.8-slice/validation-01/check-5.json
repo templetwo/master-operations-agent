@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "--check",
+    "scripts/run_slice.cjs"
+  ],
+  "started_at": "2026-09-24T06:08:09.832636+00:00",
+  "stdout": "check-5.stdout",
+  "stderr": "check-5.stderr",
+  "exit_code": 0,
+  "timed_out": false,
+  "status": "passed",
+  "elapsed_seconds": 0.04069866600912064,
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

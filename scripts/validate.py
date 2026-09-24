@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-"""Reproducible local validation with command output and source hashes."""
+"""Reproducible local validation with immutable run receipts."""
 import argparse
-import hashlib
-import json
 import os
 from pathlib import Path
-import platform
-import subprocess
 import sys
-from datetime import datetime, timezone
+from validation_v08 import DEFAULT_TIMEOUT_SECONDS, run_validation
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -16,10 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--sim-repo", help="Trusted local simulator checkout for integration tests")
-    parser.add_argument("--output", default="receipts/latest")
+    parser.add_argument("--output", help="New output directory; defaults to a unique receipts/validation-* directory")
+    parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT_SECONDS, help="Per-step timeout in seconds (default: 600)")
+    parser.add_argument("--current-pointer", default="receipts/current.json", help="Explicit mutable index pointing to the newest validation receipt")
     args = parser.parse_args()
-    output = ROOT / args.output
-    output.mkdir(parents=True, exist_ok=True)
+    output = ROOT / args.output if args.output else None
     env = dict(os.environ)
     if args.sim_repo: env["MOA_SIM_REPO"] = str(Path(args.sim_repo).resolve())
     commands = [[sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
@@ -28,23 +25,9 @@ def main():
                 ["node", "--check", "scripts/export_trajectory.cjs"]]
     if args.sim_repo:
         commands.append([sys.executable, "-m", "moa", "drill-eval", "--sim-repo", str(Path(args.sim_repo).resolve())])
-    records = []
-    for index, command in enumerate(commands):
-        completed = subprocess.run(command, cwd=ROOT, env=env, text=True, capture_output=True, timeout=120)
-        stdout, stderr = f"check-{index + 1}.stdout", f"check-{index + 1}.stderr"
-        (output / stdout).write_text(completed.stdout)
-        (output / stderr).write_text(completed.stderr)
-        records.append({"command": command, "exit_code": completed.returncode, "stdout": stdout, "stderr": stderr})
-        print(f"{'PASS' if completed.returncode == 0 else 'FAIL'} {' '.join(command)}", flush=True)
-    sources = {}
-    for pattern in ("moa/**/*.py", "moa/web/*", "moa/data/*.json", "tests/*.py", "scripts/*", "pyproject.toml"):
-        for file in ROOT.glob(pattern):
-            if file.is_file(): sources[str(file.relative_to(ROOT))] = hashlib.sha256(file.read_bytes()).hexdigest()
-    receipt = {"recorded_at": datetime.now(timezone.utc).isoformat(), "python": sys.version, "platform": platform.platform(),
-               "simulator_checkout": args.sim_repo, "commands": records, "source_sha256": sources,
-               "passed": all(r["exit_code"] == 0 for r in records),
-               "scope": "Synthetic baseline and mocked provider validation. No actual model inference or plant connection."}
-    (output / "validation.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    receipt = run_validation(commands, root=ROOT, output=output, env=env, timeout=args.timeout,
+                             current_pointer=ROOT / args.current_pointer,
+                             metadata={"simulator_checkout": args.sim_repo})
     return 0 if receipt["passed"] else 1
 
 
