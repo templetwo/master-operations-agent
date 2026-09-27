@@ -1,0 +1,520 @@
+{
+  "schema": "moa-source-map-v2-evaluation-v1",
+  "recorded_at": "2026-09-27T05:07:10.419071+00:00",
+  "seat": "MacBook seat (grok-4.6)",
+  "hostname": "Anthonys-MacBook-Pro.local",
+  "provider": "baseline",
+  "models_called": 0,
+  "simulator": {
+    "revision": "bfed001fc89d9beaa640b30a7886d5f16f61a31b",
+    "model_id": "670f49e40c2b3395735e85b3bd09205f77f4a0598c955959f061f1d18810c832",
+    "merge": "https://github.com/templetwo/experion-station-sim/pull/2"
+  },
+  "moa": {
+    "revision": "ac2524372204bb4ead7a3b7dedb00953b101fe5b",
+    "merge": "https://github.com/templetwo/master-operations-agent/pull/1",
+    "node": "22.23.2",
+    "python": "3.14.6"
+  },
+  "historical_manifest": {
+    "path": "moa/data/drills-v1.json",
+    "sha256": "4da8c8d0a2875a6b706798834af46ceece68a381e2401689f40b279b23885b62",
+    "simulator_revision": "3aad7695b8720b291999ef0903fcab7b7e008f1e",
+    "suite": "ess-u1-development-v1",
+    "unchanged": true,
+    "prior_denominator": "10/10 useful and 8/8 guards at simulator 3aad769. Not rewritten."
+  },
+  "standing_stream_pin": {
+    "path": "moa/data/stream-v1.json",
+    "sha256": "e15e554184dba3bcd7e626d63b039343aaa7b84fd309965be237c0a283df035b",
+    "unchanged": true,
+    "note": "v0.8 slice remains bound to edd9dbc / model cc0b2a83. This run did not call run_slice and did not move receipts/current.json."
+  },
+  "pins_sha256": {
+    "moa/data/drills-v1.json": "4da8c8d0a2875a6b706798834af46ceece68a381e2401689f40b279b23885b62",
+    "moa/data/stream-v1.json": "e15e554184dba3bcd7e626d63b039343aaa7b84fd309965be237c0a283df035b",
+    "receipts/current.json": "677a430627926edfce224d465a61d56b2189b0496db0cb964408a7b9643f6809"
+  },
+  "expectations": "Historical case expectations applied unchanged. A miss is reported. The manifest was not edited to absorb it.",
+  "metrics": {
+    "useful_assessment": {
+      "passed": 8,
+      "total": 10
+    },
+    "input_guards": {
+      "passed": 8,
+      "total": 8
+    },
+    "withheld_on_expected_advisory": [
+      {
+        "id": "cooling-loss:20260920",
+        "actual_reason": "quality",
+        "tic202": {
+          "quality": "uncertain",
+          "value": 103.125
+        }
+      },
+      {
+        "id": "cooling-loss:20260921",
+        "actual_reason": "quality",
+        "tic202": {
+          "quality": "uncertain",
+          "value": 103.125
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "normal:20260920",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "no_large_net_change",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "no_large_net_change",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "910fcda89829bc8b0df27bb4d3b9a23de09698d94203760b2ca92e1a628f7ffa",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "cooling-loss:20260920",
+      "passed": false,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_warming",
+          "jacket_warming",
+          "coolant_output_high",
+          "cooling_path_unconfirmed",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "quality",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "uncertain",
+        "value": 103.125
+      },
+      "process_data_sha256": "c7fdc0262bca13825ba192f5f174e09fbd06e7667f5323a6acd3eec9fa4f4cf1",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "feed-surge:20260920",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "feed_flow_increased",
+          "tank_level_increased",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "feed_flow_increased",
+          "tank_level_increased",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.526850189492194
+      },
+      "process_data_sha256": "7d60959c28931419892cd11a542a8de1b4b0e1513cc609d696f7a9760cdb24f2",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "bad-quality:20260920",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "quality",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "quality",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.95251032028384
+      },
+      "process_data_sha256": "d3c63641a581cfa11fd686bbd737cefd8dc7195bdd4c6b7978f891f836ffa956",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "restoration-lag:20260920",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_warming",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_warming",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 52.54734593718343
+      },
+      "process_data_sha256": "08eda3880aeb5beb8df175a838aae98a89fc8a61bf4db59a28f853bef6bf46d5",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "recovery:20260920",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_cooling",
+          "coolant_output_high",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_cooling",
+          "coolant_output_high",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 29.087971749397113
+      },
+      "process_data_sha256": "e80f9ac44bffcd86d4d5cbb409f6addc658e6247afef4c72742c92bd1bc31709",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "normal:20260921",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "no_large_net_change",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "no_large_net_change",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.85303006614238
+      },
+      "process_data_sha256": "7ab09c52d21ac3174911c46ddbc66cc2fa902b672865e39cebb06950dd18eb4c",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "cooling-loss:20260921",
+      "passed": false,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_warming",
+          "jacket_warming",
+          "coolant_output_high",
+          "cooling_path_unconfirmed",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "quality",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "uncertain",
+        "value": 103.125
+      },
+      "process_data_sha256": "5c010d6d58a7351b8b11a6a868d505a2a53a1e6b1de5c424129b7770401091bf",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "feed-surge:20260921",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "feed_flow_increased",
+          "tank_level_increased",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "no_reported_alarms",
+          "feed_flow_increased",
+          "tank_level_increased",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.46316105150236
+      },
+      "process_data_sha256": "0aa56f70a6bf8816ffc6184338626737325ac62061e4a5133c7687b515cbb2aa",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "bad-quality:20260921",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "quality",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "quality",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.9452335379252
+      },
+      "process_data_sha256": "78f782a9ea8674be3de56b7b35068e6e355bc311a29fd0c1cdc8dc60ced25fda",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "restoration-lag:20260921",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_warming",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_warming",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 52.60614730634866
+      },
+      "process_data_sha256": "e8992357b1c5b646e93b42715a8783d1fcf8180ca7422f487eea5d0c1b012890",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "recovery:20260921",
+      "passed": true,
+      "expected": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_cooling",
+          "coolant_output_high",
+          "cause_unresolved"
+        ]
+      },
+      "actual": {
+        "status": "advisory",
+        "reason": "supported",
+        "findings": [
+          "reported_alarms",
+          "reactor_cooling",
+          "coolant_output_high",
+          "cause_unresolved"
+        ]
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 29.067061326422206
+      },
+      "process_data_sha256": "88a97bae0377486430192440416e450f16fdfc46ca2f93de1c15563b9c995155",
+      "evidence_fidelity": true
+    },
+    {
+      "id": "expired",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "stale",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "stale",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "910fcda89829bc8b0df27bb4d3b9a23de09698d94203760b2ca92e1a628f7ffa",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "missing-tag",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "incomplete",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "incomplete",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "a9ac14ed397ca0dfb171b088343493f2dcf9559d251eb7d0d48d2bdd6c5e94af",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "history-gap",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "history_sequence",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "history_sequence",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "3e654e08d1071b50819bee9ac831426b766433158df5a4b5487bd8d7f646491a",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "history-reversed",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "history_sequence",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "history_sequence",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "d2225cd386d90c85c49404615b88328487b3a781b35277c4b28eed0f26c22621",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "endpoint-conflict",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "history_mismatch",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "history_mismatch",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "837345f2f83cc82c8f12c9423b40de2d7386d64c3807a13de927ead3a273b2ef",
+      "evidence_fidelity": null
+    },
+    {
+      "id": "partial-alarms",
+      "passed": true,
+      "expected": {
+        "status": "abstain",
+        "reason": "incomplete",
+        "findings": []
+      },
+      "actual": {
+        "status": "abstain",
+        "reason": "incomplete",
+        "findings": []
+      },
+      "tic202": {
+        "quality": "good",
+        "value": 39.91666872874377
+      },
+      "process_data_sha256": "ac6d2cf9f484610f9a3b88367a202dbf490a6b506f4b162a2dc50043955f8702",
+      "evidence_fidelity": null
+    }
+  ],
+  "limits": [
+    "Development cases only. Not held-out, not a model campaign, not plant readiness.",
+    "The advice gate still requires a good current tag. Uncertain TIC202 is evidence and an abstention, not a relabeled advisory.",
+    "Previous campaign receipts, acceptance denominators, drills-v1.json, stream-v1.json, and receipts/current.json were not modified."
+  ]
+}
