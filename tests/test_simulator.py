@@ -18,8 +18,18 @@ class SimulatorTests(unittest.TestCase):
                 exported = subprocess.run(["node", "scripts/export_sim.cjs", os.environ["MOA_SIM_REPO"], scenario],
                                           cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=True, timeout=30)
                 data = json.loads(exported.stdout)
+                self.assertEqual(data["schema_version"], "1.3")
                 self.assertEqual(data["source"]["adapter"], "ess-v1")
                 self.assertEqual(len(data["source"]["revision"]), 40)
+                loops = {row["tag"]: row for row in data["loops"]}
+                self.assertEqual(len(loops), len(data["loops"]))
+                self.assertTrue({"TIC201", "TIC202", "FIC102"}.issubset(loops))
+                tags = {row["id"]: row for row in data["tags"]}
+                for loop in loops.values():
+                    self.assertEqual(set(loop), {"tag", "sp", "op", "mode", "sp_unit", "op_unit"})
+                    self.assertIn(loop["mode"], ("MAN", "AUTO", "CAS"))
+                    self.assertEqual(loop["sp_unit"], tags[loop["tag"]]["unit"])
+                    self.assertEqual(loop["op_unit"], "%")
                 for excluded in ("archFaults", "instructor", "fault_ids", "probableCause", "correctiveAction"):
                     self.assertNotIn(excluded, exported.stdout)
                 store = EvidenceStore(":memory:")

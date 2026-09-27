@@ -4,6 +4,7 @@
 const path = require('node:path');
 const {execFileSync} = require('node:child_process');
 const {randomUUID, createHash} = require('node:crypto');
+const {sourceQuality} = require('./lib/quality.cjs');
 
 const [repo, scenario = 'normal', seedText = '20260920'] = process.argv.slice(2);
 const recipes = {
@@ -42,7 +43,8 @@ for (let step = 0; step <= recipe.end * 2; step++) {
     for (const id of sampleTags) {
       const row = catalog[id === 'TIC202.OP' ? 'TIC202' : id];
       values[id] = id === 'TIC202.OP' ? row.op : row.pv;
-      quality[id] = row.badPv || values[id] === null ? 'bad' : 'good';
+      // PV quality does not describe the separate output indication.
+      quality[id] = sourceQuality(id === 'TIC202.OP' ? {pv: row.op} : row);
     }
     samples.push({sequence:step / 20, elapsed_s:elapsed, values, quality});
   }

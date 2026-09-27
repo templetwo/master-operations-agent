@@ -23,7 +23,7 @@ function allowlist(subject, profile = PROFILE) {
     const matches = subject.points.filter(point => point.tag === tag);
     if (matches.length !== 1) throw new Error('Required point must occur exactly once');
     const point = selected(matches[0], POINT_FIELDS);
-    if (!['GOOD', 'BAD'].includes(matches[0].quality)) throw new Error('Unknown source quality');
+    if (!['GOOD', 'UNCERTAIN', 'BAD'].includes(matches[0].quality)) throw new Error('Unknown source quality');
     point.source_quality = matches[0].quality;
     if (point.source_quality === 'BAD') point.value_milli = null;
     return point;

@@ -26,6 +26,17 @@ test('BAD values become null while source quality remains explicit', () => {
   assert.equal(point.source_quality, 'BAD'); assert.equal(point.value_milli, null);
   assert.equal(point.sample_tick, 0); assert.equal(point.sample_sim_time_ms, 0);
 });
+test('UNCERTAIN source PV survives as evidence without expanding the strict stream fields', () => {
+  const data = board();
+  Object.assign(data.points[4], {value_milli: 103125, quality: 'UNCERTAIN', status_code: 0x40940600, limit: 'HIGH'});
+  const point = allowlist(data).points[4];
+  assert.equal(point.source_quality, 'UNCERTAIN');
+  assert.equal(point.value_milli, 103125);
+  assert.equal(Object.hasOwn(point, 'status_code'), false);
+  assert.equal(Object.hasOwn(point, 'limit'), false);
+  data.points[4].quality = 'UNKNOWN';
+  assert.throws(() => allowlist(data), /Unknown source quality/);
+});
 test('ambiguous, missing or nested point values fail the observation boundary', () => {
   const data = board(); data.points.push(data.points[0]); assert.throws(() => allowlist(data), /exactly once/);
   data.points.pop(); data.points[0].mode = {seed: 1}; assert.throws(() => allowlist(data), /Non-scalar/);
