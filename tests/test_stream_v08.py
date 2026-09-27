@@ -70,6 +70,29 @@ class StreamTests(unittest.TestCase):
         self.assertTrue(any(x['tag']=='FIC102' for x in result['unusable_measurements']))
         self.assertEqual(self.stream.read('read_tag',{'tag':'FIC102'})['source_quality'],'BAD')
 
+    def test_uncertain_saturated_pv_is_preserved_but_not_used_for_trusted_findings(self):
+        for tick in range(0,242,2): self.stream.accept(row(self.manifest,tick))
+        value=row(self.manifest,242)
+        value['points'][4].update(value_milli=103125,source_quality='UNCERTAIN',op_milli=100000)
+        self.stream.accept(value)
+        result=self.stream.prepare()
+        self.assertEqual(result['outcome'],'observation_incomplete')
+        self.assertNotIn('jacket_warming',result['findings'])
+        self.assertNotIn('cooling_path_unconfirmed',result['findings'])
+        self.assertIn('coolant_output_high',result['findings'])
+        self.assertFalse(result['derived']['TIC202']['over_range'])
+        self.assertTrue(any(x['tag']=='TIC202' and x['reason']=='source_quality_uncertain'
+                            for x in result['unusable_measurements']))
+        point=self.stream.read('read_tag',{'tag':'TIC202'})
+        self.assertEqual(point['source_quality'],'UNCERTAIN')
+        self.assertEqual(point['value_milli'],103125)
+
+    def test_uncertain_value_still_requires_an_integer_and_strict_quality_enum(self):
+        for quality,value in (('UNCERTAIN',None),('UNCERTAIN',103125.0),('UNKNOWN',103125)):
+            observation=row(self.manifest)
+            observation['points'][4].update(source_quality=quality,value_milli=value)
+            with self.assertRaises(c.StreamError): self.stream.accept(observation)
+
     def test_late_result_never_replaces_newer_result(self):
         self.stream.accept(row(self.manifest,0));old=self.stream.prepare()
         self.stream.accept(row(self.manifest,10));new=self.stream.release(self.stream.prepare())

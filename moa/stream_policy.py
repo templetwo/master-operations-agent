@@ -2,7 +2,7 @@
 
 Inputs are already validated operator rows and public configuration. ``grid``
 contains the 25 aligned five-second samples at or before the current sample;
-missing slots are None. Current bad quality invalidates cached dependent trends
+missing slots are None. Current non-good quality invalidates cached dependent trends
 immediately. Integer milli-values preserve the legacy numerical thresholds, not
 the legacy floating-point representation or global history-quality behavior.
 
@@ -42,6 +42,7 @@ FINDINGS = {name: LEGACY_FINDINGS[name] for name in DEPENDENCIES}
 CHECKS = deepcopy(LEGACY_CHECKS)
 UNUSABLE_TEXT = {
     "source_quality_bad": "The source marks this measurement unusable. Findings that require its value are withheld.",
+    "source_quality_uncertain": "The source marks this measurement uncertain. Findings that require a trusted value are withheld.",
     "missing_value": "This measurement has no usable integer milli-value. Findings that require its value are withheld.",
     "missing_point": "This required measurement is absent. Findings that require its value are withheld.",
 }
@@ -102,6 +103,8 @@ def _points(row):
 def _unusable_reason(point):
     if point is None:
         return "missing_point"
+    if point["source_quality"] == "UNCERTAIN":
+        return "source_quality_uncertain"
     if point["source_quality"] != "GOOD":
         return "source_quality_bad"
     if type(point["value_milli"]) is not int:

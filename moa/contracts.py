@@ -89,10 +89,13 @@ def text_field(value, limit=160):
 def validate_snapshot(raw, now=None):
     now = now or now_utc()
     windowed = isinstance(raw, dict) and raw.get("schema_version") == "1.1"
+    contextual = isinstance(raw, dict) and raw.get("schema_version") == "1.3"
     fields = {"schema_version", "snapshot_id", "captured_at", "profile", "source", "tags", "alarms", "alarm_coverage"}
-    keys(raw, fields | ({"history"} if windowed else set()), "snapshot")
-    if raw["schema_version"] not in ("1.0", "1.1") or not isinstance(raw["profile"], str) or raw["profile"] not in PROFILES:
+    keys(raw, fields | ({"history"} if windowed else set()) | ({"loops"} if contextual else set()), "snapshot")
+    if raw["schema_version"] not in ("1.0", "1.1", "1.3") or not isinstance(raw["profile"], str) or raw["profile"] not in PROFILES:
         raise Rejected("profile", "Unsupported observation version or profile.")
+    if contextual and raw["profile"] != "ess-u1-v1":
+        raise Rejected("profile", "Controller context requires the simulator snapshot profile.")
     if windowed != (raw["profile"] == "ess-u1-window-v1"):
         raise Rejected("profile", "History profile and schema version disagree.")
     identifier(raw["snapshot_id"])
@@ -152,7 +155,31 @@ def validate_snapshot(raw, now=None):
         # indications only, never interpreted as measured process values.
     if windowed:
         validate_history(raw["history"], seen)
+    if contextual:
+        validate_loops(raw["loops"], seen)
     return copy.deepcopy(raw)
+
+
+def validate_loops(loops, tags):
+    """Schema 1.3 read-only controller context; no additional advice authority."""
+    if not isinstance(loops, list) or not 3 <= len(loops) <= 128:
+        raise Rejected("schema", "Expected a bounded controller context list.")
+    seen = set()
+    for row in loops:
+        keys(row, {"tag", "sp", "op", "mode", "sp_unit", "op_unit"}, "controller context")
+        identifier(row["tag"])
+        if row["tag"] in seen or row["tag"] not in tags:
+            raise Rejected("conflict", "Controller context requires a unique observed tag.")
+        seen.add(row["tag"])
+        if row["mode"] not in ("MAN", "AUTO", "CAS"):
+            raise Rejected("schema", "Unknown source controller mode.")
+        for field in ("sp", "op"):
+            if type(row[field]) not in (int, float) or not math.isfinite(row[field]):
+                raise Rejected("invalid_number", "Controller values must be finite numbers.")
+        if row["sp_unit"] != tags[row["tag"]]["unit"] or row["op_unit"] != "%":
+            raise Rejected("units", "Controller context units disagree with the observed tag.")
+    if not {"TIC201", "TIC202", "FIC102"}.issubset(seen):
+        raise Rejected("incomplete", "Required U1 controller context is missing.")
 
 
 def validate_history(history, tags):

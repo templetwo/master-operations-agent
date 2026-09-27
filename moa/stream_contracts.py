@@ -147,7 +147,7 @@ def sample(value, observation, configuration, now=None):
         tag=point['tag']
         if tag not in TAGS or tag in seen: raise StreamError('duplicate or unknown tag')
         seen.append(tag)
-        if point['unit']!=UNITS[tag] or point['source_quality'] not in ('GOOD','BAD'): raise StreamError('point unit or quality mismatch')
+        if point['unit']!=UNITS[tag] or point['source_quality'] not in ('GOOD','UNCERTAIN','BAD'): raise StreamError('point unit or quality mismatch')
         if point['source_quality']=='BAD':
             if point['value_milli'] is not None: raise StreamError('BAD value must be withheld')
         else: integer(point['value_milli'],'value_milli',-(2**53-1))
