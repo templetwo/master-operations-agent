@@ -1,5 +1,7 @@
 # Next research question: useful explanations
 
+Status update, 2026-09-28: the contract proposed below is frozen as [explanation-task-v1.md](explanation-task-v1.md). This page stays the proposal. It is not a case list. No cases, runner, or model call shipped with that freeze.
+
 The current task asks a model to reproduce a small deterministic policy. Passing it shows compliance with that contract, not a reason to use a model instead of the calculation. The next task should measure whether a model makes already calculated findings easier to understand.
 
 Proposed input: synthetic observations, the deterministic findings and checks, and a bounded set of engineering-document excerpts with stable source identifiers. Proposed output: a short explanation linking each factual claim to an observation or excerpt, an explicit distinction between observed facts and unconfirmed causes, and the missing evidence needed to distinguish those causes. No tool may change simulator or external state.

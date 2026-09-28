@@ -22,6 +22,8 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **v0.8 stream work:** the [slice report](docs/v0.8-slice-report.md) records the separate provider-free schema 1.2 path, commands, acceptance outcomes and limits. It uses subject-only observations and dependency-scoped `lab-v2-deps` findings. The legacy advisor and its model evaluations are unchanged.
 
+**Explanation task:** the [v1 contract](docs/explanation-task-v1.md) freezes how a later candidate may explain findings the baseline already produced. It adds no tool, no cases, and no model run. The [proposal](docs/next-explanation-task.md) remains the question, not the case list.
+
 Python 3.10 or newer. From this checkout:
 
 ```sh

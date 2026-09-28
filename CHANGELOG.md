@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- Freeze the cited-explanation contract in `docs/explanation-task-v1.md`. No cases, runner, model call, new tool, or promotion threshold.
+
 ## 0.7.0
 
 - Unify distribution and HTTP version reporting through `moa.__version__`.
