@@ -22,7 +22,9 @@ This release assesses synthetic observations. Its default provider is a determin
 
 **v0.8 stream work:** the [slice report](docs/v0.8-slice-report.md) records the separate provider-free schema 1.2 path, commands, acceptance outcomes and limits. It uses subject-only observations and dependency-scoped `lab-v2-deps` findings. The legacy advisor and its model evaluations are unchanged.
 
-**Explanation task:** the [v1 contract](docs/explanation-task-v1.md) freezes how a later candidate may explain findings the baseline already produced. It adds no tool, no cases, and no model run. The [proposal](docs/next-explanation-task.md) remains the question, not the case list.
+**Source quality v2:** uncertain source measurements now pass through the adapters as evidence but never support findings that need Good values ([compatibility notes](docs/source-measurement-compatibility.md)). Against simulator `bfed001`, the v1 drill expectations give 8/10 useful and 8/8 guards, because cooling-loss drives TIC202 out of its declared range ([re-score](receipts/source-map-v2/README.md)). [Drills v2](receipts/drills-v2/README.md) is pinned to that revision and expects the quality abstention.
+
+**Explanation task:** the [v1 contract](docs/explanation-task-v1.md) froze how a later candidate may explain findings the baseline already produced. Its [v1.1 revision](docs/explanation-task-v1.1.md), [adopted 2026-10-03](docs/explanation-task-v1.1-adoption.md), corrects v1's template and limits. `moa/explanation/` implements the v1.1 preflight, template, always-abstain control, advisory mechanical checks, blind review sheet and counts-only report. No model is called, and nothing has been run on the private cases. That needs a case-package loader, the frozen reviewer grid and an independent review of the case freeze.
 
 Python 3.10 or newer. From this checkout:
 

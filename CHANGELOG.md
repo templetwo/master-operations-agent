@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Adopt explanation-task v1.1 (Anthony, 2026-10-03, all ten decisions as recommended) and add `moa/explanation/`. It holds the shared contract, the section 6 template and always-abstain control, advisory mechanical checks, section 1 packet gates with a pinned leak word list, a fixed-clock preflight, a single-attempt evaluation run, a blind review sheet, a tally of recorded verdicts and a counts-only report. A stage 0 freeze pins the case-freeze modules, both specs and the fixture kernels. No model is called and no private case is read.
+
+## 0.8.0
+
+- Add the v0.8 provider-free stream boundary and deterministic slice: schema 1.2 subject-only observations and dependency-scoped `lab-v2-deps` findings. All eleven acceptance tests pass from a clean checkout. The legacy advisor is unchanged. See [the slice report](docs/v0.8-slice-report.md).
+- Carry uncertain source quality through the stream and legacy adapters without using it for findings that need Good values. Snapshot schema 1.3 exports SP, OP and categorical MODE; `--legacy` keeps schema 1.0 output (PR #1).
+- Record the source-map v2 re-score: the v1 drill expectations give 8/10 useful and 8/8 guards against simulator `bfed001`, because cooling-loss drives TIC202 above its declared range and the advice gate withholds advice on the uncertain reading. The 10/10 result stays pinned to simulator `3aad769`.
+- Add `scripts/rescore_drills.py`, which scores any development manifest against a simulator checkout with deterministic providers, records an explicit revision override, and compares rows with a recorded receipt. It reproduces the source-map v2 rows with 0 mismatches.
+- Add `moa/data/drills-v2.json`, pinned to simulator `bfed001`, with cooling-loss expected to abstain for quality. `drills-v1.json` and every experiment pin are unchanged. Baseline 8/8 useful and 10/10 guards; always-refuse 0/8 and 10/10. Simulator integration tests now select the manifest pinned to the checkout under test.
+- Add missing receipt READMEs for the v0.8 intake and slice, and correct the stale validation-output note in the receipts index.
 - Freeze the cited-explanation contract in `docs/explanation-task-v1.md`. No cases, runner, model call, new tool, or promotion threshold.
 
 ## 0.7.0

@@ -1,0 +1,17 @@
+{
+  "suite": "ess-u1-development-v2",
+  "review_status": "controls_review_pending",
+  "split": "development",
+  "simulator_revision": "bfed001fc89d9beaa640b30a7886d5f16f61a31b",
+  "derived_from": {"path": "moa/data/drills-v1.json", "sha256": "4da8c8d0a2875a6b706798834af46ceece68a381e2401689f40b279b23885b62", "simulator_revision": "3aad7695b8720b291999ef0903fcab7b7e008f1e"},
+  "seeds": [20260920, 20260921],
+  "cases": [
+    {"id":"normal","status":"advisory","reason":"supported","findings":["no_reported_alarms","no_large_net_change","cause_unresolved"],"checks":["continue_observation","compare_independent_measurement"]},
+    {"id":"cooling-loss","status":"abstain","reason":"quality","findings":[],"checks":[]},
+    {"id":"feed-surge","status":"advisory","reason":"supported","findings":["no_reported_alarms","feed_flow_increased","tank_level_increased","cause_unresolved"],"checks":["continue_observation","compare_independent_measurement","review_feed_balance"]},
+    {"id":"bad-quality","status":"abstain","reason":"quality","findings":[],"checks":[]},
+    {"id":"restoration-lag","status":"advisory","reason":"supported","findings":["reported_alarms","reactor_warming","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement"]},
+    {"id":"recovery","status":"advisory","reason":"supported","findings":["reported_alarms","reactor_cooling","coolant_output_high","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement","monitor_thermal_recovery"]}
+  ],
+  "limits": "Project-authored expectations for this pinned simulator revision. Public development cases, not held-out or engineer-approved ground truth. No plant response procedure. Derived from drills-v1 (simulator 3aad769) with one change: at this revision cooling-loss drives TIC202 above its declared 0-100 DEG C range, the simulator reports it uncertain at 103.125, and the expected outcome is a quality abstention."
+}

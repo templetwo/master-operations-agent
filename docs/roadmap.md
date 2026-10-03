@@ -2,6 +2,8 @@
 
 Status recorded 2026-09-20. This repository starts the independent research lane. No stage here grants plant authority.
 
+Update, 2026-10-03: since this status, v0.7 ran a policy-only private holdout campaign (7/24 useful, gate failed, no model promoted), v0.8 added a separate provider-free stream path ([slice report](v0.8-slice-report.md)), and source quality v2 carries uncertain measurements as evidence only. Development drills now have two pinned manifests: v1 at simulator `3aad769` and [v2](../receipts/drills-v2/README.md) at `bfed001`. The next research question is the frozen [explanation task](explanation-task-v1.md). None of this changes the gates below.
+
 ## 0. Working advisory foundation
 
 Implemented: local workbench, strict synthetic contracts, finite tool loop, independent candidate validator, deterministic baseline, local evidence, simulator export, optional local-model protocol, and adversarial regression tests. The public smoke suite checks useful assessment and input guards separately. Supported and stale dashboard flows were checked in Comet. V0.3 adds actual local-model development comparisons with preserved failure receipts.

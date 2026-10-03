@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -8,6 +9,7 @@ from unittest.mock import patch
 from moa.contracts import Rejected
 from moa.deepseek import DeepSeek, read_api_key
 from moa.cloud_comparison import compare_deepseek, cloud_metrics
+from moa.drills import MANIFEST_PATH
 
 KEY = "sk-" + "test" * 8
 
@@ -155,6 +157,9 @@ class DeepSeekTests(unittest.TestCase):
 
     @unittest.skipUnless(os.environ.get("MOA_SIM_REPO"), "Set MOA_SIM_REPO for synthetic cloud-runner integration")
     def test_cloud_runner_with_simulator_and_mocked_model(self):
+        revision = subprocess.run(["git", "-C", os.environ["MOA_SIM_REPO"], "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+        if revision != json.loads(MANIFEST_PATH.read_text())["simulator_revision"]:
+            self.skipTest("This preregistered experiment is pinned to the drills-v1 simulator revision.")
         from moa.providers import Baseline
         class MockCloud(DeepSeek):
             def _request(self, method, path, body=None):

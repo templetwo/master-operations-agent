@@ -2,9 +2,11 @@
 
 Start with the [public Gemma startup timing](v0.7-gemma-timing/README.md), [incomplete Gemma comparison](v0.7-gemma-gguf/README.md), [Qwen local comparisons](v0.7-local/README.md), and [DeepSeek private-corpus aggregate](v0.7/README.md). Each records its own scope, frozen configuration and limits. The [v0.6 index](v0.6/README.md) records the earlier guidance experiment and holdout preparation.
 
+Later development work: the [v0.8 slice](v0.8-slice/README.md) and its [intake probe](v0.8-intake/README.md), the [source-map v2 re-score](source-map-v2/README.md) of the v1 drills against simulator `bfed001` (8/10 useful, 8/8 guards, [reproduction](source-map-v2/REPRODUCE.md)), and [drills v2](drills-v2/README.md), the manifest pinned to that simulator revision (baseline 8/8 useful and 10/10 guards; always-refuse 0/8 and 10/10).
+
 The `v0.5/` directory preserves DeepSeek authentication attempts and validation from that revision. `v0.4/` contains schema-order diagnostics and corrected local-model comparisons. `v0.3/` preserves comparisons affected by the schema serialization bug. `v0.2/` preserves time-series validation. Despite its name, **`latest/` is the original v0.1 bootstrap archive**, not current validation. Preserve its bytes.
 
-Use an explicitly new output directory when running validation. The current script still defaults to the historical `latest/` path and does not enforce a fresh destination; that pending harness fix is recorded in the [v0.8 intake](../docs/v0.8-intake.md). Run from the repository root:
+Without `--output`, the script now writes to a new, uniquely named `receipts/validation-*` directory. It no longer defaults to the historical `latest/` path; the [v0.8 intake](../docs/v0.8-intake.md) recorded that fix. Run from the repository root:
 
 ```sh
 python3 scripts/validate.py --sim-repo /path/to/experion-station-sim --output receipts/new-run

@@ -13,6 +13,20 @@ from .engine import Agent
 from .evidence import EvidenceStore
 
 MANIFEST_PATH = Path(__file__).with_name("data") / "drills-v1.json"
+MANIFEST_V2_PATH = Path(__file__).with_name("data") / "drills-v2.json"
+
+
+def pinned_manifest(revision):
+    """Return the development manifest pinned to this simulator revision.
+
+    Experiment modules keep importing MANIFEST_PATH. This lookup never
+    substitutes a manifest for a revision it was not written against.
+    """
+    for path in (MANIFEST_PATH, MANIFEST_V2_PATH):
+        manifest = json.loads(path.read_text())
+        if manifest["simulator_revision"] == revision:
+            return manifest
+    raise ValueError("No development manifest is pinned to this simulator revision.")
 
 
 def build_cases(sim_repo, manifest=None):
@@ -125,8 +139,8 @@ def summarize_rows(rows):
                           "max": max(elapsed) if elapsed else None}}
 
 
-def evaluate_drills(sim_repo, provider=None, store=None, progress=None, *, system_prompt=None):
-    manifest = json.loads(MANIFEST_PATH.read_text())
+def evaluate_drills(sim_repo, provider=None, store=None, progress=None, *, system_prompt=None, manifest=None):
+    manifest = manifest or json.loads(MANIFEST_PATH.read_text())
     owned = store is None
     store = store or EvidenceStore(":memory:")
     agent = Agent(store, provider) if system_prompt is None else Agent(store, provider, system_prompt=system_prompt)
