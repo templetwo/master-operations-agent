@@ -2,6 +2,8 @@
 
 Design recorded 2026-09-20. This document describes project decisions; it does not claim conformance to an industrial safety standard.
 
+Update, 2026-10-03: the diagram below is the legacy snapshot advisor. v0.8 added a separate provider-free stream path with subject-only schema 1.2 observations and dependency-scoped `lab-v2-deps` findings; `moa/stream.py` never imports a provider ([slice report](v0.8-slice-report.md)). Source quality v2 lets uncertain source measurements cross both boundaries as evidence, while the legacy advice gate still requires a Good current tag ([compatibility notes](source-measurement-compatibility.md)).
+
 ```mermaid
 flowchart LR
     A[Synthetic fixtures or ESS export] --> B[Observation contract]
