@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- Adopt explanation-task v1.1 (Anthony, 2026-10-03, all ten decisions as recommended) and add `moa/explanation/`. It holds the shared contract, the section 6 template and always-abstain control, advisory mechanical checks, section 1 packet gates with a pinned leak word list, a fixed-clock preflight, a single-attempt evaluation run, a blind review sheet, a tally of recorded verdicts and a counts-only report. A stage 0 freeze pins the case-freeze modules, both specs and the fixture kernels. No model is called and no private case is read.
+
 ## 0.8.0
 
 - Add the v0.8 provider-free stream boundary and deterministic slice: schema 1.2 subject-only observations and dependency-scoped `lab-v2-deps` findings. All eleven acceptance tests pass from a clean checkout. The legacy advisor is unchanged. See [the slice report](docs/v0.8-slice-report.md).
