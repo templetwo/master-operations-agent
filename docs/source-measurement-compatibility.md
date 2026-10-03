@@ -53,6 +53,8 @@ against this observation layer.
 
 ## Verification, September 26, 2026
 
+Note, 2026-10-03: the `/private/tmp/experion-source-map-v2` checkout named below no longer exists. To reproduce, clone the simulator at `bfed001`; the counts are as of this date.
+
 - `python3 -m unittest discover -s tests -v`: 178 tests, successful, 6 skipped.
   The initial sandboxed attempt could not bind the local HTTP-server test;
   the permitted rerun outside that sandbox completed. The full suite keeps

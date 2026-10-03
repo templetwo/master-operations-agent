@@ -1,4 +1,3 @@
-import copy
 import unittest
 
 from explanation_packets import packet, quality_abstain_observation

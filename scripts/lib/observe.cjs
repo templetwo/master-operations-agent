@@ -62,4 +62,4 @@ function withoutWallClocks(value) {
   return value;
 }
 const hash = value => crypto.createHash('sha256').update(canonical(value), 'utf8').digest('hex');
-module.exports = {createObserver, allowlist, canonical, hash, withoutWallClocks, PROFILE, TAGS, POINT_FIELDS, ALARM_FIELDS};
+module.exports = {createObserver, allowlist, canonical, hash, withoutWallClocks, PROFILE, TAGS};

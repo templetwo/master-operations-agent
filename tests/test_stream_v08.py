@@ -1,7 +1,6 @@
 """Boundary, ordering and release tests for the separate stream contract."""
 import copy
 from datetime import datetime, timedelta, timezone
-import io
 import json
 from pathlib import Path
 import tempfile

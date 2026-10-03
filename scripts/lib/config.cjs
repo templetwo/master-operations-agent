@@ -29,4 +29,4 @@ function declarationDiscrepancies(config) {
     .map(row => ({id: row.id, expected_numeric_declaration: expected[row.id], declared_comparator: row.comparator,
       declared_threshold: row.threshold, disposition: 'Preserved the named MATRIX declaration without numeric reinterpretation.'}));
 }
-module.exports = {extractConfig, declarationDiscrepancies, TRIP_TAGS};
+module.exports = {extractConfig, declarationDiscrepancies};

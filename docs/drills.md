@@ -2,6 +2,8 @@
 
 Implemented and read locally on 2026-09-20. The evaluator uses simulator revision `3aad7695b8720b291999ef0903fcab7b7e008f1e`. These are public development cases with project-authored expectations. Independent controls-engineer review and held-out evaluation remain pending.
 
+Update, 2026-10-03: this page describes the v1 manifest (`moa/data/drills-v1.json`, simulator `3aad769`), which stays the pin for every experiment module. [Drills v2](../receipts/drills-v2/README.md) (`moa/data/drills-v2.json`) pins the same cases to simulator `bfed001`. Only cooling-loss changes, to a quality abstention, because TIC202 exceeds its declared range at that revision. `scripts/rescore_drills.py` scores either manifest against a simulator checkout; see the [source-map v2 re-score](../receipts/source-map-v2/README.md).
+
 ## Run
 
 ```sh

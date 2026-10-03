@@ -1,7 +1,7 @@
 import copy
 import json
 import unittest
-from moa.contracts import Rejected, validate_snapshot
+from moa.contracts import Rejected
 from moa.drills import MANIFEST_PATH, evidence_matches, score_case
 from moa.engine import Agent, ReadTools
 from moa.evidence import EvidenceStore

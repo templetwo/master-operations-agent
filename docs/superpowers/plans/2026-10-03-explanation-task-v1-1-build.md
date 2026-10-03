@@ -1,5 +1,7 @@
 # Explanation Task v1.1 Evaluator Implementation Plan
 
+> **Status:** executed inline on 2026-10-03 (commits `42f57ae`..`d7a6ccb`, merged in `713454f`). The checkboxes below were not maintained. This file is kept as the build record.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build the adopted explanation-task v1.1 evaluator as a library: shared contract, deterministic template and control, mechanical checks, packet gates, preflight, evaluation run, blind review sheet, tally and a counts-only public report. No model is called and no private case is read.

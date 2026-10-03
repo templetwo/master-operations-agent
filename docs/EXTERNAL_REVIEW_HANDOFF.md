@@ -2,7 +2,7 @@
 
 Prepared 2026-09-20 for an outside reviewer. This is a maintainer-prepared brief, not an independent review or endorsement. Please challenge the harness, policy, tests, and conclusions as well as the models.
 
-**Follow-up work:** this handoff describes the frozen `dd40e9d` / `7451a72` review baseline. Later runtime and diagnostic changes, controlled experimental outcomes, and private holdout preparation are documented in [the v0.6 completion receipts](../receipts/v0.6/README.md). Statements below about unresolved defects are historical findings at that baseline; original evidence remains intact.
+**Follow-up work:** this handoff describes the frozen `dd40e9d` / `7451a72` review baseline. Later runtime and diagnostic changes, controlled experimental outcomes, and private holdout preparation are documented in [the v0.6 completion receipts](../receipts/v0.6/README.md). Statements below about unresolved defects are historical findings at that baseline; original evidence remains intact. Later still, the v0.7 policy-only private holdout campaign scored 7/24 useful against 24/24 for the baseline and failed its gate ([receipts](../receipts/v0.7/README.md)); v0.8 added a separate provider-free stream path ([slice report](v0.8-slice-report.md)); and the [explanation task v1.1](explanation-task-v1.1.md) was adopted with an evaluator not yet run on its cases. The package is now version 0.8.0.
 
 ## Review request and public entry points
 

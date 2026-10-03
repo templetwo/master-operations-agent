@@ -147,4 +147,4 @@ async function generate(args) {
   return {completed: true, consumer: args.consumer, run_count: summaries.length, samples: summaries.reduce((sum, run) => sum + run.samples, 0)};
 }
 if (require.main === module) generate(options(process.argv.slice(2))).then(result => process.stdout.write(JSON.stringify(result) + '\n')).catch(error => {console.error(error.message); process.exitCode = 1;});
-module.exports = {generate, options, SCENARIOS, SEED, shuffle, cleanRevision};
+module.exports = {options, SCENARIOS, shuffle};
