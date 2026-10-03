@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## 0.8.0
 
 - Add the v0.8 provider-free stream boundary and deterministic slice: schema 1.2 subject-only observations and dependency-scoped `lab-v2-deps` findings. All eleven acceptance tests pass from a clean checkout. The legacy advisor is unchanged. See [the slice report](docs/v0.8-slice-report.md).
 - Carry uncertain source quality through the stream and legacy adapters without using it for findings that need Good values. Snapshot schema 1.3 exports SP, OP and categorical MODE; `--legacy` keeps schema 1.0 output (PR #1).
