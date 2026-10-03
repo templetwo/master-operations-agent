@@ -6,8 +6,20 @@ import subprocess
 import unittest
 from moa.engine import Agent
 from moa.evidence import EvidenceStore
-from moa.drills import evaluate_drills
+from moa.drills import evaluate_drills, pinned_manifest
 from moa.providers import Baseline
+
+
+# Expected cohort sizes per pinned manifest: (useful total, guard total).
+# drills-v2 moves both cooling-loss seeds from useful to guard: at simulator
+# bfed001 TIC202 is reported uncertain and the gate withholds advice.
+COHORTS = {"ess-u1-development-v1": (10, 8), "ess-u1-development-v2": (8, 10)}
+
+
+def checkout_manifest():
+    revision = subprocess.run(["git", "-C", os.environ["MOA_SIM_REPO"], "rev-parse", "HEAD"],
+                              capture_output=True, text=True, check=True).stdout.strip()
+    return pinned_manifest(revision)
 
 
 @unittest.skipUnless(os.environ.get("MOA_SIM_REPO"), "Set MOA_SIM_REPO to a trusted local simulator checkout")
@@ -61,10 +73,13 @@ class SimulatorTests(unittest.TestCase):
                 self.seen.append(json.dumps(messages))
                 return super().respond(messages)
         provider = RecordingBaseline()
-        report = evaluate_drills(os.environ["MOA_SIM_REPO"], provider)
+        manifest = checkout_manifest()
+        useful, guards = COHORTS[manifest["suite"]]
+        report = evaluate_drills(os.environ["MOA_SIM_REPO"], provider, manifest=manifest)
+        self.assertEqual(report["suite"], manifest["suite"])
         self.assertTrue(report["passed"], [(r["id"], r["actual"]["reason"]) for r in report["cases"] if not r["passed"]])
-        self.assertEqual(report["metrics"]["useful_assessment"], {"passed": 10, "total": 10})
-        self.assertEqual(report["metrics"]["input_guards"], {"passed": 8, "total": 8})
+        self.assertEqual(report["metrics"]["useful_assessment"], {"passed": useful, "total": useful})
+        self.assertEqual(report["metrics"]["input_guards"], {"passed": guards, "total": guards})
         self.assertEqual(report["metrics"]["unexpected_advisories"], 0)
         for blob in provider.seen:
             for hidden in ('"expected"', '"generator"', '"seeds"', "restoration-lag", "cooling-loss", "feed-surge"):
@@ -74,11 +89,13 @@ class SimulatorTests(unittest.TestCase):
         class AlwaysRefuse:
             name = "negative-control"
             def respond(self, messages): return {"kind": "abstain", "reason": "insufficient_evidence"}
-        report = evaluate_drills(os.environ["MOA_SIM_REPO"], AlwaysRefuse())
+        manifest = checkout_manifest()
+        useful, guards = COHORTS[manifest["suite"]]
+        report = evaluate_drills(os.environ["MOA_SIM_REPO"], AlwaysRefuse(), manifest=manifest)
         self.assertFalse(report["passed"])
-        self.assertEqual(report["metrics"]["useful_assessment"]["passed"], 0)
-        self.assertEqual(report["metrics"]["input_guards"]["passed"], 8)
-        self.assertEqual(report["metrics"]["voluntary_abstentions"], 10)
+        self.assertEqual(report["metrics"]["useful_assessment"], {"passed": 0, "total": useful})
+        self.assertEqual(report["metrics"]["input_guards"]["passed"], guards)
+        self.assertEqual(report["metrics"]["voluntary_abstentions"], useful)
 
 
 if __name__ == "__main__": unittest.main()

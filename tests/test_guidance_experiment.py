@@ -2,12 +2,14 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
 
 from moa.guidance_experiment import ARMS, design, prompts, register, run, provider_failure_requires_stop
 from moa.providers import Baseline
+from moa.drills import MANIFEST_PATH
 
 
 class ExperimentTests(unittest.TestCase):
@@ -64,6 +66,9 @@ class ExperimentTests(unittest.TestCase):
 
     @unittest.skipUnless(os.environ.get('MOA_SIM_REPO'), 'Set MOA_SIM_REPO for mocked-cloud factorial integration')
     def test_interleaved_real_exports_and_mocked_provider(self):
+        revision = subprocess.run(["git", "-C", os.environ["MOA_SIM_REPO"], "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+        if revision != json.loads(MANIFEST_PATH.read_text())["simulator_revision"]:
+            self.skipTest("This preregistered experiment is pinned to the drills-v1 simulator revision.")
         instances = []
         class FakeDeepSeek(Baseline):
             name = 'mocked-deepseek'
