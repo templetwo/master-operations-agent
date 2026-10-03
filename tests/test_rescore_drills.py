@@ -66,6 +66,10 @@ class RowComparisonTests(unittest.TestCase):
         self.assertEqual(fields, [("normal:1", "passed"), ("normal:1", "actual.status"), ("normal:1", "actual.reason"),
                                   ("normal:1", "actual.findings"), ("normal:1", "process_data_sha256"), ("cooling-loss:1", "id")])
 
+    def test_row_absent_from_the_receipt_is_named(self):
+        self.assertEqual(compare_rows(receipt_rows([ROW]), []),
+                         [{"id": "normal:1", "field": "id", "recorded": None, "actual": "normal:1"}])
+
 
 @unittest.skipUnless(os.environ.get("MOA_SIM_REPO"), "Set MOA_SIM_REPO to a trusted local simulator checkout")
 class RescoreEndToEndTests(unittest.TestCase):
