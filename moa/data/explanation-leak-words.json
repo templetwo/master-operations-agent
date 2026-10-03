@@ -1,0 +1,10 @@
+{
+  "schema": "moa-explanation-leak-words-v1",
+  "sources": {
+    "moa/data/drills-v1.json": "56edad87ad67484af62e5401f14cdf171112ef47",
+    "moa/data/drills-v2.json": "3fd23f4a068202d82699049450b35de4a6a40a84",
+    "moa/fixtures.py": "94fc836c657b470b8976c321134e84012bbae415"
+  },
+  "label_words": ["abstention_accepted", "explanation_required"],
+  "words": ["abstention_accepted", "bad-quality", "conflict", "cooling", "cooling-loss", "explanation_required", "feed-surge", "history-gap", "history-quality", "injection", "missing", "normal", "partial", "recovery", "restoration-lag", "stale", "trend-cooling", "trend-recovery"]
+}
