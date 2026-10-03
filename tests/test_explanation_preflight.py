@@ -4,6 +4,7 @@ from datetime import timedelta
 
 from explanation_packets import T0, ess_snapshot, kernel_for, packet, quality_abstain_observation
 from moa.contracts import digest
+from moa.explanation.contract import case_hash
 from moa.explanation.preflight import Refused, freeze_check, preflight
 
 
@@ -74,6 +75,27 @@ class PreflightTests(unittest.TestCase):
 
     def test_empty_package_is_not_runnable(self):
         self.assertFalse(preflight([], manifest())["public"]["runnable"])
+
+
+class IneligibleReportTests(unittest.TestCase):
+    def test_ineligible_case_hashes_and_categories_are_private(self):
+        tampered = packet(task_id="t-m")
+        tampered["kernel"]["findings"] = tampered["kernel"]["findings"][:-1]
+        broken = {"task_id": "t-z"}
+        result = preflight(good_packets() + [tampered, broken], manifest())
+        ineligible = result["private"]["ineligible"]
+        self.assertEqual(sorted(item["category"] for item in ineligible), ["kernel_mismatch", "parse"])
+        self.assertIn({"case_hash": case_hash(tampered), "category": "kernel_mismatch"}, ineligible)
+        self.assertTrue(all(len(item["case_hash"]) == 64 for item in ineligible))
+        public = json.dumps(result["public"])
+        for item in ineligible:
+            self.assertNotIn(item["case_hash"], public)
+
+    def test_unhashable_fields_are_counted_not_raised(self):
+        odd = packet(task_id="t-o")
+        odd["observation"]["schema_version"] = ["1.1"]
+        public = preflight(good_packets() + [dict(packet(task_id="t-l"), label=["x"]), odd], manifest())["public"]
+        self.assertEqual(public["invalid_counts"], {"parse": 1, "profile": 1})
 
 
 if __name__ == "__main__":

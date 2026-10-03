@@ -36,7 +36,8 @@ def review_sheet(run, salt):
                           "preferred": None, "note": None})
     sheet = {"schema": "moa-explanation-review-sheet-v1", "spec_sha256": SPEC_V11_SHA256, "single_reviewer": True,
              "mechanical_heading": HEADING, "cases": cases, "rows": rows, "pairs": pairs}
-    key = {"salt": salt, "rows": {_row_id(salt, row): {"case_hash": row["case_hash"], "candidate": row["candidate"]} for row in on_sheet}}
+    key = {"salt": salt, "rows": {_row_id(salt, row): {"case_hash": row["case_hash"], "candidate": row["candidate"]} for row in on_sheet},
+           "pairs": [pair["case_hash"] for pair in pairs]}
     return sheet, key
 
 
@@ -44,16 +45,28 @@ def _bucket():
     return {"all_six_on_explanation_required": 0, "explanation_passes": 0, "abstention_passes": 0, "failed_attempts": 0, "outputs": 0}
 
 
-def _verdict(verdicts, row_id):
-    verdict = verdicts.get("rows", {}).get(row_id)
-    if (not isinstance(verdict, dict) or any(verdict.get(criterion) not in VERDICTS for criterion in CRITERIA)
-            or verdict.get("abstention") not in VERDICTS | {None}):
+def _is_verdict(value):
+    return isinstance(value, str) and value in VERDICTS
+
+
+def _verdict(rows, row_id, abstained):
+    verdict = rows.get(row_id)
+    if not isinstance(verdict, dict) or not all(_is_verdict(verdict.get(criterion)) for criterion in CRITERIA):
         raise IncompleteReview("Every sheet row needs a recorded pass or fail for criteria 1 to 6.")
+    abstention = verdict.get("abstention")
+    if not (_is_verdict(abstention) if abstained else abstention is None or _is_verdict(abstention)):
+        raise IncompleteReview("Every abstention row needs a recorded pass or fail for the abstention rule.")
     return verdict
 
 
 def tally(run, key, verdicts):
     """Counts from the reviewer's recorded verdicts only. A row without a verdict stops the tally."""
+    rows = verdicts.get("rows") if isinstance(verdicts, dict) else None
+    pairs = verdicts.get("pairs") if isinstance(verdicts, dict) else None
+    if not isinstance(rows, dict) or not isinstance(pairs, dict):
+        raise IncompleteReview("Recorded verdicts need a rows mapping and a pairs mapping.")
+    if set(pairs) != set(key["pairs"]):
+        raise IncompleteReview("Every pair on the sheet needs exactly one recorded judgment.")
     counts = {}
     for row in run["private"]["rows"]:
         bucket = counts.setdefault(row["candidate"], {}).setdefault(row["kernel_status"], _bucket())
@@ -61,7 +74,8 @@ def tally(run, key, verdicts):
         if row["failure"]:
             bucket["failed_attempts"] += 1
             continue
-        verdict = None if row["candidate"] == "always-abstain" else _verdict(verdicts, _row_id(key["salt"], row))
+        abstained = row["output"].get("kind") == "abstain"
+        verdict = None if row["candidate"] == "always-abstain" else _verdict(rows, _row_id(key["salt"], row), abstained)
         if row["output"].get("kind") == "explain":
             if verdict and all(verdict[criterion] == "pass" for criterion in CRITERIA):
                 bucket["explanation_passes"] += 1
@@ -70,7 +84,9 @@ def tally(run, key, verdicts):
         elif row["label"] == "abstention_accepted" and row["abstention_fits"] and verdict and verdict.get("abstention") == "pass":
             bucket["abstention_passes"] += 1
     preferences = {"model": 0, "template": 0, "tie": 0}
-    for case, choice in verdicts.get("pairs", {}).items():
+    for case, choice in pairs.items():
+        if not isinstance(choice, str):
+            raise IncompleteReview("A paired judgment must be a row id or tie.")
         if choice == "tie":
             preferences["tie"] += 1
         elif choice in key["rows"] and key["rows"][choice]["case_hash"] == case:

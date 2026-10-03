@@ -6,10 +6,12 @@ import re
 from pathlib import Path
 
 from ..contracts import Rejected, canonical, strict_json
+from ..knowledge import CHECKS, FINDINGS
 from .contract import (ELIGIBLE_ABSTAIN_REASONS, EXCERPT_KEYS, KERNEL_KEYS, LABELS, MAX_EXCERPT_CHARS, MAX_EXCERPTS,
                        PACKET_KEYS, PACKET_PROFILES, SUPPLEMENT_MAX_EXCERPTS, SUPPLEMENT_MAX_WORDS)
 
 LEAK_WORDS_PATH = Path(__file__).resolve().parents[1] / "data" / "explanation-leak-words.json"
+SENTENCES = frozenset(FINDINGS.values()) | frozenset(CHECKS.values())
 TIMESTAMP = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T([0-9]{2}):[0-9]{2}:[0-9]{2}(\.[0-9]{3}|\.[0-9]{6})?Z")
 
 
@@ -39,13 +41,14 @@ def parse_gate(packet):
     """None when the packet has exactly the v1 fields and a finite JSON observation, else a category."""
     if not isinstance(packet, dict) or set(packet) != PACKET_KEYS:
         return "parse"
-    if not isinstance(packet["task_id"], str) or packet["label"] not in LABELS:
+    if not isinstance(packet["task_id"], str) or not isinstance(packet["label"], str) or packet["label"] not in LABELS:
         return "parse"
     kernel, excerpts, observation = packet["kernel"], packet["excerpts"], packet["observation"]
     if (not isinstance(kernel, dict) or set(kernel) != KERNEL_KEYS or not isinstance(kernel["status"], str)
             or not isinstance(kernel["reason"], str) or not all(isinstance(kernel[key], list) for key in ("findings", "checks", "evidence"))):
         return "parse"
-    if any(isinstance(item, dict) for key in ("findings", "checks") for item in kernel[key]):
+    if any(isinstance(item, dict) or (isinstance(item, str) and (item in SENTENCES or " " in item))
+           for key in ("findings", "checks") for item in kernel[key]):
         return "kernel_sentences"
     if not all(isinstance(item, str) for key in ("findings", "checks", "evidence") for item in kernel[key]):
         return "parse"
@@ -118,7 +121,8 @@ def eligibility_problem(packet, words):
     observation, kernel = packet["observation"], packet["kernel"]
     profile = observation.get("profile")
     versions = PACKET_PROFILES.get(profile) if isinstance(profile, str) else None
-    if versions is None or observation.get("schema_version") not in versions:
+    version = observation.get("schema_version")
+    if versions is None or not isinstance(version, str) or version not in versions:
         return "profile"
     if kernel["status"] != "advisory" and (kernel["status"] != "abstain" or kernel["reason"] not in ELIGIBLE_ABSTAIN_REASONS):
         return "reason"

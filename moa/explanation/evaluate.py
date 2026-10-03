@@ -5,7 +5,7 @@ import hashlib
 import platform
 
 from ..contracts import Rejected, canonical, digest, strict_json
-from .contract import SPEC_V1_SHA256, SPEC_V11_SHA256, abstention_fits, candidate_view, git_blob_id
+from .contract import SPEC_V1_SHA256, SPEC_V11_SHA256, abstention_fits, candidate_view, case_hash, git_blob_id
 from .mechanical import HEADING, output_problems
 from .preflight import ROOT, preflight
 from .template import always_abstain, template
@@ -26,8 +26,14 @@ class Aborted(RuntimeError):
         self.code = code
 
 
-def case_hash(packet):
-    return digest(packet)
+def _checked(output, packet):
+    """Mechanical problems and abstention fit; a checker crash is a criterion 6 problem, never a lost run."""
+    if output is None:
+        return [], False
+    try:
+        return output_problems(output, packet), abstention_fits(output, packet["kernel"])
+    except Exception:
+        return ["malformed"], False
 
 
 def call_once(candidate, view):
@@ -78,9 +84,9 @@ def evaluate(packets, manifest, recorded_preflight, *, model=None, model_freeze=
         view = candidate_view(packet)
         for name, candidate in candidates.items():
             output, failure = call_once(candidate, view)
+            problems, fits = _checked(output, packet)
             rows.append({"case_hash": case_hash(packet), "label": packet["label"], "kernel_status": packet["kernel"]["status"],
                          "candidate": name, "run_mode": RUN_MODES[name], "output": output, "failure": failure,
-                         "mechanical": {"heading": HEADING, "problems": output_problems(output, packet) if output is not None else []},
-                         "abstention_fits": abstention_fits(output, packet["kernel"]) if output is not None else False})
+                         "mechanical": {"heading": HEADING, "problems": problems}, "abstention_fits": fits})
     return {"public": _run_record(manifest, checked, root, model_freeze),
             "private": {"rows": rows, "packets": {case_hash(packet): copy.deepcopy(packet) for packet in packets}}}

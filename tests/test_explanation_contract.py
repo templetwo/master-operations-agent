@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 from explanation_packets import packet, quality_abstain_observation
-from moa.explanation.contract import (ELIGIBLE_ABSTAIN_REASONS, abstention_fits, candidate_view, free_text_items,
+from moa.explanation.contract import (ELIGIBLE_ABSTAIN_REASONS, abstention_fits, candidate_view, case_hash, free_text_items,
                                       git_blob_id, kernel_of, resolve_ref)
 from moa.knowledge import CHECKS, FINDINGS
 
@@ -92,6 +92,22 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(ELIGIBLE_ABSTAIN_REASONS, {"incomplete", "conflict", "quality", "incoherent", "units", "invalid_number",
                                                     "history_clock", "history_sequence", "history_timing", "history_incomplete",
                                                     "history_quality", "history_mismatch"})
+
+
+    def test_non_string_reason_never_fits_and_never_raises(self):
+        for reason in (["kernel_withheld"], {"a": 1}, 7, None):
+            with self.subTest(reason=reason):
+                self.assertFalse(abstention_fits({"kind": "abstain", "reason": reason, "missing_evidence": ["x"]}, {"status": "abstain"}))
+
+    def test_huge_indexes_do_not_resolve_and_do_not_raise(self):
+        case = packet(excerpts=[{"source_id": "https://example.org/doc", "locator": "p1", "text": "Text."}])
+        self.assertFalse(resolve_ref("excerpt:" + "9" * 5000, case))
+        self.assertFalse(resolve_ref("observation:/history/samples/" + "9" * 5000 + "/values/TIC201", case))
+
+    def test_case_hash_ignores_the_hidden_label(self):
+        case = packet()
+        self.assertEqual(case_hash(case), case_hash(dict(case, label="abstention_accepted")))
+        self.assertNotEqual(case_hash(case), case_hash(dict(case, task_id="t-other")))
 
 
 if __name__ == "__main__":

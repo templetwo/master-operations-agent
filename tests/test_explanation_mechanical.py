@@ -94,5 +94,10 @@ class MechanicalTests(unittest.TestCase):
         self.assertEqual(output_problems(explain([claim("é" * 210)] * 12), self.case), ["total_chars"])
 
 
+    def test_non_string_reason_and_huge_index_are_problems_not_crashes(self):
+        self.assertEqual(output_problems({"kind": "abstain", "reason": ["x"], "missing_evidence": ["a"]}, self.case), ["abstain_reason"])
+        self.assertEqual(output_problems(explain([claim("x", "excerpt:" + "9" * 5000)]), self.case), ["ref_unresolved"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,6 +1,7 @@
 """Section 2 preflight. Runs over every packet before any candidate and reports counts and hashes only. Never prints."""
 
 import copy
+import hashlib
 import platform
 import re
 import subprocess
@@ -10,7 +11,7 @@ from ..contracts import Rejected, digest, timestamp
 from ..engine import Agent
 from ..evidence import EvidenceStore
 from ..providers import Baseline
-from .contract import SPEC_V11_SHA256, git_blob_id, kernel_of
+from .contract import SPEC_V11_SHA256, case_hash, git_blob_id, kernel_of
 from .eligibility import eligibility_problem, load_leak_words, parse_gate, supplement_problems
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -46,6 +47,14 @@ def freeze_check(manifest, root=ROOT):
     return working
 
 
+def _private_hash(packet):
+    """Case hash for the author's private list; falls back for packets that are not JSON-shaped."""
+    try:
+        return case_hash(packet) if isinstance(packet, dict) else digest(packet)
+    except (TypeError, ValueError, OverflowError, RecursionError):
+        return hashlib.sha256(repr(packet).encode()).hexdigest()
+
+
 def rerun_kernel(observation, when):
     store = EvidenceStore(":memory:")
     try:
@@ -58,7 +67,7 @@ def preflight(packets, manifest, *, words=None, root=ROOT):
     """Gate every packet and rerun its kernel at the section 1 clock. Public part holds counts and hashes only."""
     catalog = freeze_check(manifest, root)
     words = load_leak_words() if words is None else tuple(words)
-    counts, valid, seen, parsed = {}, [], set(), []
+    counts, valid, seen, parsed, ineligible = {}, [], set(), [], []
     for packet in packets:
         category = parse_gate(packet)
         if category is None:
@@ -77,6 +86,7 @@ def preflight(packets, manifest, *, words=None, root=ROOT):
             category = "kernel_mismatch"
         if category:
             counts[category] = counts.get(category, 0) + 1
+            ineligible.append({"case_hash": _private_hash(packet), "category": category})
         else:
             valid.append(packet["task_id"])
     package = supplement_problems(parsed)
@@ -87,4 +97,4 @@ def preflight(packets, manifest, *, words=None, root=ROOT):
               "clock_manifest_sha256": digest(manifest["validation_clocks"]), "leak_words_sha256": digest(sorted(words)),
               "catalog_blob": catalog, "python": platform.python_version(), "author_python": manifest["author_python"],
               "runnable": bool(packets) and not counts and not package and len(valid) == len(packets)}
-    return {"public": public, "private": {"valid_task_ids": valid}}
+    return {"public": public, "private": {"valid_task_ids": valid, "ineligible": ineligible}}

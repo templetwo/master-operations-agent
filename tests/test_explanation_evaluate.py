@@ -1,5 +1,8 @@
 import copy
+import platform
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from explanation_packets import ess_snapshot, packet, quality_abstain_observation
 from moa.explanation.evaluate import Aborted, call_once, evaluate
@@ -89,6 +92,47 @@ class EvaluateTests(unittest.TestCase):
         self.assertTrue(all("label" not in keys for keys in seen))
         self.assertEqual(self.packets, good_packets())
         self.assertEqual(run["public"]["model_freeze"], FREEZE)
+
+
+class EvaluateHardeningTests(unittest.TestCase):
+    def setUp(self):
+        self.packets = good_packets()
+        self.recorded = preflight(self.packets, manifest())
+
+    def test_malformed_model_output_is_a_problem_not_a_crash(self):
+        run = evaluate(self.packets, manifest(), self.recorded,
+                       model=lambda v: {"kind": "abstain", "reason": {"a": 1}, "missing_evidence": ["a"]}, model_freeze=FREEZE)
+        model_rows = [r for r in run["private"]["rows"] if r["candidate"] == "model"]
+        self.assertEqual(len(model_rows), 3)
+        self.assertTrue(all(r["failure"] is None and r["mechanical"]["problems"] == ["abstain_reason"] and not r["abstention_fits"] for r in model_rows))
+        self.assertEqual({r["candidate"]: r["run_mode"] for r in run["private"]["rows"]},
+                         {"template": "deterministic template", "always-abstain": "deterministic always-abstain", "model": "model"})
+
+    def test_a_checker_crash_is_recorded_as_malformed(self):
+        with patch("moa.explanation.evaluate.output_problems", side_effect=RuntimeError("x")):
+            run = evaluate(self.packets, manifest(), self.recorded)
+        self.assertTrue(all(r["mechanical"]["problems"] == ["malformed"] for r in run["private"]["rows"]))
+
+    def test_partial_model_freeze_is_refused(self):
+        for key in FREEZE:
+            with self.subTest(missing=key), self.assertRaises(Aborted) as caught:
+                evaluate(self.packets, manifest(), self.recorded, model=template, model_freeze={k: v for k, v in FREEZE.items() if k != key})
+            self.assertEqual(caught.exception.code, "model_freeze")
+
+    def test_run_record_carries_every_provenance_field(self):
+        from moa.explanation.contract import git_blob_id
+        from moa.explanation.evaluate import RECORD_FILES
+        root = Path(__file__).resolve().parents[1]
+        record = evaluate(self.packets, manifest(), self.recorded)["public"]
+        self.assertEqual(set(record), {"spec_frozen_against_sha256", "spec_scored_under_sha256", "manifest_sha256", "grid_sha256",
+                                       "valid_set_sha256", "leak_words_sha256", "blobs", "python", "author_python",
+                                       "evaluator_source_sha256", "model_freeze"})
+        self.assertEqual(record["blobs"], {name: git_blob_id((root / name).read_bytes()) for name in RECORD_FILES})
+        self.assertEqual(len(RECORD_FILES), 9)
+        self.assertEqual((record["manifest_sha256"], record["grid_sha256"], record["author_python"]), ("m" * 64, "g" * 64, "3.10.12"))
+        self.assertEqual(record["valid_set_sha256"], self.recorded["public"]["valid_set_sha256"])
+        self.assertEqual(record["leak_words_sha256"], self.recorded["public"]["leak_words_sha256"])
+        self.assertEqual(record["python"], platform.python_version())
 
 
 if __name__ == "__main__":

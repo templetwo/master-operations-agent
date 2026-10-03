@@ -5,6 +5,7 @@ from pathlib import Path
 from explanation_packets import ess_snapshot, packet, quality_abstain_observation
 from moa import fixtures
 from moa.explanation.contract import git_blob_id
+from moa.knowledge import CHECKS, FINDINGS
 from moa.explanation.eligibility import (LEAK_WORDS_PATH, eligibility_problem, leaks, load_leak_words, parse_gate,
                                          supplement_problems, timestamps_ok)
 
@@ -115,6 +116,23 @@ class SupplementTests(unittest.TestCase):
         self.assertEqual(supplement_problems(many[:12]), [])
         self.assertEqual(supplement_problems(many), ["supplement_count"])
         self.assertEqual(supplement_problems([packet(excerpts=[dict(EXCERPT, text="a " * 201)])]), ["supplement_words"])
+
+
+class HostileInputTests(unittest.TestCase):
+    def test_unhashable_label_and_schema_version_are_counted(self):
+        self.assertEqual(parse_gate(dict(packet(), label=["explanation_required"])), "parse")
+        self.assertEqual(parse_gate(dict(packet(), label={"a": 1})), "parse")
+        case = packet()
+        case["observation"]["schema_version"] = ["1.1"]
+        self.assertEqual(eligibility_problem(case, load_leak_words()), "profile")
+
+    def test_kernel_with_sentence_strings_is_its_own_category(self):
+        case = packet()
+        case["kernel"]["findings"] = [FINDINGS[key] for key in case["kernel"]["findings"]]
+        self.assertEqual(parse_gate(case), "kernel_sentences")
+        case = packet()
+        case["kernel"]["checks"] = [CHECKS[key] for key in case["kernel"]["checks"]]
+        self.assertEqual(parse_gate(case), "kernel_sentences")
 
 
 if __name__ == "__main__":

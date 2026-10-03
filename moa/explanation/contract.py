@@ -9,6 +9,7 @@ import copy
 import hashlib
 import re
 
+from ..contracts import digest
 from ..knowledge import CHECKS, FINDINGS
 
 SPEC_V1_SHA256 = "75ab1a26444074927d9f49a34334217ced433d38fcab44281e385599105d5581"
@@ -37,13 +38,18 @@ ELIGIBLE_ABSTAIN_REASONS = frozenset({
     "history_clock", "history_sequence", "history_timing", "history_incomplete", "history_quality", "history_mismatch"})
 PACKET_PROFILES = {"ess-u1-window-v1": frozenset({"1.1"}), "ess-u1-v1": frozenset({"1.0", "1.3"})}
 ADVISORY_ONLY_REFS = frozenset({"policy:lab-v2", "snapshot:alarms"})
-INDEX = re.compile(r"0|[1-9][0-9]*")
+INDEX = re.compile(r"0|[1-9][0-9]{0,8}")
 BAD_ESCAPE = re.compile(r"~(?![01])")
 
 
 def git_blob_id(data):
     """Git's blob id for bytes, so pins are checked without running git."""
     return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
+
+
+def case_hash(packet):
+    """Hash of a packet without its label, so the hash cannot reveal the hidden label."""
+    return digest({key: value for key, value in packet.items() if key != "label"})
 
 
 def kernel_of(result):
@@ -112,6 +118,7 @@ def free_text_items(output):
 
 def abstention_fits(output, kernel):
     """Section 5: kernel_withheld only on an abstaining kernel, the other three only on an advisory one."""
-    if output.get("kind") != "abstain" or output.get("reason") not in ABSTAIN_REASONS:
+    reason = output.get("reason")
+    if output.get("kind") != "abstain" or not isinstance(reason, str) or reason not in ABSTAIN_REASONS:
         return False
     return (output["reason"] == "kernel_withheld") == (kernel["status"] == "abstain")

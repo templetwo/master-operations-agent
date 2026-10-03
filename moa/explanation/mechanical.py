@@ -28,7 +28,8 @@ def _support_problems(support, packet):
 def _abstain_problems(output):
     if set(output) != {"kind", "reason", "missing_evidence"}:
         return {"fields"}
-    found = set() if output["reason"] in ABSTAIN_REASONS else {"abstain_reason"}
+    reason = output["reason"]
+    found = set() if isinstance(reason, str) and reason in ABSTAIN_REASONS else {"abstain_reason"}
     needs = output["missing_evidence"]
     if not isinstance(needs, list) or not 1 <= len(needs) <= MAX_MISSING_EVIDENCE:
         found.add("missing_evidence_count")

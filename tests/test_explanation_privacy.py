@@ -5,7 +5,11 @@ import json
 import unittest
 
 from explanation_packets import packet
-from moa.explanation.evaluate import evaluate
+from moa.explanation.evaluate import Aborted, evaluate
+from moa.explanation.review import IncompleteReview
+from moa.explanation.contract import case_hash
+from explanation_packets import T0
+from moa import fixtures
 from moa.explanation.preflight import Refused, preflight
 from moa.explanation.review import public_report, review_sheet, tally
 
@@ -38,6 +42,36 @@ class PrivacyCanaryTests(unittest.TestCase):
         for public in (out.getvalue(), err.getvalue(), json.dumps(checked["public"]), json.dumps(run["public"]), json.dumps(report), refusal):
             self.assertNotIn(SENTINEL, public)
         self.assertNotIn(SENTINEL, json.dumps([r["failure"] for r in run["private"]["rows"]]))
+
+
+    def test_sentinel_in_observation_and_hashes_never_escape(self):
+        observation = fixtures.fixture("trend-cooling", now=T0)
+        observation["snapshot_id"] = f"auth-{SENTINEL}"
+        observation["alarms"][0]["condition"] = f"{SENTINEL} alarm"
+        packets = [packet(task_id=f"t-{SENTINEL}", observation=observation)]
+        hashes = [case_hash(p) for p in packets]
+        messages = []
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            checked = preflight(packets, MANIFEST)
+            run = evaluate(packets, MANIFEST, checked)
+            sheet, key = review_sheet(run, "salt")
+            try:
+                evaluate(packets, dict(MANIFEST, grid_sha256=None), checked)
+            except Aborted as exc:
+                messages.append(str(exc))
+            try:
+                tally(run, key, {"rows": {}, "pairs": {}})
+            except IncompleteReview as exc:
+                messages.append(str(exc))
+            verdicts = {"rows": {row["row_id"]: {**{c: "pass" for c in "123456"}, "abstention": None} for row in sheet["rows"]}, "pairs": {}}
+            report = public_report(run, tally(run, key, verdicts))
+        self.assertEqual(len(messages), 2)
+        published = [out.getvalue(), err.getvalue(), json.dumps(checked["public"]), json.dumps(run["public"]), json.dumps(report)] + messages
+        for text in published:
+            self.assertNotIn(SENTINEL, text)
+            for value in hashes:
+                self.assertNotIn(value, text)
 
 
 if __name__ == "__main__":
