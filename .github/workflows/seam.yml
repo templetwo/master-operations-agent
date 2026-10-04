@@ -82,13 +82,19 @@ jobs:
         with:
           node-version: '22'
       - name: Rescore every manifest at simulator main
+        continue-on-error: true
         working-directory: moa
         run: |
           echo "simulator main: $(git -C ../sim rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
+          failed=0
           for manifest in moa/data/drills-v*.json; do
-            python scripts/rescore_drills.py ../sim --manifest "$manifest" --allow-revision-mismatch \
-              --out "$RUNNER_TEMP/$(basename "$manifest")" 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+            if ! python scripts/rescore_drills.py ../sim --manifest "$manifest" --allow-revision-mismatch \
+              --out "$RUNNER_TEMP/$(basename "$manifest")" 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"; then
+              echo "Rescore failed for $manifest; continuing with the remaining manifests." | tee -a "$GITHUB_STEP_SUMMARY"
+              failed=1
+            fi
           done
+          exit "$failed"
       - name: Simulator tests at simulator main
         continue-on-error: true
         working-directory: moa
