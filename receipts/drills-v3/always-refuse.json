@@ -1,0 +1,494 @@
+{
+ "schema": "moa-drills-rescore-v1",
+ "recorded_at": "2026-10-04T22:59:53.793Z",
+ "provider": "always-refuse-negative-control",
+ "models_called": 0,
+ "manifest": {
+  "path": "moa/data/drills-v3.json",
+  "sha256": "67bd47aa9f744812f4665693e4295437ea02298d79dd9b943f7a633226fc0170",
+  "suite": "ess-u1-development-v3",
+  "pinned_revision": "adeb18a92de942ed1a60bcf4112430baa071c89d"
+ },
+ "scored_revision": "adeb18a92de942ed1a60bcf4112430baa071c89d",
+ "revision_override": null,
+ "passed": false,
+ "metrics": {
+  "useful_assessment": {
+   "passed": 0,
+   "total": 8
+  },
+  "input_guards": {
+   "passed": 10,
+   "total": 10
+  },
+  "evidence_fidelity": {
+   "passed": 0,
+   "total": 0
+  },
+  "unexpected_advisories": 0,
+  "voluntary_abstentions": 8,
+  "tool_denials": 0,
+  "candidate_rejections": 0,
+  "failure_accounting": {
+   "version": "stage-accounting-v1",
+   "total": 18,
+   "released": 0,
+   "withheld": 18,
+   "by_category": {
+    "input_validation": 10,
+    "model_abstention": 8
+   },
+   "by_stage": {
+    "abstention": 8,
+    "input_validation": 10
+   },
+   "by_reason": {
+    "history_mismatch": 1,
+    "history_sequence": 2,
+    "incomplete": 2,
+    "model_abstained": 8,
+    "quality": 4,
+    "stale": 1
+   },
+   "usable_observations": {
+    "total": 8,
+    "passed": 0,
+    "failed": 8,
+    "withheld": 8,
+    "released": 0,
+    "by_category": {
+     "model_abstention": 8
+    }
+   },
+   "guard_observations": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "withheld": 10,
+    "released": 0,
+    "by_category": {
+     "input_validation": 10
+    }
+   },
+   "limits": [
+    "Categories describe the first terminal boundary, not all potential defects in a candidate.",
+    "Provider-side JSON parse failures are provider_response, not candidate_shape.",
+    "Missing historical stage metadata is unclassified; historical receipts are not rewritten."
+   ]
+  },
+  "end_to_end_ms": {
+   "count": 18,
+   "median": 2.3200000000000003,
+   "max": 3.65
+  }
+ },
+ "cases": [
+  {
+   "id": "normal:20260920",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "no_reported_alarms",
+     "no_large_net_change",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "continue_observation",
+     "compare_independent_measurement"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "e43ec8e13f7cf1a9e9735e543856795dd75e715025b0c2f344a9d0a9521ed3d0",
+   "observation_sha256": "d32ce81e5903aad23f26bfe3460e3ee3dabf385633ce5e537f6f74d808dd1e1d",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "cooling-loss:20260920",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "2636796a8e22f7133f68d2747e9dcff8cf96724020441c3aec546cae58b83542",
+   "observation_sha256": "b801e34eb9bf2fb56d865e6bdb25e7f196d088d6a1ff5a6afd3df753ed17400d",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "feed-surge:20260920",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "no_reported_alarms",
+     "feed_flow_increased",
+     "tank_level_increased",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "continue_observation",
+     "compare_independent_measurement",
+     "review_feed_balance"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "9311dbe1801918bb5aef9b8c179e144792a128b1aa89cc7b82d170f193d73a88",
+   "observation_sha256": "b2777154fdf378fd8222b7e169cd4c875e82639faa1c9f7b9b443425be80be56",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "bad-quality:20260920",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "4ff9fad0b7582ba7e0c50cb461f17dcd79b7f645af1ed319d61bdb0f033c7f57",
+   "observation_sha256": "908cedf1e51a5128c8198b60221a0b4658d68504ec9723fbd6e2ebb1d5d96d30",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "restoration-lag:20260920",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "reported_alarms",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "inspect_alarm_context",
+     "compare_independent_measurement"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "f9171d955d1b30d0955b9162d8441641e71c99f24ae6b1641be8395e241784bb",
+   "observation_sha256": "ebde20f70a91b6a35e46e829b7b2c5461c013345ee19dcc294ad0d3ee9bfda40",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "recovery:20260920",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "reported_alarms",
+     "reactor_cooling",
+     "coolant_output_high",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "inspect_alarm_context",
+     "compare_independent_measurement",
+     "monitor_thermal_recovery"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "ec3667864f1b4ea54a71cb7dd9191a62819da0a94d0891df4614aed81d203117",
+   "observation_sha256": "3967fb5c214b0b8f5935e1a0f4cadc92755dda4dd995ba215c612107f195576d",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "normal:20260921",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "no_reported_alarms",
+     "no_large_net_change",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "continue_observation",
+     "compare_independent_measurement"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "4477713dd4d1109a479690fad3ee929500b352d605fc3c6d66d4efa51277358b",
+   "observation_sha256": "3347da8af75c25ca6e9e9fbd933b6d5e79994409983b4f62a6f457032eef209c",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "cooling-loss:20260921",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "ede6a0c5946958dbe1f4632179235cd00c8557aff0e95976a39ac3ad853a08c9",
+   "observation_sha256": "21f95a5614fa1c88d6c0c806db4f1d06ba70766034591eb5620466bd00f1df9c",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "feed-surge:20260921",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "no_reported_alarms",
+     "feed_flow_increased",
+     "tank_level_increased",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "continue_observation",
+     "compare_independent_measurement",
+     "review_feed_balance"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "ee7e729b2b1f6bcd50a41edca7f58ad4f8f3f0419d0ac6205c7190f244fcb11b",
+   "observation_sha256": "4d7f5525e3b2571ce8b1a447bca026c2a0804ed1127615f0b26d57435cc122d4",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "bad-quality:20260921",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "quality",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "7f4234def2f51c07d32044dbeefbaf08cf72117bf8d3f928b02ca6656dd1006f",
+   "observation_sha256": "49133f057050c2aa40ff9c59f3f351a40f1753c05cf01da2496fd670c9edf944",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "restoration-lag:20260921",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "reported_alarms",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "inspect_alarm_context",
+     "compare_independent_measurement"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "934f6ff49c4cc5e8cde18d3b8971791b365f3cec6115c811dd7fc25f5fa0023f",
+   "observation_sha256": "8f07d845b0aa528963a2b979c8546fe2bd070b2261a8303f1a33dbcd628e5e47",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "recovery:20260921",
+   "passed": false,
+   "expected": {
+    "status": "advisory",
+    "reason": "supported",
+    "findings": [
+     "reported_alarms",
+     "reactor_cooling",
+     "coolant_output_high",
+     "cause_unresolved"
+    ],
+    "checks": [
+     "inspect_alarm_context",
+     "compare_independent_measurement",
+     "monitor_thermal_recovery"
+    ]
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "model_abstained",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "78093c63dc75925f3b2db34769287ea5520ea074b2bc880f5a3557abb1a3a99c",
+   "observation_sha256": "deb32a82ac4d4c4aa5a70d391235a807c9f9f7b357846bf168f96708f2c6f878",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "expired",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "stale",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "stale",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "e43ec8e13f7cf1a9e9735e543856795dd75e715025b0c2f344a9d0a9521ed3d0",
+   "observation_sha256": "7d03e6567d8ba8720fd6bc249ddfe9958fee49f94376b9bb1be2e96adfa912eb",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "missing-tag",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "incomplete",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "incomplete",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "c9c476cc007ed966825340b4e3c7df57c18da206040b209d46c4279f0e973b53",
+   "observation_sha256": "1fd8176609ae2fe003dd912af3bc6115d3530dc2aca32a29f2d0ac8d1c138255",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "history-gap",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "history_sequence",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "history_sequence",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "42e497ce5587682cebfbf2402aa6e2ebedf604f743b7e9af6fee3a9012013cbb",
+   "observation_sha256": "afde4e9eab04ee75254bc07e8ad7f23df72b0ec6914d3fb9a830eb456b41481d",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "history-reversed",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "history_sequence",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "history_sequence",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "7890652c323988d7c987120976703fea8967eb8f645dcb0a9cc89367a7b1ca41",
+   "observation_sha256": "be54698f3bc81abf817a54f2f32acbd7ca24d461036a9ddb07b940e53d081b22",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "endpoint-conflict",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "history_mismatch",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "history_mismatch",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "be6bf7c80a8ffac0a093a4a4ef824c9faceec23222f19051273e464718343997",
+   "observation_sha256": "8cee7da3a99593d9282723eadd5e3df71c43ff629333b6c30be7f22cf3100354",
+   "evidence_fidelity": null
+  },
+  {
+   "id": "partial-alarms",
+   "passed": true,
+   "expected": {
+    "status": "abstain",
+    "reason": "incomplete",
+    "findings": [],
+    "checks": []
+   },
+   "actual": {
+    "status": "abstain",
+    "reason": "incomplete",
+    "findings": [],
+    "checks": []
+   },
+   "process_data_sha256": "877cd2d7e0f458a9de57b26250c82cdceab19d8e3583071578e451cb1dbb6ec2",
+   "observation_sha256": "bab97d850d72478e316d7ec6460fe7e532e1b2c8a5b22aab8404652410a3f046",
+   "evidence_fidelity": null
+  }
+ ],
+ "evidence_bundle_sha256": "11b2c9aaaefc51f65c890e65d97867f40b214a6c2ce8243ef42e995d5f6b0394",
+ "limits": "Project-authored expectations for this pinned simulator revision. Public development cases, not held-out or engineer-approved ground truth. No plant response procedure. Derived from drills-v2 (simulator bfed001) with one change: at this revision the simulator controllers, alarm scan and trends read each point's observed value, TIC201 rises 0.7 to 0.8 DEG C across the restoration-lag window instead of 4.2 to 4.3, below the 2 DEG C reactor_warming rule, and the expected advisory no longer includes reactor_warming.",
+ "comparison": null
+}
