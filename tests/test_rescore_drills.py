@@ -12,6 +12,7 @@ from scripts.rescore_drills import compare_rows, effective_manifest, receipt_row
 ROOT = Path(__file__).resolve().parents[1]
 PIN = "3aad7695b8720b291999ef0903fcab7b7e008f1e"
 OTHER = "bfed001fc89d9beaa640b30a7886d5f16f61a31b"
+V3_PIN = "adeb18a92de942ed1a60bcf4112430baa071c89d"
 MANIFEST = {"suite": "s", "simulator_revision": PIN, "seeds": [1], "cases": []}
 ROW = {"id": "normal:1", "passed": True,
        "expected": {"status": "advisory", "reason": "supported", "findings": ["b", "a"], "checks": ["c"]},
@@ -115,6 +116,45 @@ class RescoreEndToEndTests(unittest.TestCase):
         process, report = self.run_script("--manifest", "moa/data/drills-v1.json")
         self.assertNotEqual(process.returncode, 0)
         self.assertIsNone(report)
+
+
+@unittest.skipUnless(os.environ.get("MOA_SIM_REPO"), "Set MOA_SIM_REPO to a trusted local simulator checkout")
+class RescoreV3EndToEndTests(unittest.TestCase):
+    run_script = RescoreEndToEndTests.run_script
+
+    def setUp(self):
+        revision = subprocess.run(["git", "-C", os.environ["MOA_SIM_REPO"], "rev-parse", "HEAD"],
+                                  capture_output=True, text=True, check=True).stdout.strip()
+        if revision != V3_PIN:
+            self.skipTest("The recorded drills-v3 receipts were scored at simulator adeb18a.")
+
+    def test_v3_reproduces_the_recorded_baseline_rows(self):
+        process, report = self.run_script("--manifest", "moa/data/drills-v3.json", "--compare", "receipts/drills-v3/baseline.json")
+        self.assertEqual(process.returncode, 0, process.stderr)
+        self.assertIsNone(report["revision_override"])
+        self.assertEqual(report["comparison"]["mismatches"], [])
+        self.assertEqual(report["metrics"]["useful_assessment"], {"passed": 8, "total": 8})
+        self.assertEqual(report["metrics"]["input_guards"], {"passed": 10, "total": 10})
+
+    def test_v3_always_refuse_reproduces_the_recorded_control(self):
+        process, report = self.run_script("--manifest", "moa/data/drills-v3.json", "--provider", "always-refuse",
+                                          "--compare", "receipts/drills-v3/always-refuse.json")
+        self.assertEqual(process.returncode, 0, process.stderr)
+        self.assertEqual(report["comparison"]["mismatches"], [])
+        self.assertEqual(report["metrics"]["useful_assessment"], {"passed": 0, "total": 8})
+        self.assertEqual(report["metrics"]["input_guards"], {"passed": 10, "total": 10})
+        self.assertEqual(report["metrics"]["voluntary_abstentions"], 8)
+
+    def test_v2_override_at_adeb18a_misses_only_reactor_warming(self):
+        process, report = self.run_script("--manifest", "moa/data/drills-v2.json", "--allow-revision-mismatch")
+        self.assertEqual(process.returncode, 0, process.stderr)
+        self.assertEqual(report["metrics"]["useful_assessment"], {"passed": 6, "total": 8})
+        self.assertEqual(report["metrics"]["input_guards"], {"passed": 10, "total": 10})
+        delta = {row["id"]: (set(row["expected"]["findings"]) - set(row["actual"]["findings"]),
+                             set(row["actual"]["findings"]) - set(row["expected"]["findings"]),
+                             row["expected"]["checks"] == row["actual"]["checks"]) for row in report["cases"] if not row["passed"]}
+        self.assertEqual(delta, {"restoration-lag:20260920": ({"reactor_warming"}, set(), True),
+                                 "restoration-lag:20260921": ({"reactor_warming"}, set(), True)})
 
 
 if __name__ == "__main__":
