@@ -14,6 +14,7 @@ from .evidence import EvidenceStore
 
 MANIFEST_PATH = Path(__file__).with_name("data") / "drills-v1.json"
 MANIFEST_V2_PATH = Path(__file__).with_name("data") / "drills-v2.json"
+MANIFEST_V3_PATH = Path(__file__).with_name("data") / "drills-v3.json"
 
 
 def pinned_manifest(revision):
@@ -22,7 +23,7 @@ def pinned_manifest(revision):
     Experiment modules keep importing MANIFEST_PATH. This lookup never
     substitutes a manifest for a revision it was not written against.
     """
-    for path in (MANIFEST_PATH, MANIFEST_V2_PATH):
+    for path in (MANIFEST_PATH, MANIFEST_V2_PATH, MANIFEST_V3_PATH):
         manifest = json.loads(path.read_text())
         if manifest["simulator_revision"] == revision:
             return manifest

@@ -1,0 +1,17 @@
+{
+  "suite": "ess-u1-development-v3",
+  "review_status": "controls_review_pending",
+  "split": "development",
+  "simulator_revision": "adeb18a92de942ed1a60bcf4112430baa071c89d",
+  "derived_from": {"path": "moa/data/drills-v2.json", "sha256": "165e12c7cdd238d10f590c174b29747c7302a06a33692fa537be7e2f38163438", "simulator_revision": "bfed001fc89d9beaa640b30a7886d5f16f61a31b"},
+  "seeds": [20260920, 20260921],
+  "cases": [
+    {"id":"normal","status":"advisory","reason":"supported","findings":["no_reported_alarms","no_large_net_change","cause_unresolved"],"checks":["continue_observation","compare_independent_measurement"]},
+    {"id":"cooling-loss","status":"abstain","reason":"quality","findings":[],"checks":[]},
+    {"id":"feed-surge","status":"advisory","reason":"supported","findings":["no_reported_alarms","feed_flow_increased","tank_level_increased","cause_unresolved"],"checks":["continue_observation","compare_independent_measurement","review_feed_balance"]},
+    {"id":"bad-quality","status":"abstain","reason":"quality","findings":[],"checks":[]},
+    {"id":"restoration-lag","status":"advisory","reason":"supported","findings":["reported_alarms","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement"]},
+    {"id":"recovery","status":"advisory","reason":"supported","findings":["reported_alarms","reactor_cooling","coolant_output_high","cause_unresolved"],"checks":["inspect_alarm_context","compare_independent_measurement","monitor_thermal_recovery"]}
+  ],
+  "limits": "Project-authored expectations for this pinned simulator revision. Public development cases, not held-out or engineer-approved ground truth. No plant response procedure. Derived from drills-v2 (simulator bfed001) with one change: at this revision the simulator controllers, alarm scan and trends read each point's observed value, TIC201 rises 0.7 to 0.8 DEG C across the restoration-lag window instead of 4.2 to 4.3, below the 2 DEG C reactor_warming rule, and the expected advisory no longer includes reactor_warming."
+}

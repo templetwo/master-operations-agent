@@ -13,7 +13,9 @@ from moa.providers import Baseline
 # Expected cohort sizes per pinned manifest: (useful total, guard total).
 # drills-v2 moves both cooling-loss seeds from useful to guard: at simulator
 # bfed001 TIC202 is reported uncertain and the gate withholds advice.
-COHORTS = {"ess-u1-development-v1": (10, 8), "ess-u1-development-v2": (8, 10)}
+# drills-v3 keeps the v2 cohorts: at simulator adeb18a restoration-lag stays a
+# useful case and only loses its expected reactor_warming finding.
+COHORTS = {"ess-u1-development-v1": (10, 8), "ess-u1-development-v2": (8, 10), "ess-u1-development-v3": (8, 10)}
 
 
 def checkout_manifest():
