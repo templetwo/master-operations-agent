@@ -1,0 +1,97 @@
+name: Simulator seam
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  pinned:
+    # Required. Each development manifest must pass at the simulator
+    # revision it is pinned to. Node 22: the scorer parses the exporter's
+    # stderr strictly, and newer Node prints a warning there.
+    name: ${{ matrix.manifest }} at its pinned simulator
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - manifest: drills-v1
+            revision: 3aad7695b8720b291999ef0903fcab7b7e008f1e
+          - manifest: drills-v2
+            revision: bfed001fc89d9beaa640b30a7886d5f16f61a31b
+          - manifest: drills-v3
+            revision: adeb18a92de942ed1a60bcf4112430baa071c89d
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: moa
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: templetwo/experion-station-sim
+          ref: ${{ matrix.revision }}
+          path: sim
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: The checkout is the manifest's pin
+        working-directory: moa
+        run: |
+          node --version
+          test "$(git -C ../sim rev-parse HEAD)" = "${{ matrix.revision }}"
+          python -c "import json, sys; sys.exit(json.load(open('moa/data/${{ matrix.manifest }}.json'))['simulator_revision'] != '${{ matrix.revision }}')"
+      - name: Agent suite with the simulator
+        working-directory: moa
+        env:
+          MOA_SIM_REPO: ${{ github.workspace }}/sim
+        run: python -m unittest discover -s tests -v
+      - name: Rescore at the pin
+        working-directory: moa
+        run: |
+          python scripts/rescore_drills.py ../sim --manifest moa/data/${{ matrix.manifest }}.json --out "$RUNNER_TEMP/baseline.json"
+          python scripts/rescore_drills.py ../sim --manifest moa/data/${{ matrix.manifest }}.json --provider always-refuse --out "$RUNNER_TEMP/always-refuse.json"
+          python -c "import json, sys; sys.exit(not json.load(open(sys.argv[1]))['passed'])" "$RUNNER_TEMP/baseline.json"
+
+  simulator-main:
+    # Informational. Shows what every manifest scores against simulator main
+    # before anyone re-pins. A miss here is a finding, not a broken build.
+    name: every manifest at simulator main (informational)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: moa
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: templetwo/experion-station-sim
+          ref: main
+          path: sim
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rescore every manifest at simulator main
+        working-directory: moa
+        run: |
+          echo "simulator main: $(git -C ../sim rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
+          for manifest in moa/data/drills-v*.json; do
+            python scripts/rescore_drills.py ../sim --manifest "$manifest" --allow-revision-mismatch \
+              --out "$RUNNER_TEMP/$(basename "$manifest")" 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+          done
+      - name: Simulator tests at simulator main
+        continue-on-error: true
+        working-directory: moa
+        env:
+          MOA_SIM_REPO: ${{ github.workspace }}/sim
+        run: python -m unittest tests.test_simulator tests.test_rescore_drills -v
